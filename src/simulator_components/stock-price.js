@@ -7,6 +7,7 @@ export default class StockPrice extends Component {
     }
 
     render() {
+      console.log("updating ticker in seach bar")
       return (
         <li>{"$" + this.props.stockPrice}</li>
       );

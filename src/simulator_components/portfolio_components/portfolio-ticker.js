@@ -33,7 +33,7 @@ export default class PortfolioTicker extends Component {
   
     if(!this.state.waitingForUpdate){
       this.interval = setInterval(async () => {
-            console.log("UPDATED");
+            console.log("UPDATING TICKER");
             var newPrice = await getStockPrice(this.state.ticker);
             var user = await getUserPortfolio(this.state.user.id);
             

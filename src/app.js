@@ -16,6 +16,7 @@ class App extends Component {
             <Route path="/" exact component={LandingPage}/>
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
+            <Route path="/user/:id/dashboard" />
           </div>
         </BrowserRouter>
         <p className="placeholder_style footer">Footer Placeholder</p>

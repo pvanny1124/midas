@@ -1,71 +1,53 @@
-require('dotenv').config()
-var Sequelize       = require('sequelize');
-
-
-//connect
-const sequelize = new Sequelize({
-    database: process.env.DBNAME,
-    username: process.env.USER,
-    password: process.env.PASSWORD,
-    dialect: 'postgres',
-    port: 5433
-});
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
+module.exports = (sequelize, DataTypes) => {
+    var Users = sequelize.define('users', {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false
+      },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false
+  
+      },
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      password: {
+        type: DataTypes.STRING
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      cash: {
+        type: DataTypes.FLOAT
+      },
+      portfolioValue: {
+        type: DataTypes.FLOAT
+      },
+      age: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      country: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      portfolio: {
+        type: DataTypes.JSONB
+      }
   })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-
+    return Users;
+  };
 //schema
-const Users = sequelize.define('users', {
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false
-    },
-    firstName: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    lastName: {
-      type: Sequelize.STRING,
-      allowNull: false
 
-    },
-    username: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    password: {
-      type: Sequelize.STRING
-    },
-    email: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    cash: {
-      type: Sequelize.FLOAT
-    },
-    portfolioValue: {
-      type: Sequelize.FLOAT
-    },
-    age: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    country: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    portfolio: {
-      type: Sequelize.JSONB
-    }
-})
 
 // Users.sync({force: true}).then(() => {
 //     // Table created
@@ -83,26 +65,23 @@ const Users = sequelize.define('users', {
 //     });
 //   });
 
-Users.update({
-        portfolio: {
-              aapl: {
-                shares: 5
-              },
-              amd: {
-                shares: 4
-              }
-            },
-          cash: 100000
-         },
-         {
-           where: {id: 1},
-           returning: true,
-           raw: true
-         }
-      ).then(user => {
-        console.log(user[1][0]);
-      })
+// Users.update({
+//         portfolio: {
+//               aapl: {
+//                 shares: 5
+//               },
+//               amd: {
+//                 shares: 4
+//               }
+//             },
+//           cash: 100000
+//          },
+//          {
+//            where: {id: 1},
+//            returning: true,
+//            raw: true
+//          }
+//       ).then(user => {
+//         console.log(user[1][0]);
+//       })
 
-  
-
-  module.exports = Users;
