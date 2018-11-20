@@ -9,7 +9,7 @@ export async function getUserPortfolio(userId){
 }
 
 export async function updateUserPortfolio(user) {
-    return fetch("http://localhost:3000/api/user/" + user.id, {
+    return fetch("/api/user/" + user.id, {
        method: "put",
        headers: new Headers({
          'Content-Type': 'application/json'

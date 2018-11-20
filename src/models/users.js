@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    var Users = sequelize.define('users', {
+    var Users = sequelize.define('Users', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -46,42 +46,7 @@ module.exports = (sequelize, DataTypes) => {
   })
     return Users;
   };
-//schema
 
 
-// Users.sync({force: true}).then(() => {
-//     // Table created
-//     return Users.create({
-//       firstName: 'John',
-//       lastName: 'Hancock',
-//       age: 23,
-//       country: 'USA',
-//       cash: 10000,
-//       email: 'pvanny1124@gmail.com',
-//       username: 'patrickv',
-//       password: 'swaggy1124'
-//     }).then(user => {
-//       console.log(user);
-//     });
-//   });
 
-// Users.update({
-//         portfolio: {
-//               aapl: {
-//                 shares: 5
-//               },
-//               amd: {
-//                 shares: 4
-//               }
-//             },
-//           cash: 100000
-//          },
-//          {
-//            where: {id: 1},
-//            returning: true,
-//            raw: true
-//          }
-//       ).then(user => {
-//         console.log(user[1][0]);
-//       })
 

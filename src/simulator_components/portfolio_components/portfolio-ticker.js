@@ -40,7 +40,7 @@ export default class PortfolioTicker extends Component {
             var amountOfSharesOwned = user.portfolio[this.state.ticker].shares;
           
             this.setState({price: newPrice, shares: amountOfSharesOwned, waitingForUpdate: true, user: user});
-      }, 1000);
+      }, 2000);
     }
      
     return (

@@ -1,23 +1,20 @@
 {
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
   "test": {
-    "username": "patrickv",
-    "password": "swaggy1124",
-    "database": "midas",
+    "username": "postgres",
+    "password": "iamironman",
+    "database": "midas_test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "port": "5432"
   },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+
+  "development": {
+    "username": "midastester",
+    "host": "midas-test.cvl52s4nkxye.us-east-1.rds.amazonaws.com",
+    "database": "midas",
+    "password": "swaggy1124",
+    "port": "5432",
+    "dialect": "postgres"
   }
+
 }
