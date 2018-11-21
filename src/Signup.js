@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
 class Signup extends Component {
@@ -20,12 +20,12 @@ class Signup extends Component {
                 age: user.age,
                 country: user.country
             })
-          });
+          })
     }
     render(){
         return (
-            <div className="login_container">
-            <form onSubmit={(event) => this.handleSubmit(event)>
+            
+            <form onSubmit={(event) => this.handleSubmit(event)} className="login_container">
                 <div class="login_title">
                     <h1>Sign Up</h1>
                 </div>
@@ -52,7 +52,6 @@ class Signup extends Component {
                 </div>
                 <Link className="not-user" to="/login">Already a user? Log in here.</Link>
             </form>
-        </div>
         );
     }
     
