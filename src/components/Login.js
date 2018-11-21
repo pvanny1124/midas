@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {Redirect, Link} from 'react-router-dom'
+import './login.css'
 
 class Login extends Component {
     render() { 
         return ( 
-            <div className="login_container">
-                <form>
+
+                <form className="login_container">
+                    <div className="login_form">
                     <div className="login_title">
                         <h1>Log In</h1>
                     </div>
@@ -19,8 +21,9 @@ class Login extends Component {
                         <button type="button" className="login-btn btn btn-dark">Log In</button>
                     </div>
                     <Link className="not-user" to="/signup">Not a user? Create an account</Link>
+                    </div>
                 </form>
-            </div>
+        
          );
     }
 }

@@ -25,8 +25,7 @@ class CustomNavbar extends Component {
             <NavItem eventKey={1} componentClass={Link} href="/" to="/">
               Home
             </NavItem>
-            <NavItem
-              eventKey={2}
+            <NavItem eventKey={2}
               componentClass={Link}
               href="/about"
               to="/about"
@@ -35,6 +34,12 @@ class CustomNavbar extends Component {
             </NavItem>
             <NavItem eventKey={3} componentClass={Link} href="/news" to="/news">
               Settings
+            </NavItem>
+            <NavItem eventKey={4} componentClass={Link} href="/signup" to="/signup">
+              Signup
+            </NavItem>
+            <NavItem eventKey={5} componentClass={Link} href="/login" to="/login">
+              Login
             </NavItem>
           </Nav>
         </Navbar.Collapse>

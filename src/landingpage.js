@@ -4,6 +4,9 @@ import Home from "./components/home";
 import About from "./components/about";
 import News from "./components/news";
 import Navbar from "./components/custom-navbar";
+import Signup from "./components/Signup";
+import Login from "./components/Login";
+import './landingpage.css'
 
 class App extends Component {
   render() {
@@ -14,6 +17,8 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/news" component={News} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
         </div>
       </Router>
     );
