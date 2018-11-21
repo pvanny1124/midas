@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      password: {
-        type: DataTypes.STRING
+      password_hash: {
+        type: DataTypes.STRING,
       },
       email: {
         type: DataTypes.STRING,
@@ -43,9 +43,20 @@ module.exports = (sequelize, DataTypes) => {
       portfolio: {
         type: DataTypes.JSONB
       }
-  })
+  });
+
+  Users.beforeCreate((user) =>
+      new sequelize.Promise((resolve) => {
+          bcrypt.hash(user.password_hash, null, null, (err, hashedPassword) => {
+              resolve(hashedPassword);
+          });
+      }).then((hashedPw) => {
+          user.password_hash = hashedPw;
+      })
+  );
+  
     return Users;
-  };
+};
 
 
 

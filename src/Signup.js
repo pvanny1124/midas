@@ -3,8 +3,24 @@ import {Link} from 'react-router-dom';
 
 class Signup extends Component {
 
-    handleSubmit(){
+    handleSubmit(event){
         //make request to backend api to signup user
+        var user = event.target;
+
+        fetch("signup", {
+            method: "post",
+            headers: new Headers({
+              'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                firstName: user.first_name, 
+                lastName: user.last_name,
+                email: user.email,
+                password: user.password,
+                age: user.age,
+                country: user.country
+            })
+          });
     }
     render(){
         return (
@@ -24,6 +40,12 @@ class Signup extends Component {
                 </div>
                 <div className="form-group">
                     <input type="text" name="password" placeholder="Password"/>
+                </div>
+                <div className="form-group">
+                    <input type="text" name="age" placeholder="age" />
+                </div>
+                <div className="form-group">
+                    <input type="text" name="country" placeholder="country" />
                 </div>
                 <div className="form-group">
                     <button type="button" className="btn btn-dark">Sign Up</button>
