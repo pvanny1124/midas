@@ -1,8 +1,18 @@
 const bcrypt = require('bcrypt-nodejs');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const Sequelize = require('sequelize')
+const env = process.env.NODE_ENV || 'test';
+const config = require(__dirname + '/../config/config.json')[env];
+const db = {};
 
-const Users = require('../models').User;
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
+const User = require("../models/users")(sequelize, Sequelize);
 
 function passwordsMatch(passwordSubmitted, storedPassword) {
   return bcrypt.compareSync(passwordSubmitted, storedPassword);
@@ -12,11 +22,11 @@ passport.use(new LocalStrategy({
     usernameField: 'email',
   },
   (email, password, done) => {
-    Users.findOne({
+    User.findOne({
       where: { email },
     }).then((user) => {
-     
-      if (!user || passwordsMatch(password, user.password) === false) {
+      console.log(user);
+      if (!user || passwordsMatch(password, user.password_hash) === false) {
         return done(null, false, { message: 'Incorrect password.' });
       }
 
@@ -30,7 +40,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  Users.findById(id).then((user) => {
+  User.findById(id).then((user) => {
     if (!user) {
       return done(null, false);
     }

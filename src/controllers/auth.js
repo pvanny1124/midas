@@ -16,8 +16,8 @@ const passport = require('../middlewares/auth');
 
 const router = express.Router();
 
-router.get('/error', (req, res) => {
-  res.sendStatus(401);
+router.get('/auth/error', (req, res) => {
+  res.sendStatus(401).json({message: "something went wrong"});
 })
 
 

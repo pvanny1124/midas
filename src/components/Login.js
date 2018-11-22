@@ -12,13 +12,33 @@ class Login extends Component {
     }
 
     handleSubmit(event){
-        fetch()
+        event.preventDefault();
+        fetch("/login", {
+            method: "post",
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password
+            })
+        })
+        .then((response) => {
+            console.log(response);
+            return response.json();
+        })
+        .then((user) => {
+            console.log(user);
+            if(user){
+                this.props.history.push("/home");
+            }
+        })
     }
 
     render() { 
         return ( 
 
-                <form className="login_container" onSubmit={(event) => this.handleSubmit}>
+                <form className="login_container" onSubmit={(event) => this.handleSubmit(event)}>
                     <div className="login_form">
                     <div className="login_title">
                         <h1>Log In</h1>
@@ -27,10 +47,10 @@ class Login extends Component {
                         <input className="form-control" type="text" name="email" placeholder="email" required onChange={(event) => this.handleEmailChange(event)}/>
                     </div>
                     <div className="form-group">
-                        <input className="form-control" type="text" name="password" placeholder="Password" required onChange={(event) => this.handlePasswordChange(event)}/>
+                        <input className="form-control" type="password" name="password" placeholder="Password" required onChange={(event) => this.handlePasswordChange(event)}/>
                     </div>
                     <div className="form-group">
-                        <button type="button" className="login-btn btn btn-dark">Log In</button>
+                        <button type="submit" className="login-btn btn btn-dark">Log In</button>
                     </div>
                     <Link className="not-user" to="/signup">Not a user? Create an account</Link>
                     </div>

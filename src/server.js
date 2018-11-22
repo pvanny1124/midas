@@ -1,20 +1,32 @@
 require('dotenv').config();
-const express       = require("express");
-const http          = require("http");
-const socketIo      = require("socket.io");
-const fetch         = require('isomorphic-fetch');
-const mongoose      = require('mongoose');
-const app           = express();
-var Users           = require('./models/users');
-var bodyParser      = require('body-parser');
-var Sequelize       = require('sequelize');
-var iextrading      = require('./helpers/interactions/iex_interactions');
-const controllers   = require('./controllers');
-const models        = require('./models');
+const express           = require("express");
+const http              = require("http");
+const socketIo          = require("socket.io");
+const fetch             = require('isomorphic-fetch');
+const app               = express();
+var Users               = require('./models/users');
+var bodyParser          = require('body-parser');
+var Sequelize           = require('sequelize');
+var iextrading          = require('./helpers/interactions/iex_interactions');
+const controllers       = require('./controllers');
+const models            = require('./models');
+const cookieParser      = require('cookie-parser');
+const expressSession    = require('express-session');
+const passport          = require('./middlewares/auth');
 
 /*******************Basic Setup and Configuration**********************/
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
+
+app.use(expressSession(({
+  secret: 'keyboard cat - REPLACE ME WITH A BETTER SECRET',
+  resave: false,
+  saveUninitialized: true,
+})));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(function(req, res, next) {  
 
@@ -37,25 +49,10 @@ app.use(function(req, res, next) {
 
     next();
 });  
+
 app.use(controllers)
-/***********************Database Configuration*************************/
 
-
-
-//Testing sequelize connection
-// sequelize
-//   .authenticate()
-//   .then(() => {
-//     console.log('Connection has been established successfully.');
-//   })
-//   .catch(err => {
-//     console.error('Unable to connect to the database:', err);
-//   });
-
-
-// const Op = sequelize.Op; //operations for where conditions
 const PORT = 3000;
-
 const server = http.createServer(app);
 const io = socketIo(server); 
 
@@ -101,12 +98,6 @@ const getStockPriceAndEmit = async (socket, ticker) => {
     }
   };
 
-// models.Users.findAll({
-//   raw: true
-// })
-//   .then(data => {
-//   console.log(data[0]);
-// })
 
 
 
