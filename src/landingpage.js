@@ -5,6 +5,7 @@ import About from "./components/about";
 import News from "./components/news";
 import Navbar from "./components/custom-navbar";
 import Signup from "./components/Signup";
+import Signout from "./components/Signout";
 import Login from "./components/Login";
 import Auth from './middlewares/react-auth';
 import './landingpage.css'
@@ -16,27 +17,30 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      userId: ""
+      user: null
     }
   }
 
   getUserData(user){
-    console.log("getting user info")
-    console.log(user.id)
     this.setState({user: user});
   }
 
+  resetUserData(){
+    this.setState({user: null});
+  }
+
   render(){
+    console.log(this.state.user);
     return (
       <Router>
         <div>
           <Navbar user={this.state.user} />
           <Route exact path="/" render={() => <Home user={this.state.user} />} />
           <Route path="/about" component={About} />
-          {/* <Route path="/news" component={News} /> */}
           <Route path="/signup" render={() => <Signup getUser={(user) => this.getUserData(user)}/>} />
           <Route path="/login" render={() => <Login getUser={(user) => this.getUserData(user)} />} />
-          <PrivateRoute path="/news" component={News} />
+          <Route path="/signout" render={() => <Signout resetUser={() => this.resetUserData()} />} />
+          <Route path="/news" component={News} />
         </div>
       </Router>
     );
