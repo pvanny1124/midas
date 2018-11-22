@@ -202,6 +202,10 @@ class Simulator extends Component {
                 });
   }
 
+  componentWillUnmount(){
+    socket.emit("disconnect sim");
+  }
+
   render() {
   
     var { responsePrice, showPortfolio, buyFailed, sellFailed, user } = this.state;

@@ -18,6 +18,10 @@ export default class ShowPortfolioValue extends Component {
         portfolioValue: this.props.user.portfolioValue
       })
     }
+
+    componentWillUnmount(){
+      clearInterval(this.interval);
+    }
   
     render(){
       // var { user, portfolioValue } = this.props;

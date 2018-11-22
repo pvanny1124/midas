@@ -26,7 +26,10 @@ export default class PortfolioTicker extends Component {
        this.setState({price: tickerPrice,})
     });
     
-   
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.interval);
   }
 
   render(){

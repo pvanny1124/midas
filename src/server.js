@@ -67,6 +67,10 @@ io.on("connection", socket => {
             interval = setInterval(() => getStockPriceAndEmit(socket, ticker), 104);
       });
 
+      socket.on("disconnect sim", () => {
+          clearInterval(interval);
+      })
+      
       socket.on("disconnect", () => {
           clearInterval(interval);
         console.log("Client disconnected");
