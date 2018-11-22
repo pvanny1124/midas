@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './signup.css'
 
+
 class Signup extends Component {
     constructor(props){
         super(props);
@@ -39,10 +40,14 @@ class Signup extends Component {
         this.setState({country: event.target.value});
     }
 
+    handleUsernameChange(event){
+        this.setState({username: event.target.value});
+    }
+
     handleSubmit(event){
         event.preventDefault();
         //make request to backend api to signup user
-        fetch("signup", {
+        fetch("/signup", {
             method: "post",
             headers: new Headers({
               'Content-Type': 'application/json'
@@ -50,11 +55,28 @@ class Signup extends Component {
             body: JSON.stringify({
                 firstName: this.state.firstName, 
                 lastName: this.state.lastName,
+                username: this.state.username,
                 email: this.state.email,
                 password: this.state.password,
                 age: this.state.age,
                 country: this.state.country
             })
+          })
+          .then((response) => {
+                console.log(response);
+                return response.json();
+          })
+
+          .then((message) => {
+              console.log(message);
+              if(message.userCreated){
+                this.props.history.push("/home")
+              } 
+          })
+          .catch((err) => {
+              fetch("/error", {
+                  body: JSON.stringify(err)
+              })
           })
     }
     render(){
@@ -73,16 +95,19 @@ class Signup extends Component {
                     <input className="form-control" type="text" name="last_name" placeholder="Last Name" onChange={(event) => this.handleLastNameChange(event)} />
                 </div>
                 <div className="form-group">
-                    <input className="form-control" type="text" name="email" placeholder="email" onChange={(event) => this.handleEmailChange(event)} />
+                    <input className="form-control" type="text" name="username" placeholder="Username" onChange={(event) => this.handleUsernameChange(event)} />
+                </div>
+                <div className="form-group">
+                    <input className="form-control" type="text" name="email" placeholder="Email" onChange={(event) => this.handleEmailChange(event)} />
                 </div>
                 <div className="form-group">
                     <input className="form-control" type="password" name="password" placeholder="Password" onChange={(event) => this.handlePasswordChange(event)} />
                 </div>
                 <div className="form-group">
-                    <input className="form-control" type="text" name="age" placeholder="age" onChange={(event) => this.handleAgeChange(event) }/>
+                    <input className="form-control" type="text" name="age" placeholder="Age" onChange={(event) => this.handleAgeChange(event) }/>
                 </div>
                 <div className="form-group">
-                    <input className="form-control" type="text" name="country" placeholder="country" onChange={(event) => this.handleCountryChange(event)} />
+                    <input className="form-control" type="text" name="country" placeholder="Country" onChange={(event) => this.handleCountryChange(event)} />
                 </div>
                 <div className="form-group">
                     <button type="submit" className="btn btn-dark">Sign Up</button>

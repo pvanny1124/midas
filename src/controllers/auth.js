@@ -1,16 +1,27 @@
 const express = require('express');
 const models = require('../models');
+const Sequelize = require('sequelize')
+const env = process.env.NODE_ENV || 'test';
+const config = require(__dirname + '/../config/config.json')[env];
+const db = {};
+
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
+const User = require("../models/users")(sequelize, Sequelize);
 const passport = require('../middlewares/auth');
 
 const router = express.Router();
-const User = models.User;
 
 router.get('/error', (req, res) => {
   res.sendStatus(401);
 })
 
 
-router.post('/signup', (req,res) => {
+router.post('/signup', (req, res) => {
   User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -20,9 +31,11 @@ router.post('/signup', (req,res) => {
     country: req.body.country,
     password_hash: req.body.password,
   }).then((user) => {
-    res.json({ msg: "user created" });
-  }).catch(() => {
-    res.status(400).json({ msg: "error creating user" });
+      console.log(user);
+      res.status(200).json({userCreated: true});
+  }).catch((err) => {
+    console.log(err);
+    res.status(401).json({userCreated: false});
   });
 });
 

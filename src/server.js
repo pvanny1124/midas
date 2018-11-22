@@ -101,12 +101,12 @@ const getStockPriceAndEmit = async (socket, ticker) => {
     }
   };
 
-models.Users.findAll({
-  raw: true
-})
-  .then(data => {
-  console.log(data[0]);
-})
+// models.Users.findAll({
+//   raw: true
+// })
+//   .then(data => {
+//   console.log(data[0]);
+// })
 
 
 

@@ -1,30 +1,29 @@
-const bcrypt = require('bcrypt-nodejs');
-
-module.exports = (sequelize, DataTypes) => {
-
-  const User = sequelize.define('users', {
+'use strict';
+module.exports = {
+  up: (queryInterface, Sequelize) => {
+    return queryInterface.createTable('users', {
       id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
       },
       firstName: {
-          type: DataTypes.STRING,
+          type: Sequelize.STRING,
           allowNull: false,
           validate: {
             notEmpty: true,
           },
         },
       lastName: {
-          type: DataTypes.STRING,
+          type: Sequelize.STRING,
           allowNull: false,
           validate: {
             notEmpty: true,
           },
       },
       username: {
-          type: DataTypes.STRING,
+          type: Sequelize.STRING,
           allowNull: false,
           unique: true,
           validate: {
@@ -33,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
           },
       },
       email: {
-          type: DataTypes.STRING,
+          type: Sequelize.STRING,
           allowNull: false,
           unique: true,
           validate: {
@@ -42,36 +41,27 @@ module.exports = (sequelize, DataTypes) => {
           },
       },
       password_hash: {
-        type: DataTypes.STRING
+        type: Sequelize.STRING
       },
       age: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       country: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
       },
       createdAt: {
-          allowNull: false,
-          type: DataTypes.DATE
+        allowNull: false,
+        type: Sequelize.DATE
       },
       updatedAt: {
-          allowNull: false,
-          type: DataTypes.DATE
+        allowNull: false,
+        type: Sequelize.DATE
       }
-  });
-
-  User.beforeCreate((user) =>
-      new sequelize.Promise((resolve) => {
-          bcrypt.hash(user.password_hash, null, null, (err, hashedPassword) => {
-              resolve(hashedPassword);
-          });
-      }).then((hashedPw) => {
-          user.password_hash = hashedPw;
-      })
-  );
-  return User;
-}
-
-
+    });
+  },
+  down: (queryInterface, Sequelize) => {
+    return queryInterface.dropTable('users');
+  }
+};
