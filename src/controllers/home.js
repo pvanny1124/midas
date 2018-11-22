@@ -1,14 +1,23 @@
 const express = require('express');
-const models = require('../models');
-const Sequelize = require('sequelize');
 const passport = require('../middlewares/auth');
+const Sequelize = require('sequelize');
+const env = process.env.NODE_ENV || 'test';
+const config = require(__dirname + '/../config/config.json')[env];
+const db = {};
 
+let sequelize;
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
+const User = require("../models/users")(sequelize, Sequelize);
 const router = express.Router();
 
 //main route to return our dummy data in json
 router.get("/api/user/:id", function(req, res){
     const userId = req.params.id;
-    models.Users.findAll({where: { id: userId }, raw: true})
+    User.findAll({where: { id: userId }, raw: true})
       .then(data => {
         res.json(data[0]);
     }).catch((err) => {
@@ -16,39 +25,12 @@ router.get("/api/user/:id", function(req, res){
       })
   });
 
-router.post("/api/signup", function(req, res){
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const username = req.body.username;
-    const age = req.body.age;
-    const country = req.body.country;
-    const email = req.body.email;
-
-});
-
-router.post('/login',
-  passport.authenticate('local', { failureRedirect: '/auth/error' }),
-  (req, res) => {
-    res.json({
-      id: req.user.id,
-      firstName: req.user.firstName,
-      lastName: req.user.lastName,
-      email: req.user.email,
-    });
-  });
-
-
-router.get('/logout', (req, res) => {
-  req.logout(); // passport created a nice logout function for us!
-  res.sendStatus(200);
-});
-
 
 router.put("/api/user/:id/portfolio-value", function(req, res){
     const newPortfolioValue = req.body.portfolioValue;
     const user_id = req.body.id;
   
-    models.Users.update({portfolioValue: newPortfolioValue}, 
+    User.update({portfolioValue: newPortfolioValue}, 
           { where: { id: user_id },
             returning: true,
             raw: true
@@ -65,7 +47,7 @@ router.put("/api/user/:id", function(req, res){
     const newPortfolio = req.body.portfolio;
     const newCashValue = req.body.cash;
   
-    models.Users.update({portfolio: newPortfolio, cash: newCashValue}, 
+    User.update({portfolio: newPortfolio, cash: newCashValue}, 
           { where: { id: userId },
             returning: true,
             raw: true

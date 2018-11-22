@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import {Redirect, Link} from 'react-router-dom'
+import {Redirect, Link, withRouter} from 'react-router-dom'
+import Auth from '../middlewares/react-auth';
 import './login.css'
 
 class Login extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            redirectToReferrer: false,
+            email: "",
+            password: ""
+        }
+    }
+
     handleEmailChange(event){
         this.setState({email: event.target.value});
     }
@@ -10,6 +20,7 @@ class Login extends Component {
     handlePasswordChange(event){
         this.setState({password: event.target.value});
     }
+
 
     handleSubmit(event){
         event.preventDefault();
@@ -23,19 +34,21 @@ class Login extends Component {
                 password: this.state.password
             })
         })
-        .then((response) => {
+        .then(response => {
             console.log(response);
             return response.json();
         })
-        .then((user) => {
+        .then(user => {
             console.log(user);
             if(user){
-                this.props.history.push("/home");
+                this.props.getUser(user);
+                this.props.history.push("/");
             }
         })
     }
 
     render() { 
+     
         return ( 
 
                 <form className="login_container" onSubmit={(event) => this.handleSubmit(event)}>
@@ -60,4 +73,4 @@ class Login extends Component {
     }
 }
  
-export default Login;
+export default withRouter(Login);

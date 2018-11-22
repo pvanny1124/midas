@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Route, Redirect, withRouter} from 'react-router-dom';
+import Auth from '../middlewares/react-auth';
+import Home from './home.js';
 import './signup.css'
 
 
@@ -12,7 +14,10 @@ class Signup extends Component {
             password: "",
             username: "",
             age: "",
-            country: ""
+            country: "",
+            portfolio: {},
+            portfolioValue: 10000,
+            cash: 10000
         }
     }
 
@@ -59,7 +64,10 @@ class Signup extends Component {
                 email: this.state.email,
                 password: this.state.password,
                 age: this.state.age,
-                country: this.state.country
+                country: this.state.country,
+                cash: this.state.cash,
+                portfolio: this.state.portfolio,
+                portfolioValue: this.state.portfolioValue
             })
           })
           .then((response) => {
@@ -70,7 +78,12 @@ class Signup extends Component {
           .then((message) => {
               console.log(message);
               if(message.userCreated){
-                this.props.history.push("/home")
+                Auth.authenticate(message.user.email, message.user.password_hash, (user) => {
+                    console.log("successfully authenticated");
+                    this.props.getUser(message.user);
+                    this.props.history.push("/");
+                })
+                
               } 
           })
           .catch((err) => {
@@ -120,4 +133,4 @@ class Signup extends Component {
     
 }
 
-export default Signup;
+export default withRouter(Signup);;

@@ -48,6 +48,13 @@ passport.deserializeUser((id, done) => {
     return done(null, user);
   });
 });
+function checkAuthentication(req,res,next){
+  if(req.isAuthenticated()){
+      //req.isAuthenticated() will return true if user is logged in
+      next();
+  } else{
+      res.redirect("/login");
+  }}
 
 passport.redirectIfLoggedIn = (route) =>
   (req, res, next) => (req.user ? res.redirect(route) : next());

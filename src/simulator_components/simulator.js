@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import StockPrice from './stock-price';
-import PortfolioTicker from '../simulator_components/portfolio_components/portfolio-ticker';
+import PortfolioTicker from './portfolio_components/portfolio-ticker';
 import { updateUserPortfolio } from '../helpers/interactions/user_interactions';
 import { getStockPrice } from '../helpers/interactions/iex_interactions';
 import ShowPortfolioValue from './portfolio_components/show-portfolio-value';
 import ShowPortfolio from './portfolio_components/show-portfolio';
 import ShowCashValue from './portfolio_components/show-cash-value';
 import PropTypes from 'prop-types';
-import './App.css';
+import './simulator.css';
 
  //mount scoket io on top of http server
 var fetch = require('isomorphic-fetch');
@@ -18,7 +18,7 @@ const URL = "http://127.0.0.1:3000";
 const socket = io(URL);
 
 /*************************Component Configuration************************************/
-class App extends Component {
+class Simulator extends Component {
   constructor(props){
       super(props);
       this.state = {
@@ -266,9 +266,4 @@ function isEmpty(obj) {
 
 
 
-
-
-
-
-
-export default App;
+export default Simulator;

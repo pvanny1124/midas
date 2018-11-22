@@ -51,6 +51,18 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      cash: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      portfolioValue: {
+          type: Sequelize.STRING,
+          allowNull: true
+      },
+      portfolio: {
+          type: Sequelize.JSONB,
+          allowNull: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

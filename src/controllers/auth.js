@@ -1,6 +1,6 @@
 const express = require('express');
 const models = require('../models');
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
 const env = process.env.NODE_ENV || 'test';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
@@ -29,10 +29,17 @@ router.post('/signup', (req, res) => {
     email: req.body.email,
     age: req.body.age,
     country: req.body.country,
+    portfolio: req.body.portfolio,
+    portfolioValue: req.body.portfolioValue,
+    cash: req.body.cash,
     password_hash: req.body.password,
   }).then((user) => {
-      console.log(user);
-      res.status(200).json({userCreated: true});
+      console.log(user.dataValues);
+
+      if(user){
+          res.status(200).json({userCreated: true, user: user.dataValues});
+      }
+      
   }).catch((err) => {
     console.log(err);
     res.status(401).json({userCreated: false});
@@ -43,7 +50,7 @@ router.post('/signup', (req, res) => {
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/auth/error' }),
   (req, res) => {
-    res.json({
+    return res.status(200).json({
       id: req.user.id,
       firstName: req.user.firstName,
       lastName: req.user.lastName,
