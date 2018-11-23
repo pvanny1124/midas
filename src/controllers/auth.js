@@ -40,9 +40,9 @@ router.post('/signup', (req, res) => {
           res.status(200).json({userCreated: true, user: user.dataValues});
       }
       
-  }).catch((err) => {
-    console.log(err);
-    res.status(401).json({userCreated: false});
+  }).catch((error) => {
+    console.log(error);
+    res.status(401).json({error: error, userCreated: false});
   });
 });
 

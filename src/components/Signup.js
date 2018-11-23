@@ -17,7 +17,10 @@ class Signup extends Component {
             country: "",
             portfolio: {},
             portfolioValue: 10000,
-            cash: 10000
+            cash: 10000,
+            wrongPassword: false,
+            emailExists: false,
+            usernameExists: false
         }
     }
 
@@ -104,9 +107,7 @@ class Signup extends Component {
               } 
           })
           .catch((err) => {
-              fetch("/error", {
-                  body: JSON.stringify(err)
-              })
+              
           })
     }
     render(){

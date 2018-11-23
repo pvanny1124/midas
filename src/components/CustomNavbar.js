@@ -2,13 +2,29 @@ import React, { Component } from "react";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Auth from '../middlewares/react-auth';
-import Search from "./Search";
+import Autocomplete from './Autocomplete';
 
 import "./css/CustomNavbar.css";
 
 
 class CustomNavbar extends Component {
-  
+  constructor(props){
+    super(props);
+    this.state = {
+      suggestions: []
+    }
+  }
+
+  componentDidMount(){
+    fetch("https://api.iextrading.com/1.0/ref-data/symbols")
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+          this.setState({suggestions: data});
+      });
+  }
  
   render() {
   
@@ -21,8 +37,9 @@ class CustomNavbar extends Component {
           <Navbar.Toggle />
         </Navbar.Header>
 
-        <Nav>
-          <Search getTicker={(ticker) => this.props.getTicker(ticker)}/>
+        <Nav className="search">
+          {/* <Search getTicker={(ticker) => this.props.getTicker(ticker)}/> */}
+          <Autocomplete className="search-bar" suggestions={this.state.suggestions}/>
         </Nav>
 
         <Navbar.Collapse>

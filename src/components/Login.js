@@ -9,7 +9,8 @@ class Login extends Component {
         this.state = {
             redirectToReferrer: false,
             email: "",
-            password: ""
+            password: "",
+            exists: false
         }
     }
 
@@ -45,6 +46,9 @@ class Login extends Component {
                 this.props.history.push("/");
             }
         })
+        .catch(error => {
+            this.setState({exists: true})
+        })
     }
 
     render() { 
@@ -53,6 +57,7 @@ class Login extends Component {
 
                 <form className="login_container" onSubmit={(event) => this.handleSubmit(event)}>
                     <div className="login_form">
+                    { this.state.exists && <div> The password you entered does not match the email provided </div>}
                     <div className="login_title">
                         <h1>Log In</h1>
                     </div>

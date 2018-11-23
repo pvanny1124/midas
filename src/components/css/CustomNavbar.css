@@ -34,3 +34,15 @@
       "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
       sans-serif;
   }
+
+.search {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 100px;
+  width: 400px;
+  z-index: 2;
+}
+
+.search-bar {
+  width: 300px;
+}
