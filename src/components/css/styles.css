@@ -1,0 +1,170 @@
+#homepageTemp {
+    margin: 100px 0;
+    color: white; }
+  
+  html, body {
+    height: 100%;
+    position: relative; }
+  
+  body {
+    margin: 0;
+    background: linear-gradient(rgba(212, 182, 156, 0.5), rgba(224, 125, 43, 0.3)), url("../img/stockmarketimage.jpeg") no-repeat center;
+    background-size: cover;
+    background-attachment: fixed; }
+  
+  .app {
+    display: flex;
+    flex-direction: column; }
+  
+  .main-container {
+    min-height: 100vh;
+    /* will cover the 100% of viewport */
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 80px;
+    /* height of your footer */ }
+  
+  .body-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+  
+  /* Forms */
+  .form-container {
+    width: 512px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    background-color: rgba(41, 51, 75, 0.9);
+    padding: 20px;
+    box-shadow: 5px 5px 5px #3f4142;
+    margin: 30px auto; }
+  
+  .form-title {
+    color: #8843d6;
+    font-size: 40px;
+    display: flex;
+    margin-bottom: 20px; }
+  
+  /* Stock Info style */
+  .stock-info-title {
+    color: #8843d6;
+    margin: 10px 0; }
+  
+  .stock-info-price {
+    color: #d1bb3d;
+    align-self: center;
+    margin: 0 10px; }
+  
+  .stock-info-head {
+    border-bottom: solid 2px rgba(255, 255, 255, 0.06);
+    margin: 10px 20px; }
+  
+  .stock-info-ticker {
+    font-size: 45px;
+    background: linear-gradient(45deg, rgba(209, 187, 61, 0.8), rgba(209, 187, 61, 0) 70%), linear-gradient(135deg, rgba(109, 201, 230, 0.8), rgba(109, 201, 230, 0) 70%), linear-gradient(180deg, rgba(224, 125, 43, 0.8), rgba(224, 125, 43, 0) 70%), linear-gradient(225deg, rgba(192, 173, 214, 0.8), rgba(136, 67, 214, 0) 70%);
+    border: 2mm inset #37beb8;
+    border-radius: 25px;
+    width: 200px; }
+  
+  .stock-info-body {
+    margin: 10px 10px;
+    justify-content: center; }
+  
+  .stock-info-left {
+    border: 1px inset #929292;
+    background-color: #364361;
+    border-radius: 10px;
+    padding: 10px; }
+  
+  .stock-info-bottom {
+    padding: 10px;
+    text-align: left;
+    border-top: solid 2px rgba(255, 255, 255, 0.06);
+    margin-top: 20px; }
+  
+  .stock-info-week52Limits {
+    align-self: center;
+    justify-content: center; }
+  
+  .display-field-key {
+    color: #e07d2b;
+    font-weight: 700; }
+  
+  .display-field-value {
+    color: #929292; }
+  
+  .week-52-low {
+    color: #b83535; }
+  
+  .week-52-high {
+    color: #29a329; }
+  
+  /* Style for navbar and footer placeholders */
+  .navbar {
+    background-color: rgba(41, 51, 75, 0.9); }
+    .navbar a {
+      color: #d1bb3d; }
+    .navbar .container {
+      justify-content: flex-start; }
+  
+  .navbar-brand {
+    font-size: 30px; }
+  
+  .nav {
+    flex-direction: row;
+    margin-left: 50px; }
+    .nav li {
+      margin: 8px; }
+  
+  #footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 20px;
+    color: #d1bb3d;
+    background-color: rgba(41, 51, 75, 0.9);
+    height: 80px;
+    line-height: 80px;
+    margin: 0;
+    text-align: center; }
+  
+  form {
+    margin: 15px 10%; }
+  
+  input[type="text"] {
+    width: 100%;
+    margin-bottom: 20px; }
+  
+  button {
+    width: 30%; }
+  
+  a {
+    color: #6dc9e6; }
+  
+  /* 
+      Media Component Styles (react-bootstrap)
+  */
+  .media {
+    border-radius: 10px;
+    background-color: #364361;
+    margin: 10px;
+    padding: 10px; }
+  
+  .media-heading {
+    color: #6dc9e6;
+    font-size: 18px; }
+  
+  .media-body p {
+    color: #929292;
+    font-size: 14px; }
+  
+  .price {
+    display: flex;
+    flex-direction: row;
+    height: 100%; }
+  
+  /*# sourceMappingURL=styles.css.map */
+  

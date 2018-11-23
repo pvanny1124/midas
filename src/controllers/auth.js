@@ -64,6 +64,11 @@ router.get('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.get("/api/auth", passport.checkAuthentication, (req, res) => {
+      console.log(req.user)
+      res.json(req.user)
+})
+
 
 router.get('/profile',
   passport.redirectIfNotLoggedIn('/login'),

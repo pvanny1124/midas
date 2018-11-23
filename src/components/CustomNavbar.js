@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Auth from '../middlewares/react-auth';
-import Search from "./search";
+import Search from "./Search";
 
-import "./custom-navbar.css";
+import "./css/CustomNavbar.css";
 
 
 class CustomNavbar extends Component {
@@ -22,7 +22,7 @@ class CustomNavbar extends Component {
         </Navbar.Header>
 
         <Nav>
-          <Search />
+          <Search getTicker={(ticker) => this.props.getTicker(ticker)}/>
         </Nav>
 
         <Navbar.Collapse>

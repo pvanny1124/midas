@@ -1,0 +1,20 @@
+.profile-pic {
+    width: 50%;
+  }
+
+.user-home {
+  display: inline;
+}
+
+.simulator {
+  float: right;
+  width: 30%;
+}
+
+.stock-info {
+  float: left;
+  width: 70%;
+}
+
+
+

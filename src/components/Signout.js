@@ -9,7 +9,12 @@ class Signout extends Component {
     
       componentDidMount() {
         this.props.resetUser();
-        this.id = setTimeout(() => this.setState({ redirect: true }), 3000)
+        fetch("/logout")
+        .then(response => {
+          if(response.status === 200){
+            this.id = setTimeout(() => this.setState({ redirect: true }), 3000)
+          } 
+        })
       }
     
       componentWillUnmount() {

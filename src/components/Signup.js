@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {Link, Route, Redirect, withRouter} from 'react-router-dom';
 import Auth from '../middlewares/react-auth';
-import Home from './home.js';
-import './signup.css'
+import Home from './Home.js';
+import './css/Signup.css'
 
 
 class Signup extends Component {
@@ -77,13 +77,30 @@ class Signup extends Component {
 
           .then((message) => {
               console.log(message);
+
+              //authenticate user in the backend to save them in session
               if(message.userCreated){
-                Auth.authenticate(message.user.email, message.user.password_hash, (user) => {
-                    console.log("successfully authenticated");
-                    this.props.getUser(message.user);
-                    this.props.history.push("/");
-                })
-                
+                    fetch("/login", {
+                        method: "post",
+                        headers: new Headers({
+                            "Content-Type": "application/json"
+                        }),
+                        body: JSON.stringify({
+                            email: this.state.email,
+                            password: this.state.password
+                        })
+                    })
+                    .then(response => {
+                        console.log(response)
+                        if(response === 200){
+                            console.log("successfully authenticated");
+                        }
+                    })
+                    .then(() => {
+                        this.props.getUser(message.user);
+                        this.props.history.push("/");
+                    })
+                    
               } 
           })
           .catch((err) => {

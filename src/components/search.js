@@ -4,6 +4,12 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 
 class Search extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      
+    }
+  }
   render() {
     return (
       <MuiThemeProvider>
