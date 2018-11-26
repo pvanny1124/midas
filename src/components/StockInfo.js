@@ -3,6 +3,9 @@ import DisplayField from './DisplayField';
 import DisplayTitle from './DisplayTitle';
 import Price from './Price';
 import TrendingNews from './TrendingNews';
+import Trade from './Trade.js';
+import {withRouter} from 'react-router';
+
 
 const API_PREFIX = "https://api.iextrading.com/1.0";
 
@@ -25,7 +28,9 @@ class StockInfo extends Component {
     }
 
     componentDidMount(){
-        this.getStockInfo(this.props.ticker);
+        console.log("PROPS IN STOCK INFO")
+        console.log(this.props)
+        this.getStockInfo(this.props.match.params.ticker);
     }
 
     // getStockInfo is central function for the API calls since we need multiple 
@@ -70,7 +75,10 @@ class StockInfo extends Component {
     }
 
     render() { 
+        console.log("TICKER DATA");
+        console.log(this.state);
         return ( 
+            <div className="form-container"> 
             <div className="form-container">
                 <div className="stock-info-head row">
                     <DisplayTitle classname={"stock-info-title col-md-6 stock-info-ticker"} title={this.state.ticker}/>
@@ -93,8 +101,10 @@ class StockInfo extends Component {
                     </div>
                 </div>
             </div>
+            <Trade tickerData={this.state} user={this.props.user}/>
+            </div>
          );
     }
 }
  
-export default StockInfo;
+export default withRouter(StockInfo);

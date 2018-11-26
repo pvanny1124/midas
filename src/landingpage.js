@@ -7,7 +7,8 @@ import Navbar from "./components/CustomNavbar";
 import Signup from "./components/Signup";
 import Signout from "./components/Signout";
 import Login from "./components/Login";
-import Auth from './middlewares/react-auth';
+import StockInfo from './components/StockInfo';
+import getStockInfo from './helpers/interactions/iex_interactions';
 import './landingpage.css'
 
 
@@ -17,7 +18,8 @@ class App extends Component {
     this.state = {
       user: null,
       searchedTicker: null,
-      isLoading: true
+      isLoading: true,
+      stockData: null
     }
   }
 
@@ -46,8 +48,17 @@ class App extends Component {
     this.setState({searchedTicker: ticker});
   }
 
+  async getStockData(ticker){
+    let stockData = getStockInfo(ticker);
+    this.setState({stockData: stockData});
+  }
+
   resetUserData(){
     this.setState({user: null});
+  }
+
+  forceUpdate(){
+    this.forceUpdate();
   }
 
   render(){
@@ -61,8 +72,10 @@ class App extends Component {
          ) : (
               
              <div>
-                <Navbar user={this.state.user} getTicker={(ticker) => this.getSearchedTicker(ticker)}/>
+                <Navbar user={this.state.user} forceUpdate={() => this.forceUpdate} getTicker={(ticker) => this.getSearchedTicker(ticker)}/>
                 <Route exact path="/" render={() => <Home user={this.state.user} getUser={(user) => this.getUserData(user)} />} />
+                {/* For the following view to render properly, pass key={props.location.key} to make the component re-render since the location changes if the user looks up a new stock*/}
+                <Route path="/stocks/:ticker" render={(props) => <StockInfo key={props.location.key} {...props} ticker={this.state.searchedTicker} user={this.state.user} getUser={(user) => this.getUserData(user)} />} />
                 <Route path="/about" component={About} />
                 <Route path="/signup" render={() => <Signup getUser={(user) => this.getUserData(user)}/>} />
                 <Route path="/login" render={() => <Login getUser={(user) => this.getUserData(user)} />} />
@@ -78,22 +91,4 @@ class App extends Component {
 }
 
 
-
-function PrivateRoute({ component: Component, ...rest }) {
-return (
-<Route {...rest} render={props =>
-    Auth.isAuthenticated ? (
-      <Component {...props} />
-    ) : (
-      <Redirect
-        to={{
-          pathname: "/login",
-          state: { from: props.location }
-        }}
-      />
-    )
-  }
-/>
-);
-}
 export default App;

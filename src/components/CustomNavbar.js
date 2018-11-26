@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Auth from '../middlewares/react-auth';
 import Autocomplete from './Autocomplete';
 
 import "./css/CustomNavbar.css";
@@ -39,7 +38,7 @@ class CustomNavbar extends Component {
 
         <Nav className="search">
           {/* <Search getTicker={(ticker) => this.props.getTicker(ticker)}/> */}
-          <Autocomplete className="search-bar" suggestions={this.state.suggestions}/>
+          <Autocomplete forceUpdate={() => this.forceUpdate} className="search-bar" suggestions={this.state.suggestions} getTicker={(ticker) => this.props.getTicker(ticker)}/>
         </Nav>
 
         <Navbar.Collapse>

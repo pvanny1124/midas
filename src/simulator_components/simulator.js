@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import StockPrice from './stock-price';
-import PortfolioTicker from './portfolio_components/portfolio-ticker';
 import { updateUserPortfolio } from '../helpers/interactions/user_interactions';
 import { getStockPrice } from '../helpers/interactions/iex_interactions';
-import ShowPortfolioValue from './portfolio_components/show-portfolio-value';
 import ShowPortfolio from './portfolio_components/show-portfolio';
 import ShowCashValue from './portfolio_components/show-cash-value';
 import PropTypes from 'prop-types';
-import './simulator.css';
+import './css/simulator.css';
 
  //mount scoket io on top of http server
 var fetch = require('isomorphic-fetch');
@@ -212,8 +210,8 @@ class Simulator extends Component {
 
     console.log("UPDATED RESPONSE PRICE")
     return (
-      <div className="App">
-        <p>Midas Stock Trading Simulator Prototype</p>
+      <div className="App container-fluid">
+        <p>Your portfolio</p>
 
           {/*main ticker input*/}
           <form onSubmit={(event) => this.handleSubmit(event)}>
@@ -226,31 +224,24 @@ class Simulator extends Component {
 
           {/*Buy button*/}
           <form onSubmit={(event) => this.handleBuy(event)}>
-            <label for="buy">Buy</label>
             <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleBuyChange(event)}/>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Buy" />
           </form>
 
           {buyFailed ? <div><span>Buy unsuccessful. Not enough cash.</span></div> : <span></span>}
 
           {/*Sell button*/}
           <form onSubmit={(event) => this.handleSell(event)}>
-             <label for="buy">Sell</label>
              <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleSellChange(event)}/>
-             <input type="submit" value="Submit" />
+             <input type="submit" value="Sell" />
           </form>
 
 
           {sellFailed ? <div><span>Sell unsuccessful. Not enough shares to sell</span></div> : <span></span>}
 
-          {/*Button to show users portfolio*/}
-          <form onSubmit={(event) => this.handleShowPortfolio(event)}>
-            <input type="submit" value="Show Portfolio" />
-          </form>
-
 
           {showPortfolio ? <ShowCashValue cashValue={user.cash} /> : <span></span>}
-          {showPortfolio ? <ShowPortfolio cashValue={user.cash} user={user}/> : <span></span>}
+          <ShowPortfolio cashValue={user.cash} user={user} />
 
       </div>
     );

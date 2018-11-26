@@ -3,6 +3,7 @@ import PortfolioTicker from './portfolio-ticker';
 import ShowPortfolioValue from './show-portfolio-value';
 import PropTypes from 'prop-types';
 import { List, Segment } from 'semantic-ui-react'
+import '../css/show-portfolio.css'
 
 class ShowPortfolio extends Component {
     constructor(props){
@@ -30,16 +31,11 @@ class ShowPortfolio extends Component {
      for(let ticker in user.portfolio) portfolioList.push(<PortfolioTicker ticker={ticker} user={user} />);
      
      return (
-        <div>
-          <ShowPortfolioValue user={user}/>
-    
-          <Segment inverted>
-              <List divided inverted relaxed>
-                      {portfolioList}
-              </List>
-            </Segment>
-                
-        </div>
+  
+              <ul className="list-group portfolio-list">
+                  {portfolioList}
+              </ul>
+                      
         
       );
     }

@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
+import { Redirect } from 'react-router-dom';
 import PropTypes from "prop-types";
 import './css/Autocomplete.css';
+import { BrowserHistory, withRouter} from 'react-router-dom';
 
 class Autocomplete extends Component {
   static propTypes = {
@@ -22,7 +24,9 @@ class Autocomplete extends Component {
       // Whether or not the suggestion list is shown
       showSuggestions: false,
       // What the user has entered
-      userInput: ""
+      userInput: "",
+      // Redirect if the user has entered a stock
+      redirect: false
     };
   }
 
@@ -65,11 +69,20 @@ class Autocomplete extends Component {
     // User pressed the enter key, update the input and close the
     // suggestions
     if (e.keyCode === 13) {
+      let enteredSymbol = filteredSuggestions[activeSuggestion].symbol;
+
+      //pass name of ticker up to main component
+      this.props.getTicker(enteredSymbol);
+
       this.setState({
         activeSuggestion: 0,
         showSuggestions: false,
-        userInput: filteredSuggestions[activeSuggestion]
+        userInput: "",
+        redirect: true
       });
+
+      //Show stock info page as soon as user presses enter
+      this.props.history.push(`/stocks/${enteredSymbol.toLowerCase()}`);
     }
     // User pressed the up arrow, decrement the index
     else if (e.keyCode === 38) {
@@ -88,6 +101,7 @@ class Autocomplete extends Component {
       this.setState({ activeSuggestion: activeSuggestion + 1 });
     }
   };
+
 
   render() {
     const {
@@ -138,32 +152,28 @@ class Autocomplete extends Component {
     }
 
     return (
-      <Fragment>
-        {/* <input
-          className="nav-input"
-          type="text"
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-          value={userInput}
-        /> */}
+      <div>
+            <Fragment>
+            
+            <div class="input-group mb-3">
+                <input type="text" 
+                      class="form-control nav-input" 
+                      placeholder="Lookup a stock" 
+                      aria-label="Recipient's username" 
+                      aria-describedby="basic-addon2"
+                      onChange={onChange}
+                      onKeyDown={onKeyDown}
+                      value={userInput}
+                />
+            </div>
 
-        <div class="input-group mb-3">
-            <input type="text" 
-                   class="form-control nav-input" 
-                   placeholder="Lookup a stock" 
-                   aria-label="Recipient's username" 
-                   aria-describedby="basic-addon2"
-                   onChange={onChange}
-                   onKeyDown={onKeyDown}
-                   value={userInput}
-            />
+
+            {suggestionsListComponent}
+          </Fragment>
         </div>
-
-
-        {suggestionsListComponent}
-      </Fragment>
+     
     );
   }
 }
 
-export default Autocomplete;
+export default withRouter(Autocomplete);

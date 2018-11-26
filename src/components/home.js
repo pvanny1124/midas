@@ -1,28 +1,11 @@
 import React, { Component } from "react";
 import { Link, Redirect, Route } from "react-router-dom";
 import { Jumbotron, Grid, Row, Col, Image, Button } from "react-bootstrap";
-import Auth from '../middlewares/react-auth';
 import Simulator from '../simulator_components/simulator';
 import StockInfo from './StockInfo';
 import "./css/Home.css";
 
-function PrivateRoute({ component: Component, ...rest }) {
-  return (
-    <Route {...rest} render={props =>
-      this.props.location.state.isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
-    />
-  );
-}
+
 
 class Home extends Component {
   constructor(props){

@@ -3,6 +3,7 @@ import { getUserPortfolio } from '../../helpers/interactions/user_interactions';
 import { getStockPrice } from '../../helpers/interactions/iex_interactions';
 import PropTypes from 'prop-types';
 import { List } from 'semantic-ui-react'
+import '../css/portfolio-ticker.css'
 
 export default class PortfolioTicker extends Component {
   constructor(props){
@@ -47,12 +48,12 @@ export default class PortfolioTicker extends Component {
     }
      
     return (
-             <List.Item>
-                  <List.Content>
-                          <List.Header>{this.state.ticker + " " + this.state.price}</List.Header>
-                          {"Shares: " + this.state.shares}
-                  </List.Content>
-             </List.Item>
+
+              <li className="list-group-item stock"> 
+                {this.state.ticker + " " + this.state.price + " Shares: " + this.state.shares}
+              </li>
+                        
+           
     );
   }
 }
