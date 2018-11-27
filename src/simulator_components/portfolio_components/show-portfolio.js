@@ -31,12 +31,14 @@ class ShowPortfolio extends Component {
      for(let ticker in user.portfolio) portfolioList.push(<PortfolioTicker ticker={ticker} user={user} />);
      
      return (
-  
-              <ul className="list-group portfolio-list">
+      <div className="container-list">
+
+          <ul className="list-group">
                   {portfolioList}
-              </ul>
-                      
-        
+          </ul>
+      </div>
+            
+                           
       );
     }
   }

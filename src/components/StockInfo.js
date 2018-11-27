@@ -5,6 +5,7 @@ import Price from './Price';
 import TrendingNews from './TrendingNews';
 import Trade from './Trade.js';
 import {withRouter} from 'react-router';
+import './css/StockInfo.css';
 
 
 const API_PREFIX = "https://api.iextrading.com/1.0";
@@ -30,7 +31,14 @@ class StockInfo extends Component {
     componentDidMount(){
         console.log("PROPS IN STOCK INFO")
         console.log(this.props)
-        this.getStockInfo(this.props.match.params.ticker);
+
+        if(this.props.location.pathname == "/"){
+            //hold a dummy for now
+            this.getStockInfo("msft");
+        } else {
+            this.getStockInfo(this.props.match.params.ticker);
+        }
+       
     }
 
     // getStockInfo is central function for the API calls since we need multiple 
@@ -75,33 +83,32 @@ class StockInfo extends Component {
     }
 
     render() { 
-        console.log("TICKER DATA");
-        console.log(this.state);
         return ( 
             <div className="form-container"> 
-            <div className="form-container">
-                <div className="stock-info-head row">
-                    <DisplayTitle classname={"stock-info-title col-md-6 stock-info-ticker"} title={this.state.ticker}/>
-                    <div className="col-md-6">
-                        <Price price={this.state.price} w52high={this.state.week52High} w52low={this.state.week52Low} />
+                <div className="form-container stock-info">
+                    <div className="stock-info-head row">
+                        <DisplayTitle classname={"stock-info-title col-md-6 stock-info-ticker"} title={this.state.ticker}/>
+                        <div className="col-md-6">
+                            <Price price={this.state.price} w52high={this.state.week52High} w52low={this.state.week52Low} />
+                        </div>
+                    </div>
+                    <div className="stock-info-body row">
+                        <div className="stock-info-left col-md-4">
+                            <DisplayField d_key={"Chart"} value={this.state.chart}/>
+                            <DisplayField d_key={"Market Cap"} value={this.state.market_cap}/>
+                            <DisplayField d_key={"Volume"} value={this.state.volume}/>
+                            <DisplayField d_key={"CEO"} value={this.state.CEO} />
+                        </div>
+                        <div className="stock-info-right col-md-8">
+                            <DisplayField d_key={"Description"} value={this.state.description}/>
+                        </div>
+                        <div className="stock-info-bottom col-md-12">
+                            <TrendingNews articles={this.state.trending_news} />
+                        </div>
                     </div>
                 </div>
-                <div className="stock-info-body row">
-                    <div className="stock-info-left col-md-4">
-                        <DisplayField d_key={"Chart"} value={this.state.chart}/>
-                        <DisplayField d_key={"Market Cap"} value={this.state.market_cap}/>
-                        <DisplayField d_key={"Volume"} value={this.state.volume}/>
-                        <DisplayField d_key={"CEO"} value={this.state.CEO} />
-                    </div>
-                    <div className="stock-info-right col-md-8">
-                        <DisplayField d_key={"Description"} value={this.state.description}/>
-                    </div>
-                    <div className="stock-info-bottom col-md-12">
-                        <TrendingNews articles={this.state.trending_news} />
-                    </div>
-                </div>
-            </div>
-            <Trade tickerData={this.state} user={this.props.user}/>
+
+                <Trade getUser={(user) => this.props.getUser(user)} className="trade-tool" tickerData={this.state} user={this.props.user}/>
             </div>
          );
     }

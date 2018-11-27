@@ -6,6 +6,7 @@ import ShowPortfolio from './portfolio_components/show-portfolio';
 import ShowCashValue from './portfolio_components/show-cash-value';
 import PropTypes from 'prop-types';
 import './css/simulator.css';
+import ShowPortfolioValue from './portfolio_components/show-portfolio-value';
 
  //mount scoket io on top of http server
 var fetch = require('isomorphic-fetch');
@@ -37,124 +38,6 @@ class Simulator extends Component {
     userId: PropTypes.number.isRequired
   }
 
-  handleBuy(event){
-      event.preventDefault();
-
-      var { responsePrice, ticker, amountOfSharesToBuy, user, value } = this.state;
-      var totalCostOfShares = responsePrice * parseInt(amountOfSharesToBuy);
-
-      //if the input is empty, just return and do nothing
-      if(value == "" || amountOfSharesToBuy == "") return;
-
-      //if user has no shares
-      if(isEmpty(user.portfolio)){
-        //TODO: Calculate average price brought
-        
-        //check
-        user.portfolio[ticker] = {
-          shares: amountOfSharesToBuy
-        }
-
-        user.cash = user.cash - totalCostOfShares;
-
-        this.setState({user: user});
-        
-        updateUserPortfolio(user)
-            .catch((err) => {console.log(err)});
-
-        return;
-      }
-
-      //If the user has money to buy shares...
-      if((user.cash - totalCostOfShares) > 0){
-          //...Check if he/she already own the stock
-          if(user.portfolio.hasOwnProperty(ticker)){
-              //add new amount of shares
-        
-              user.portfolio[ticker].shares =   parseInt(user.portfolio[ticker].shares) + parseInt(amountOfSharesToBuy);
-
-              //update cash
-              user.cash = parseInt(user.cash) - parseInt(totalCostOfShares);
-
-              //update user in db
-              updateUserPortfolio(user)
-                  .catch((err) => {console.log(err)})
-
-              //update component
-              this.setState({user: user, buyFailed: false});
-              return;
-          }
-          //If the user doesn't own any shares of the ticker...
-          //Add a new ticker in the portfolio and insert shares bought
-          user.portfolio[ticker] = {
-              shares: amountOfSharesToBuy
-          };
-          
-          //update cash
-          user.cash = user.cash - totalCostOfShares;
-        
-          //update component
-          this.setState({user: user, buyFailed: false});
-
-          //update user in db
-          updateUserPortfolio(user)
-              .catch((err) => {console.log(err)})
-
-      } else {
-          //if none of these checks passed, the user does not have enough cash to buy stocks.
-          this.setState({buyFailed: true});
-      }
-  
-  }
-
-  handleSell(event){
-      event.preventDefault();
-      
-      var { responsePrice, ticker, amountOfSharesToSell, user, sellResponse, value } = this.state;
-
-      if(value == "" || amountOfSharesToSell == "") return;
-
-      getStockPrice(ticker)
-        .then((price) => {
-            //if the user doesnt own stocks...
-            if(isEmpty(user.portfolio)){
-              this.setState({sellFailed: true});
-            } else {
-                    //check if the user has the stock 
-                    if(user.portfolio.hasOwnProperty(ticker)){
-                      //Check if he/she has more than or equal to x amount of shares to sell
-                          var userOwnedShares = parseInt(user.portfolio[ticker].shares);
-
-                          if(userOwnedShares >= parseInt(amountOfSharesToSell)){
-                                //remove x amount of shares from ticker object in portfolio
-                                user.portfolio[ticker].shares = parseInt(userOwnedShares) - parseInt(amountOfSharesToSell);
-
-                                //add price x amount of shares to cash    
-                                user.cash = parseInt(user.cash) + (parseInt(amountOfSharesToSell) * parseInt(price));
-
-                                //Update user Portfolio on backend
-                                updateUserPortfolio(user)
-                                  .catch((err) => {console.log(err)});
-
-                                //Update component for client
-                                this.setState({user: user, sellFailed: false});
-                          } else {
-                            this.setState({sellFailed: true});
-                          }
-                    }                          
-           
-           }
-        });
-  }
-
-  handleBuyChange(event){
-      //need to do this to access event.target.value through handleBuy/handleSell
-      this.setState({amountOfSharesToBuy: event.target.value});
-  }
-
-  handleSellChange(event){
-    this.setState({amountOfSharesToSell: event.target.value});
-  }
 
   handleShowPortfolio(event){
     event.preventDefault();
@@ -206,42 +89,15 @@ class Simulator extends Component {
 
   render() {
   
-    var { responsePrice, showPortfolio, buyFailed, sellFailed, user } = this.state;
+    var { user } = this.state;
 
-    console.log("UPDATED RESPONSE PRICE")
     return (
       <div className="App container-fluid">
         <p>Your portfolio</p>
 
-          {/*main ticker input*/}
-          <form onSubmit={(event) => this.handleSubmit(event)}>
-            <input type="text"  placeholder="msft" onChange={(event) => this.handleChange(event)}/>
-            <input type="submit" value="Submit" />
-          </form>
-
-          {/*Return StockPrice if we get a response back from the server*/}
-           {responsePrice ? <StockPrice stockPrice={responsePrice} /> : <span>No information available yet</span> }
-
-          {/*Buy button*/}
-          <form onSubmit={(event) => this.handleBuy(event)}>
-            <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleBuyChange(event)}/>
-            <input type="submit" value="Buy" />
-          </form>
-
-          {buyFailed ? <div><span>Buy unsuccessful. Not enough cash.</span></div> : <span></span>}
-
-          {/*Sell button*/}
-          <form onSubmit={(event) => this.handleSell(event)}>
-             <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleSellChange(event)}/>
-             <input type="submit" value="Sell" />
-          </form>
-
-
-          {sellFailed ? <div><span>Sell unsuccessful. Not enough shares to sell</span></div> : <span></span>}
-
-
-          {showPortfolio ? <ShowCashValue cashValue={user.cash} /> : <span></span>}
-          <ShowPortfolio cashValue={user.cash} user={user} />
+          <ShowPortfolioValue user={user} portfolioValue={user.portfolioValue} />
+          <ShowCashValue cashValue={user.cash} /> 
+          <ShowPortfolio cashValue={parseInt(user.cash)} user={user} />
 
       </div>
     );
@@ -250,14 +106,6 @@ class Simulator extends Component {
 }
 
 
-//Helper functions 
-function isEmpty(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
-}
 
 
 

@@ -64,6 +64,9 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.JSONB,
           allowNull: false
       },
+      posts: {
+        type: DataTypes.JSONB
+      },
       createdAt: {
           allowNull: false,
           type: DataTypes.DATE
@@ -71,7 +74,11 @@ module.exports = (sequelize, DataTypes) => {
       updatedAt: {
           allowNull: false,
           type: DataTypes.DATE
-      }
+      },
+      rank: {
+          type: DataTypes.INTEGER
+      },
+
   });
 
   User.beforeCreate((user) =>

@@ -1,6 +1,12 @@
 .list-group {
-    background-color: lightgrey;
-    width: 100%;
-    display: table-cell;
-    margin: 0 20%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #ececec;
+}
+
+.container-list {
+   text-align: center;
+   width: 100%;
+   margin: 0 auto;
 }

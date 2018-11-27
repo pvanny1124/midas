@@ -157,7 +157,7 @@ class Autocomplete extends Component {
             
             <div class="input-group mb-3">
                 <input type="text" 
-                      class="form-control nav-input" 
+                      className="form-control nav-input" 
                       placeholder="Lookup a stock" 
                       aria-label="Recipient's username" 
                       aria-describedby="basic-addon2"

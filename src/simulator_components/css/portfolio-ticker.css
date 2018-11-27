@@ -1,3 +1,6 @@
 .list-group-item {
-    width: 100%;
+    display: inline;
+    flex: auto; /* Default */
+    list-style-type: none;
+    background: #fafafa;
 }

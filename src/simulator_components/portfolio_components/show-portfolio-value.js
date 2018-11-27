@@ -6,31 +6,35 @@ export default class ShowPortfolioValue extends Component {
     constructor(props){
       super(props);
       this.state = {
-        portfolioValue: 0,
-        waitingForUpdate: false
+        waitingForUpdate: false,
+        user: this.props.user,
+        portfolioValue: "calculating..."
+
       }
     }
   
-    componentDidMount(){
+ 
+    componentDidmount(){
       clearInterval(this.interval);
-      this.setState({
-        user: this.props.user,
-        portfolioValue: this.props.user.portfolioValue
-      })
-    }
-
-    componentWillUnmount(){
-      clearInterval(this.interval);
+    
     }
   
     render(){
       // var { user, portfolioValue } = this.props;
 
+      var formatter = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 2,
+          // the default value for minimumFractionDigits depends on the currency
+          // and is usually already 2
+      });
+
       if(!this.state.waitingForUpdate){
   
         this.interval = setInterval(async () => {
               var totalPortfolioValue = 0;
-              var user = await getUserPortfolio(this.state.user.id);
+              var user = await getUserPortfolio(this.props.user.id);
               totalPortfolioValue = parseInt(user.cash); 
               const userPortfolio = user.portfolio;
 
@@ -43,11 +47,11 @@ export default class ShowPortfolioValue extends Component {
 
               updateUserPortfolioValue(user).catch((error) => console.log(error));
       
-              this.setState({portfolioValue: Math.round(100*totalPortfolioValue)/100, waitingForUpdate: true})
-         }, 5000);
+              this.setState({portfolioValue: formatter.format(totalPortfolioValue), waitingForUpdate: true})
+         }, 1000);
         }
       return (
-          <li>{"Total portfolio value: $" + this.state.portfolioValue}</li>
+          <li>{"Total portfolio value: " + this.state.portfolioValue}</li>
       );
     }
   }
