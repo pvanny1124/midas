@@ -49,7 +49,7 @@ export default class PortfolioTicker extends Component {
      
     return (
 
-              <li className="list-group-item stock"> 
+              <li className="list-group-item portfolio-item stock"> 
                 {this.state.ticker + " " + this.state.price + " Shares: " + this.state.shares}
               </li>
                         

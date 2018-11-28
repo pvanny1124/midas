@@ -1,6 +1,6 @@
-.list-group-item {
+.portfolio-item {
     display: inline;
-    flex: auto; /* Default */
+    flex: auto; 
     list-style-type: none;
     background: #fafafa;
 }

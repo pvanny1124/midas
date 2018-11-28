@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Redirect, Link, withRouter} from 'react-router-dom'
-import Auth from '../middlewares/react-auth';
 import './css/Login.css'
 
 class Login extends Component {

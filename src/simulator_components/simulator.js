@@ -75,7 +75,6 @@ class Simulator extends Component {
                     return response.json();
                 })
                 .then((user) => {
-
                     this.setState({user: user});
                 })
                 .catch((err) => {

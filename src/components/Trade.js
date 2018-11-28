@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { getStockPrice } from '../helpers/interactions/iex_interactions';
 import { updateUserPortfolio } from '../helpers/interactions/user_interactions';
+import './css/Trade.css'
 
 //First, the trade component needs to have the user informartion.
 class Trade extends Component {
@@ -16,7 +17,8 @@ class Trade extends Component {
             buyFailed: false,
             sellFailed: false,
             buySuccess: false,
-            sellSuccess: false
+            sellSuccess: false,
+            marketClosed: false
         }
     }
 
@@ -52,7 +54,7 @@ class Trade extends Component {
   
           user.cash = user.cash - totalCostOfShares;
   
-          this.setState({user: user});
+          this.setState({user: user, buySuccess: true});
           
           updateUserPortfolio(user)
               .then(user => this.props.getUserData(user))
@@ -66,7 +68,6 @@ class Trade extends Component {
             //...Check if he/she already own the stock
             if(user.portfolio.hasOwnProperty(ticker)){
                 //add new amount of shares
-          
                 user.portfolio[ticker].shares =   parseInt(user.portfolio[ticker].shares) + parseInt(amountOfSharesToBuy);
   
                 //update cash
@@ -150,6 +151,17 @@ class Trade extends Component {
           });
     }
 
+    componentWillUnmount(){
+        // var ownedShares = 0;
+        // let userPortfolio = this.props.user.portfolio;
+        // let ticker = this.props.tickerData.ticker.toLowerCase();
+        // if(userPortfolio.hasOwnProperty(ticker)){
+        //     ownedShares = userPortfolio[ticker].shares;
+        //     this.setState({ownedShares: ownedShares});
+        // }
+        this.setState({buySuccess: false, sellSuccess: false})
+    }
+
     render(){
         console.log(this.props.user);
         console.log(this.props.tickerData);
@@ -164,21 +176,34 @@ class Trade extends Component {
             // and is usually already 2
         });
 
+        //check if user owns the current ticker...
+        var ownedShares = 0;
+        if(this.props.tickerData.ticker && this.props.user){
+                if(this.props.user.portfolio.hasOwnProperty(this.props.tickerData.ticker.toLowerCase())){
+                    ownedShares = this.props.user.portfolio[this.props.tickerData.ticker.toLowerCase()].shares;
+                }
+        }
+
+        
+        // if(this.props.tickerData != undefined && this.props.user.portfolio.hasOwnProperty(this.props.tickerData.ticker.toLowerCase())){
+        //     ownedShares = this.props.user.portfolio[this.props.tickerData.ticker.toLowerCase()].shares;
+        // }
+
   
         return (
             <div>
 
                 { this.state.user ? (
-                         <div className="form-container">
+                         <div className="container-fluid trader">
                                 <p>Available buying power: {formatter.format(this.props.user.cash)}</p>
-                                <p>Shares of {this.props.tickerData.ticker} owned: </p>
+                                <p>Shares of {this.props.tickerData.ticker} owned: {ownedShares}</p>
                                 {/*Buy button*/}
                                 <form onSubmit={(event) => this.handleBuy(event)}>
                                     <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleBuyChange(event)}/>
                                     <input type="submit" value="Buy" />
                                 </form>
                                 {buyFailed ? <div><span>Buy unsuccessful. Not enough cash.</span></div> : <span></span>}
-                                {buySuccess ? <div><span>Buy successful! You now have X amount of shares of ...</span></div> : <span></span>}
+                                {buySuccess ? <div><span>Buy successful! You have added {this.state.amountOfSharesToBuy} {this.state.amountOfSharesToBuy > 1 ? "shares" : "share"} of {this.props.tickerData.ticker} to your portfolio. You now have {ownedShares} shares of {this.props.tickerData.ticker}</span></div> : <span></span>}
             
                                 {/*Sell button*/}
                                 <form onSubmit={(event) => this.handleSell(event)}>

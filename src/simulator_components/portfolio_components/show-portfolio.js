@@ -33,7 +33,7 @@ class ShowPortfolio extends Component {
      return (
       <div className="container-list">
 
-          <ul className="list-group">
+          <ul className="portfolio-stocks">
                   {portfolioList}
           </ul>
       </div>

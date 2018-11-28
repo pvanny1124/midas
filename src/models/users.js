@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 module.exports = (sequelize, DataTypes) => {
 
-  const User = sequelize.define('users', {
+  const User = sequelize.define('Users', {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -90,6 +90,10 @@ module.exports = (sequelize, DataTypes) => {
           user.password_hash = hashedPw;
       })
   );
+
+//   User.associate = models => {
+//     User.hasMany(models.Order, {foreignKey: 'user_id', sourceKey: 'id'});
+//   };
   return User;
 }
 

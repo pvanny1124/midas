@@ -83,8 +83,10 @@ class StockInfo extends Component {
     }
 
     render() { 
+
+
         return ( 
-            <div className="form-container"> 
+            <div className="stock-info-main"> 
                 <div className="form-container stock-info">
                     <div className="stock-info-head row">
                         <DisplayTitle classname={"stock-info-title col-md-6 stock-info-ticker"} title={this.state.ticker}/>

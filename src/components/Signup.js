@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link, Route, Redirect, withRouter} from 'react-router-dom';
-import Auth from '../middlewares/react-auth';
 import Home from './Home.js';
 import './css/Signup.css'
 

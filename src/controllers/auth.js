@@ -40,8 +40,9 @@ router.post('/signup', (req, res) => {
           res.status(200).json({userCreated: true, user: user.dataValues});
       }
       
-  }).catch((error) => {
-    console.log(error);
+  }).catch((errorObject) => {
+    
+    //TODO: error handle different causes for validation errors..
     res.status(401).json({error: error, userCreated: false});
   });
 });
