@@ -4,3 +4,7 @@
     list-style-type: none;
     background: #fafafa;
 }
+
+.portfolio-item:hover {
+    cursor: pointer;
+}

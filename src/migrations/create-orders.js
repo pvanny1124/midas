@@ -1,8 +1,52 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-      //TODO
-},
+    return queryInterface.createTable('Users', {
+        id: {
+          type: Sequelize.INTEGER,
+          primaryKey: true,
+          allowNull: false,
+          autoIncrement: true,
+          unique: true
+        },
+        user_id: {
+            type: Sequelize.INTEGER,
+            references: {
+              model: 'Users',
+              key: 'id'
+            },
+        },
+        status: Sequelize.STRING,
+        invoiceNumber: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            autoIncrement: true,
+            unique: true
+        },
+        sharesPurchased: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+        tickerPurchased: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        tickerPrice:  {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+        orderType: Sequelize.STRING,
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+              allowNull: false,
+              type: Sequelize.DATE
+        }
+    });
+  },
+  
 down: (queryInterface, Sequelize) => {
   //TODO
 }
