@@ -1,0 +1,6 @@
+.portfolio-item {
+    display: inline;
+    flex: auto; 
+    list-style-type: none;
+    background: #fafafa;
+}
