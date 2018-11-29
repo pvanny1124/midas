@@ -7,6 +7,7 @@ import ShowCashValue from './portfolio_components/show-cash-value';
 import PropTypes from 'prop-types';
 import './css/simulator.css';
 import ShowPortfolioValue from './portfolio_components/show-portfolio-value';
+import ReturnOnInvestment from './portfolio_components/ReturnOnInvestment';
 
  //mount scoket io on top of http server
 var fetch = require('isomorphic-fetch');
@@ -92,8 +93,8 @@ class Simulator extends Component {
 
     return (
       <div className="App container-fluid">
-        <p>Your portfolio</p>
-
+        <p>Your portfolio</p> 
+          <p>Your all-time return: <ReturnOnInvestment startingValue={10000} endingValue={user.portfolioValue} /></p>
           <ShowPortfolioValue user={user} portfolioValue={user.portfolioValue} />
           <ShowCashValue cashValue={user.cash} /> 
           <ShowPortfolio cashValue={parseInt(user.cash)} user={user} />

@@ -145,21 +145,20 @@ class Trade extends Component {
                             } else {
                               this.setState({sellFailed: true, sellSuccess: false});
                             }
-                      }                          
+                      }
+                      //otherwise,the user doesn't have enough money
+                      this.setState({sellFailed: true, sellSuccess: false});                          
              
              }
           });
     }
 
-    componentWillUnmount(){
-        // var ownedShares = 0;
-        // let userPortfolio = this.props.user.portfolio;
-        // let ticker = this.props.tickerData.ticker.toLowerCase();
-        // if(userPortfolio.hasOwnProperty(ticker)){
-        //     ownedShares = userPortfolio[ticker].shares;
-        //     this.setState({ownedShares: ownedShares});
-        // }
-        this.setState({buySuccess: false, sellSuccess: false})
+    // componentWillUnmount(){
+    //     this.setState({buySuccess: false, sellSuccess: false})
+    // }
+
+    handleContinue(){
+        this.setState({buySuccess: false, buyFailed: false, sellSuccess: false, sellFailed: false})
     }
 
     render(){
@@ -183,12 +182,6 @@ class Trade extends Component {
                     ownedShares = this.props.user.portfolio[this.props.tickerData.ticker.toLowerCase()].shares;
                 }
         }
-
-        
-        // if(this.props.tickerData != undefined && this.props.user.portfolio.hasOwnProperty(this.props.tickerData.ticker.toLowerCase())){
-        //     ownedShares = this.props.user.portfolio[this.props.tickerData.ticker.toLowerCase()].shares;
-        // }
-
   
         return (
             <div>
@@ -198,22 +191,46 @@ class Trade extends Component {
                                 <p>Available buying power: {formatter.format(this.props.user.cash)}</p>
                                 <p>Shares of {this.props.tickerData.ticker} owned: {ownedShares}</p>
                                 {/*Buy button*/}
-                                <form onSubmit={(event) => this.handleBuy(event)}>
-                                    <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleBuyChange(event)}/>
-                                    <input type="submit" value="Buy" />
-                                </form>
-                                {buyFailed ? <div><span>Buy unsuccessful. Not enough cash.</span></div> : <span></span>}
-                                {buySuccess ? <div><span>Buy successful! You have added {this.state.amountOfSharesToBuy} {this.state.amountOfSharesToBuy > 1 ? "shares" : "share"} of {this.props.tickerData.ticker} to your portfolio. You now have {ownedShares} shares of {this.props.tickerData.ticker}</span></div> : <span></span>}
+                              
+                                {buyFailed ? <div><span>Buy unsuccessful. Not enough cash.</span>
+                                                    <form onSubmit={(event) => this.handleContinue(event)}>
+                                                            <input type="submit" value="continue" />
+                                                    </form>
+                                                </div> : <span></span>
+                                                  }
+                                {buySuccess ? <div>
+                                                <p>Buy successful! You have added {this.state.amountOfSharesToBuy} {this.state.amountOfSharesToBuy > 1 ? "shares" : "share"} of {this.props.tickerData.ticker} to your portfolio. You now have {ownedShares} shares of {this.props.tickerData.ticker}</p>
+                                                       
+                                                        <form onSubmit={(event) => this.handleContinue(event)}>
+                                                            <input type="submit" value="continue" />
+                                                        </form>
+                                                
+                                             </div> 
+
+                                        : <form onSubmit={(event) => this.handleBuy(event)}>
+                                                <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleBuyChange(event)}/>
+                                                <input type="submit" value="Buy" />
+                                          </form>}
             
                                 {/*Sell button*/}
-                                <form onSubmit={(event) => this.handleSell(event)}>
-                                    <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleSellChange(event)}/>
-                                    <input type="submit" value="Sell" />
-                                </form>
-                                {sellFailed ? <div><span>Sell unsuccessful. Not enough shares to sell</span></div> : <span></span>}
-                                {sellSuccess ? <div><span>Sell successful! You now have X amount of shares of ...</span></div> : <span></span>}
-            
-                        </div>
+                                
+                                {sellFailed ? <div><p>Sell unsuccessful. Not enough shares to sell</p>
+                                                 <form onSubmit={(event) => this.handleContinue(event)}>
+                                                        <input type="submit" value="continue" />
+                                                 </form>
+                                              </div> 
+                                                : <span></span>}
+                                {sellSuccess ? <div>
+                                                    <p>Sell successful! You have sold {this.state.amountOfSharesToSell} {this.state.amountOfSharesToSell > 1 ? "shares" : "share"} of {this.props.tickerData.ticker}. You now have {ownedShares} shares of {this.props.tickerData.ticker}</p>
+                                                    <form onSubmit={(event) => this.handleContinue(event)}>
+                                                            <input type="submit" value="continue" />
+                                                    </form>
+                                               </div>
+                                               : <form onSubmit={(event) => this.handleSell(event)}>
+                                                    <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleSellChange(event)}/>
+                                                    <input type="submit" value="Sell" />
+                                                </form>}
+                       </div>
                 ) : (
                     <p>Please login to buy or sell {this.props.tickerData.ticker} shares</p>
                 )}
