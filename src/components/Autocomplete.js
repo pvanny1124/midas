@@ -68,7 +68,10 @@ class Autocomplete extends Component {
 
     // User pressed the enter key, update the input and close the
     // suggestions
+    try {
+
     if (e.keyCode === 13) {
+      
       let enteredSymbol = filteredSuggestions[activeSuggestion].symbol;
 
       //pass name of ticker up to main component
@@ -100,6 +103,11 @@ class Autocomplete extends Component {
 
       this.setState({ activeSuggestion: activeSuggestion + 1 });
     }
+
+  } catch (error) {
+      //user entered gibberish at this point...
+      console.log(error);
+  }
   };
 
 

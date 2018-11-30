@@ -6,7 +6,8 @@ const ReturnOnInvestment = (props) => {
     let startingValue = props.startingValue;
     let endingValue = props.endingValue;
 
-    let ROI = (((endingValue - startingValue) / startingValue) * 100).toFixed(2);
+    let ROI = (((endingValue - startingValue) / startingValue) * 100).toFixed(3);
+
     return (
         <div>
             {ROI + "%"}

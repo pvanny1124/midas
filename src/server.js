@@ -3,16 +3,53 @@ const http              = require("http");
 const socketIo          = require("socket.io");
 const fetch             = require('isomorphic-fetch');
 const app               = express();
-var Users               = require('./models/users');
-var bodyParser          = require('body-parser');
-var Sequelize           = require('sequelize');
-var iextrading          = require('./helpers/interactions/iex_interactions');
 const controllers       = require('./controllers');
 const models            = require('./models');
 const cookieParser      = require('cookie-parser');
 const expressSession    = require('express-session');
 const passport          = require('./middlewares/auth');
+const rp                = require('request-promise');
+const cheerio           = require('cheerio');
+const Table             = require('cli-table');
+const Users             = require('./models/users');
+const bodyParser        = require('body-parser');
+const iextrading        = require('./helpers/interactions/iex_interactions');
+const redis             = require('redis');
+const DOMParser         = require('xmldom').DOMParser;
+const util              = require('util');
+const inspect           = require('eyes').inspector({maxLength: false}) //used to color and format json output in the console.
+const exec              = require('child_process').exec;
+const parseString       = require('xml2js').parseString;
 
+
+var text, parser, xmlDoc;
+parser = new DOMParser();
+
+const command = "curl \"http://wu-quotes.apple.com/dgw?imei=42&apptype=finance\" -H \"Content-type: text/xml\" -d \"<?xml version='1.0' encoding='utf−8'?><request devtype='Apple_OSX' deployver='APPLE_DASHBOARD_1_0' app='YGoAppleStocksWidget' appver='unknown' api='finance' apiver='1.0.1' acknotification='0000'><query id='0' timestamp='`date +%s000`' type='getquotes'><list><symbol>GE</symbol></list></query></request>\"";
+
+child = exec(command, function(error, stdout, stderr){
+
+            //convert stdout into xml
+            xmlDoc = parser.parseFromString(stdout,"text/xml");
+            
+            //turn xmlDoc into JSON
+            parseString(xmlDoc, function (err, result) {
+              
+              inspect(result) //Check output on console
+
+              //check status code that tells you whether the market is open or not.
+              console.log(result.response.result[0].list[0].quote[0].status[0]); 
+              console.log(util.inspect(result, false, null)) //another way to look at the entire json object
+              //used to display part of the [Object] object..only goes 2 levels deep though.
+              //That's why using the eyes framework works best to view the entire thing!
+            });
+
+            if(error !== null)
+            {
+                console.log('exec error: ' + error);
+            }
+
+});
 /*******************Basic Setup and Configuration**********************/
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
@@ -51,9 +88,22 @@ app.use(function(req, res, next) {
 
 app.use(controllers)
 
-const PORT = 3000;
+const PORT = 3089;
 const server = http.createServer(app);
 const io = socketIo(server); 
+
+/*****************************************Redis Configuration*******************************/
+
+var client = redis.createClient();
+    client.on('error', function(err){
+      console.log('Something went wrong ', err)
+    });
+
+    client.set('my test key', 'my test value', redis.print);
+    client.get('my test key', function(error, result) {
+      if (error) throw error;
+      console.log('GET result ->', result)
+});
 
 // /*************************************Socket Configuration*******************************/
 io.on("connection", socket => {
@@ -77,6 +127,12 @@ io.on("connection", socket => {
       });
 
 });
+
+/*******************WEB SCRAPING THE NYSE STATUS***************************/
+
+// var options = {
+//   url: 
+// }
 
 // First, make sure the Database tables and models are in sync
 // then, start up the server and start listening.

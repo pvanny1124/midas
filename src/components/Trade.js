@@ -199,6 +199,7 @@ class Trade extends Component {
                     ownedShares = this.props.user.portfolio[this.props.tickerData.ticker.toLowerCase()].shares;
                 }
         }
+
   
         return (
             <div>

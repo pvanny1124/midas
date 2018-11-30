@@ -9,8 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       status: DataTypes.STRING,
       invoiceNumber: {
           type: DataTypes.STRING,
-          allowNull: false,
-          autoIncrement: true
+          allowNull: false
       },
       sharesPurchased: {
           type: DataTypes.INTEGER,
@@ -34,10 +33,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE
       },
     });
-  
-    Order.associate = models => {
-      Order.belongsTo(models.User, {foreignKey: "user_id", targetKey: "id"});
-    };
   
     return Order;
 };
