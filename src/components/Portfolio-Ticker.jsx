@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD:src/components/Portfolio-Ticker.jsx
-import { getUserPortfolio } from '../helpers/interactions/user_interactions';
-import { getStockPrice } from '../helpers/interactions/iex_interactions';
-=======
 import { getUserPortfolio } from '../../helpers/interactions/user_interactions';
 import { getStockPrice } from '../../helpers/interactions/iex_interactions';
 import { withRouter } from 'react-router-dom';
->>>>>>> d7e23fdd69768742fb4ba4cfa1bf065d9c80feb4:src/simulator_components/portfolio_components/portfolio-ticker.js
 import PropTypes from 'prop-types';
 import { List } from 'semantic-ui-react'
 import './css/portfolio-ticker.css'
