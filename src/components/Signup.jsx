@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link, Route, Redirect, withRouter} from 'react-router-dom';
 import Home from './Home';
-import './css/Signup.css'
+// import './css/Signup.css'
 
 
 class Signup extends Component {

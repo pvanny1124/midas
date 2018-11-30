@@ -3,7 +3,7 @@ import PortfolioTicker from './Portfolio-Ticker';
 import ShowPortfolioValue from './Show-Portfolio-Value';
 import PropTypes from 'prop-types';
 import { List, Segment } from 'semantic-ui-react'
-import './css/show-portfolio.css'
+// import './css/show-portfolio.css'
 
 class ShowPortfolio extends Component {
     constructor(props){

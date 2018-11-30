@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Redirect, Link, withRouter} from 'react-router-dom'
-import './css/Login.css'
+// import './css/Login.css'
 
 class Login extends Component {
     constructor(props){

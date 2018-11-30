@@ -3,7 +3,7 @@ import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Autocomplete from './Autocomplete';
 
-import "./css/CustomNavbar.css";
+// import "../../public/styles/style.css";
 
 
 class CustomNavbar extends Component {

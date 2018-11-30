@@ -5,7 +5,7 @@ import { getStockPrice } from '../helpers/interactions/iex_interactions';
 import ShowPortfolio from './Show-Portfolio';
 import ShowCashValue from './Show-Cash-Value';
 import PropTypes from 'prop-types';
-import './css/simulator.css';
+// import './css/simulator.css';
 import ShowPortfolioValue from './Show-Portfolio-Value';
 import ReturnOnInvestment from './ReturnOnInvestment';
 

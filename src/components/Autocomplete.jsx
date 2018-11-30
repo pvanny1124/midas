@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Redirect } from 'react-router-dom';
 import PropTypes from "prop-types";
-import './css/Autocomplete.css';
+// import "../../public/styles/style.css";
 import { BrowserHistory, withRouter} from 'react-router-dom';
 
 class Autocomplete extends Component {

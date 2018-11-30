@@ -12,20 +12,22 @@ class Trade extends Component {
         this.state = {
             amountOfSharesToBuy: null,
             amountOfSharesToSell: null,
+            shares: null,
             user: this.props.user,
             tickerData: this.props.tickerData,
             buyFailed: false,
             sellFailed: false,
             buySuccess: false,
             sellSuccess: false,
-            marketClosed: false
+            marketClosed: false,
+            notEnoughShares: false
         }
     }
 
 
     handleBuyChange(event){
         //need to do this to access event.target.value through handleBuy/handleSell
-        this.setState({amountOfSharesToBuy: event.target.value});
+        this.setState({amountOfSharesToBuy: event.target.value, shares: event.target.value});
     }
   
     handleSellChange(event){
@@ -41,7 +43,7 @@ class Trade extends Component {
         var ticker = tickerData.ticker.toLowerCase();
   
         //if the input is empty, just return and do nothing
-        if(amountOfSharesToBuy == "") return;
+        if(amountOfSharesToBuy == null || amountOfSharesToBuy == "" || amountOfSharesToBuy == 0) return;
   
         //if user has no shares
         if(isEmpty(user.portfolio)){
@@ -54,7 +56,8 @@ class Trade extends Component {
   
           user.cash = user.cash - totalCostOfShares;
   
-          this.setState({user: user, buySuccess: true});
+          this.setState({user: user, buySuccess: true, amountOfSharesToBuy: null});
+         
           
           updateUserPortfolio(user)
               .then(user => this.props.getUserData(user))
@@ -78,7 +81,9 @@ class Trade extends Component {
                     .catch((err) => {console.log(err)})
   
                 //update component
-                this.setState({user: user, buyFailed: false,  buySuccess: true});
+                this.setState({user: user, buyFailed: false,  buySuccess: true, amountOfSharesToBuy: null});
+           
+
                 return;
             }
             //If the user doesn't own any shares of the ticker...
@@ -91,7 +96,8 @@ class Trade extends Component {
             user.cash = user.cash - totalCostOfShares;
           
             //update component
-            this.setState({user: user, buyFailed: false, buySuccess: true});
+            this.setState({user: user, buyFailed: false, buySuccess: true, amountOfSharesToBuy: null});
+        
   
             //update user in db
             updateUserPortfolio(user)
@@ -113,7 +119,7 @@ class Trade extends Component {
         var ticker = tickerData.ticker.toLowerCase();
 
         //If user entered an empty string, just return and do nothing
-        if(amountOfSharesToSell == "") return;
+        if(amountOfSharesToSell == "" || amountOfSharesToSell == 0 || amountOfSharesToSell == null) return;
   
         getStockPrice(ticker)
           .then((price) => {
@@ -142,12 +148,17 @@ class Trade extends Component {
   
                                   //Update component for client
                                   this.setState({user: user, sellFailed: false, sellSuccess: true});
+                                  return;
                             } else {
-                              this.setState({sellFailed: true, sellSuccess: false});
+                                //the user may not have enough stocks as he/she wants to sell.
+                                //Display error message saying "you do not have enough shares..."
+                              this.setState({notEnoughShares: true, sellFailed: false, sellSuccess: false});
+                              return;
                             }
                       }
                       //otherwise,the user doesn't have enough money
-                      this.setState({sellFailed: true, sellSuccess: false});                          
+                      this.setState({sellFailed: true, sellSuccess: false});
+                      return;                          
              
              }
           });
@@ -158,14 +169,20 @@ class Trade extends Component {
     // }
 
     handleContinue(){
-        this.setState({buySuccess: false, buyFailed: false, sellSuccess: false, sellFailed: false})
+        this.setState({
+            buySuccess: false, 
+            buyFailed: false, 
+            sellSuccess: false, 
+            sellFailed: false, 
+            notEnoughShares: false
+        });
     }
 
     render(){
         console.log(this.props.user);
         console.log(this.props.tickerData);
 
-        var { buyFailed, sellFailed, buySuccess, sellSuccess } = this.state;
+        var { buyFailed, sellFailed, buySuccess, sellSuccess, notEnoughShares } = this.state;
         // Create our number formatter to display comma separated values.
         var formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -199,7 +216,7 @@ class Trade extends Component {
                                                 </div> : <span></span>
                                                   }
                                 {buySuccess ? <div>
-                                                <p>Buy successful! You have added {this.state.amountOfSharesToBuy} {this.state.amountOfSharesToBuy > 1 ? "shares" : "share"} of {this.props.tickerData.ticker} to your portfolio. You now have {ownedShares} shares of {this.props.tickerData.ticker}</p>
+                                                <p>Buy successful! You have added {this.state.shares} {this.state.shares > 1 ? "shares" : "share"} of {this.props.tickerData.ticker} to your portfolio. You now have {ownedShares} shares of {this.props.tickerData.ticker}</p>
                                                        
                                                         <form onSubmit={(event) => this.handleContinue(event)}>
                                                             <input type="submit" value="continue" />
@@ -208,7 +225,7 @@ class Trade extends Component {
                                              </div> 
 
                                         : <form onSubmit={(event) => this.handleBuy(event)}>
-                                                <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleBuyChange(event)}/>
+                                                <input type="number" min="0" placeholder="x amount of shares" value={this.state.amountOfSharesToBuy} onChange={(event) => this.handleBuyChange(event)}/>
                                                 <input type="submit" value="Buy" />
                                           </form>}
             
@@ -219,7 +236,11 @@ class Trade extends Component {
                                                         <input type="submit" value="continue" />
                                                  </form>
                                               </div> 
-                                                : <span></span>}
+                                                : (notEnoughShares ? <div><p>You do not have enough shares to sell {this.state.shares}</p>
+                                                                        <form onSubmit={(event) => this.handleContinue(event)}>
+                                                                            <input type="submit" value="continue" />
+                                                                        </form>
+                                                </div> : <span></span>)}
                                 {sellSuccess ? <div>
                                                     <p>Sell successful! You have sold {this.state.amountOfSharesToSell} {this.state.amountOfSharesToSell > 1 ? "shares" : "share"} of {this.props.tickerData.ticker}. You now have {ownedShares} shares of {this.props.tickerData.ticker}</p>
                                                     <form onSubmit={(event) => this.handleContinue(event)}>
@@ -227,7 +248,7 @@ class Trade extends Component {
                                                     </form>
                                                </div>
                                                : <form onSubmit={(event) => this.handleSell(event)}>
-                                                    <input type="text" placeholder="x amount of shares" onChange={(event) => this.handleSellChange(event)}/>
+                                                    <input type="number" min="0" placeholder="x amount of shares" onChange={(event) => this.handleSellChange(event)}/>
                                                     <input type="submit" value="Sell" />
                                                 </form>}
                        </div>

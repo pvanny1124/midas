@@ -10,7 +10,7 @@ const ReturnOnInvestment = (props) => {
     return (
         <div>
             {ROI + "%"}
-            {endingValue > startingValue ? <p>Good job! You're in the green!</p> : <p>Invest wisely. You're in the red!</p>}
+            {endingValue >= startingValue ? <p>Good job! You're in the green!</p> : <p>Invest wisely. You're in the red!</p>}
         </div>
     );
 }

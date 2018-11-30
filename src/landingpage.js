@@ -10,6 +10,7 @@ import Login from "./components/Login";
 import StockInfo from './components/StockInfo';
 import getStockInfo from './helpers/interactions/iex_interactions';
 import './landingpage.css'
+import './styles/style.css';
 
 
 class App extends Component {

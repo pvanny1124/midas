@@ -5,7 +5,7 @@ import Price from './Price';
 import TrendingNews from './TrendingNews';
 import Trade from './Trade';
 import {withRouter} from 'react-router';
-import './css/StockInfo.css';
+// import './css/StockInfo.css';
 
 
 const API_PREFIX = "https://api.iextrading.com/1.0";

@@ -1,0 +1,36 @@
+@import "variables";
+
+@import "customNavBar";
+@import "home";
+@import "login";
+@import "manyStyles";
+@import "news";
+@import "portfolioTicker";
+@import "showPortfolio";
+@import "signup";
+@import "simulator";
+
+
+body {
+    font-family: sans-serif;
+}
+
+.header-image {
+    width: 100%;
+    margin-top: -2em;
+    margin-bottom: 2em;
+  }
+  
+.about-profile-pic {
+  float: left;
+  margin: 0 1em 1em 0;
+}
+
+.list-group-item {
+width: 200px;
+height: 50px;
+font-size: 10px;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
