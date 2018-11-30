@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Orders', {
         id: {
           type: Sequelize.INTEGER,
           primaryKey: true,
@@ -9,13 +9,13 @@ module.exports = {
           autoIncrement: true,
           unique: true
         },
-        user_id: {
-            type: Sequelize.INTEGER,
-            references: {
-              model: 'Users',
-              key: 'id'
-            },
-        },
+        // user_id: {
+        //     type: Sequelize.INTEGER,
+        //     references: {
+        //       model: 'Users',
+        //       key: 'id'
+        //     },
+        // },
         status: Sequelize.STRING,
         invoiceNumber: {
             type: Sequelize.INTEGER,
@@ -49,5 +49,6 @@ module.exports = {
   
 down: (queryInterface, Sequelize) => {
   //TODO
+  return queryInterface.dropTable('Orders');
 }
 };
