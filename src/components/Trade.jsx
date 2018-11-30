@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { getStockPrice } from '../helpers/interactions/iex_interactions';
 import { updateUserPortfolio } from '../helpers/interactions/user_interactions';
-import './css/Trade.css'
+import '../styles/style.css'
 
 //First, the trade component needs to have the user informartion.
 class Trade extends Component {

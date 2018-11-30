@@ -1,3 +1,121 @@
+html, body {
+  height: 100%;
+  position: relative; }
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-size: cover;
+  background-attachment: fixed; }
+
+.about-profile-pic {
+  float: left;
+  margin: 0 1em 1em 0; }
+
+.app {
+  display: flex;
+  flex-direction: column; }
+
+.body-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.container-list {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  flex: 1;
+  height: 200px;
+  overflow-y: scroll; }
+
+.display-field-key {
+  color: black;
+  font-weight: 700; }
+
+.display-field-value {
+  color: #929292; }
+
+/* Forms */
+.form-container {
+  width: 512px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #f8f8f8;
+  padding: 20px;
+  margin: 30px auto; }
+
+.form-title {
+  color: #8843d6;
+  font-size: 40px;
+  display: flex;
+  margin-bottom: 20px; }
+
+.form-control {
+  padding: 5px;
+  margin: 0 auto;
+  width: 50%; }
+
+.header-image {
+  width: 100%;
+  margin-top: -2em;
+  margin-bottom: 2em; }
+
+/*
+    Following removes scrollbars from inputs with type="number"...
+*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0; }
+
+.list-group-item {
+  width: 200px;
+  height: 50px;
+  font-size: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.login_form {
+  margin: 0 auto;
+  width: 50%;
+  text-align: center; }
+
+.main-container {
+  min-height: 100vh;
+  /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 80px;
+  /* height of your footer */ }
+
+/* 
+    Media Component Styles (react-bootstrap)
+*/
+.media {
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px; }
+
+.media-heading {
+  color: #6dc9e6;
+  font-size: 18px; }
+
+.media-body p {
+  color: #929292;
+  font-size: 14px; }
+
+input[type=text]:focus,
+input[type="password"]:focus {
+  border: 1px solid gold;
+  box-shadow: 0 0 5px 1px gold; }
+
 .navbar-default .navbar-brand {
   color: #777; }
 
@@ -19,17 +137,38 @@
   font-size: 18px;
   line-height: 20px; }
 
-a {
-  color: #337ab7;
-  text-decoration: none; }
+.portfolio-item {
+  display: inline;
+  flex: auto;
+  list-style-type: none;
+  background: #fafafa; }
 
-a {
-  background-color: transparent; }
+.portfolio-item:hover {
+  cursor: pointer; }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; }
+.portfolio-stocks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #ececec;
+  padding: 0; }
+
+.price {
+  display: flex;
+  flex-direction: row;
+  height: 100%; }
+
+.profile-pic {
+  width: 50%; }
+
+.signup_form {
+  margin: 0 auto;
+  width: 50%;
+  text-align: center; }
+
+.simulator {
+  float: right;
+  width: 30%; }
 
 .search {
   position: absolute;
@@ -41,83 +180,9 @@ body {
 .search-bar {
   width: 300px; }
 
-.profile-pic {
-  width: 50%; }
-
-.user-home {
-  display: inline; }
-
-.simulator {
-  float: right;
-  width: 30%; }
-
-.stock-info {
-  float: left;
-  width: 70%; }
-
-.login_form {
-  margin: 0 auto;
-  width: 50%;
-  text-align: center; }
-
-.form-control {
-  padding: 5px;
-  margin: 0 auto;
-  width: 50%; }
-
-#homepageTemp {
-  margin: 100px 0;
-  color: white; }
-
-html, body {
-  height: 100%;
-  position: relative; }
-
-body {
-  margin: 0;
-  background: linear-gradient(rgba(212, 182, 156, 0.5), rgba(224, 125, 43, 0.3)), url("../img/stockmarketimage.jpeg") no-repeat center;
-  background-size: cover;
-  background-attachment: fixed; }
-
-.app {
-  display: flex;
-  flex-direction: column; }
-
-.main-container {
-  min-height: 100vh;
-  /* will cover the 100% of viewport */
-  overflow: hidden;
-  display: block;
-  position: relative;
-  padding-bottom: 80px;
-  /* height of your footer */ }
-
-.body-container {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-
-/* Forms */
-.form-container {
-  width: 512px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 40px;
-  background-color: rgba(41, 51, 75, 0.9);
-  padding: 20px;
-  box-shadow: 5px 5px 5px #3f4142;
-  margin: 30px auto; }
-
-.form-title {
-  color: #8843d6;
-  font-size: 40px;
-  display: flex;
-  margin-bottom: 20px; }
-
 /* Stock Info style */
 .stock-info-title {
-  color: #8843d6;
+  color: #777;
   margin: 10px 0; }
 
 .stock-info-price {
@@ -131,9 +196,6 @@ body {
 
 .stock-info-ticker {
   font-size: 45px;
-  background: linear-gradient(45deg, rgba(209, 187, 61, 0.8), rgba(209, 187, 61, 0) 70%), linear-gradient(135deg, rgba(109, 201, 230, 0.8), rgba(109, 201, 230, 0) 70%), linear-gradient(180deg, rgba(224, 125, 43, 0.8), rgba(224, 125, 43, 0) 70%), linear-gradient(225deg, rgba(192, 173, 214, 0.8), rgba(136, 67, 214, 0) 70%);
-  border: 2mm inset #37beb8;
-  border-radius: 25px;
   width: 200px; }
 
 .stock-info-body {
@@ -142,7 +204,7 @@ body {
 
 .stock-info-left {
   border: 1px inset #929292;
-  background-color: #364361;
+  background-color: white;
   border-radius: 10px;
   padding: 10px; }
 
@@ -156,157 +218,17 @@ body {
   align-self: center;
   justify-content: center; }
 
-.display-field-key {
-  color: #e07d2b;
-  font-weight: 700; }
+.stock-info {
+  float: left;
+  width: 70%; }
 
-.display-field-value {
-  color: #929292; }
+.user-home {
+  display: inline; }
 
 .week-52-low {
   color: #b83535; }
 
 .week-52-high {
   color: #29a329; }
-
-/* Style for navbar and footer placeholders */
-.navbar {
-  background-color: rgba(41, 51, 75, 0.9); }
-
-.navbar a {
-  color: #d1bb3d; }
-
-.navbar .container {
-  justify-content: flex-start; }
-
-.navbar-brand {
-  font-size: 30px; }
-
-.nav {
-  flex-direction: row;
-  margin-left: 50px; }
-
-.nav li {
-  margin: 8px; }
-
-#footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  font-size: 20px;
-  color: #d1bb3d;
-  background-color: rgba(41, 51, 75, 0.9);
-  height: 80px;
-  line-height: 80px;
-  margin: 0;
-  text-align: center; }
-
-form {
-  margin: 15px 10%; }
-
-input[type="text"] {
-  width: 100%;
-  margin-bottom: 20px; }
-
-button {
-  width: 30%; }
-
-a {
-  color: #6dc9e6; }
-
-/* 
-    Media Component Styles (react-bootstrap)
-*/
-.media {
-  border-radius: 10px;
-  background-color: #364361;
-  margin: 10px;
-  padding: 10px; }
-
-.media-heading {
-  color: #6dc9e6;
-  font-size: 18px; }
-
-.media-body p {
-  color: #929292;
-  font-size: 14px; }
-
-.price {
-  display: flex;
-  flex-direction: row;
-  height: 100%; }
-
-/*# sourceMappingURL=styles.css.map */
-.portfolio-item {
-  display: inline;
-  flex: auto;
-  list-style-type: none;
-  background: #fafafa; }
-
-.portfolio-stocks {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  background-color: #ececec;
-  padding: 0; }
-
-.container-list {
-  text-align: center;
-  width: 100%;
-  margin: 0 auto; }
-
-.signup_form {
-  margin: 0 auto;
-  width: 50%;
-  text-align: center; }
-
-.form-control {
-  padding: 5px;
-  margin: 0 auto;
-  width: 50%; }
-
-.App {
-  text-align: center; }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px; }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white; }
-
-.App-title {
-  font-size: 1.5em; }
-
-.App-intro {
-  font-size: large; }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
-body {
-  font-family: sans-serif; }
-
-.header-image {
-  width: 100%;
-  margin-top: -2em;
-  margin-bottom: 2em; }
-
-.about-profile-pic {
-  float: left;
-  margin: 0 1em 1em 0; }
-
-.list-group-item {
-  width: 200px;
-  height: 50px;
-  font-size: 10px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; }
 
 /*# sourceMappingURL=style.css.map */

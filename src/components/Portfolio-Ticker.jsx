@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { getUserPortfolio } from '../../helpers/interactions/user_interactions';
-import { getStockPrice } from '../../helpers/interactions/iex_interactions';
+import { getUserPortfolio } from '../helpers/interactions/user_interactions';
+import { getStockPrice } from '../helpers/interactions/iex_interactions';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { List } from 'semantic-ui-react'
-import './css/portfolio-ticker.css'
+import '../styles/style.css'
 
 class PortfolioTicker extends Component {
   constructor(props){
