@@ -2,13 +2,16 @@
 
 html, body {
     height: 100%;
-    position: relative; }
+    position: relative; 
+    color: $color_text;
+}
   
 body {
-margin: 0;
-font-family: sans-serif;
-background-size: cover;
-background-attachment: fixed; }
+    margin: 0;
+    font-family: sans-serif;
+    background-size: cover;
+    background-attachment: fixed; 
+}
 
 .about-profile-pic {
     float: left;
@@ -42,6 +45,20 @@ background-attachment: fixed; }
   
 .display-field-value {
     color: #929292; 
+}
+
+#footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    font-size: 20px;
+    background-image: linear-gradient(to top,#fff 0%,#f8f8f8 100%);
+    box-shadow: 0 -1px 1px 0 rgb(228, 225, 225);
+    height: $height_footer;
+    line-height: $height_footer;
+    margin: 0;
+    text-align: center;
 }
 
 /* Forms */
@@ -136,6 +153,11 @@ input[type="password"]:focus{
     // background-color: white;
     border: 1px solid gold;
     box-shadow: 0 0 5px 1px gold;
+}
+
+.jumbotron{
+    height: 600px;
+    margin: auto auto;
 }
 
 .navbar-default .navbar-brand {

@@ -1,6 +1,7 @@
 html, body {
   height: 100%;
-  position: relative; }
+  position: relative;
+  color: #777; }
 
 body {
   margin: 0;
@@ -36,6 +37,18 @@ body {
 
 .display-field-value {
   color: #929292; }
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 20px;
+  background-image: linear-gradient(to top, #fff 0%, #f8f8f8 100%);
+  box-shadow: 0 -1px 1px 0 #e4e1e1;
+  height: 40px;
+  line-height: 40px;
+  margin: 0;
+  text-align: center; }
 
 /* Forms */
 .form-container {
@@ -115,6 +128,10 @@ input[type=text]:focus,
 input[type="password"]:focus {
   border: 1px solid gold;
   box-shadow: 0 0 5px 1px gold; }
+
+.jumbotron {
+  height: 600px;
+  margin: auto auto; }
 
 .navbar-default .navbar-brand {
   color: #777; }
