@@ -248,4 +248,19 @@ input[type="password"]:focus {
 .week-52-high {
   color: #29a329; }
 
+.welcome-bullets {
+  display: flex;
+  flex-direction: column; }
+
+.welcome-info > h4 {
+  margin-top: 20px;
+  padding: 0 20px; }
+
+.welcome-placeholder {
+  background-color: rgba(0, 0, 0, 0.15);
+  height: 100%;
+  text-align: center;
+  justify-self: center;
+  border-radius: 5px; }
+
 /*# sourceMappingURL=style.css.map */

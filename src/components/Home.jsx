@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link, Redirect, Route } from "react-router-dom";
-import { Jumbotron, Grid, Row, Col, Image, Button } from "react-bootstrap";
+import { Jumbotron, Grid, Row, Col, Image, Button, Media } from "react-bootstrap";
 import Simulator from './Simulator';
 import StockInfo from './StockInfo';
+import Welcome from '../components/Welcome';
 import "../styles/style.css";
 
 
@@ -48,37 +49,7 @@ class Home extends Component {
         </div>
          
         ) : (
-          <div>
-          <Jumbotron>
-              <h2> Do you have the Midas touch ? </h2>
-              <p>
-                <i class="fas fa-hand-holding-usd"></i>
-                Play, Learn, Win, get Bragging rights !!! 
-              </p>
-              <Link to="/about">
-                <Button bsStyle="primary"> Click to Learn more </Button>
-              </Link>
-          </Jumbotron>
-
-           {/* <Row className="show-grid text-center">
-           <Col xs={12} sm={4} className="person-wrapper">
-             <Image src="assets/person-1.jpg" circle className="profile-pic" />
-             <h3> Frank </h3>
-             <p> This is better than Robinhood </p>
-           </Col>
-           <Col xs={12} sm={4} className="person-wrapper">
-             <Image src="assets/person-2.jpg" circle className="profile-pic" />
-             <h3> Frank </h3>
-             <p> It changed my life </p>
-           </Col>
-           <Col xs={12} sm={4} className="person-wrapper">
-             <Image src="assets/person-3.jpg"  className="profile-pic" />
-             <h3> Frank </h3>
-             <p> Best website ever </p>
-           </Col>
-       </Row> */}
-       </div>
-       
+          <Welcome />
         )}
      
       
