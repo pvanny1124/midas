@@ -3,7 +3,7 @@ import { Link, Redirect, Route } from "react-router-dom";
 import { Jumbotron, Grid, Row, Col, Image, Button, Media } from "react-bootstrap";
 import Simulator from './Simulator';
 import StockInfo from './StockInfo';
-import Welcome from '../components/Welcome';
+import Welcome from './Welcome';
 import "../styles/style.css";
 
 

@@ -34,10 +34,11 @@ class App extends Component {
       })
       .then(data => {
           this.setState({user: data, isLoading: false});
+          console.log("hi pat")
           console.log(data);
       })
       .catch(error => {
-        // this.setState({isLoading: false})
+        this.setState({isLoading: false})
           console.log(error);
       })
   }
