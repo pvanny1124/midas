@@ -6,8 +6,7 @@ module.exports = {
           type: Sequelize.INTEGER,
           primaryKey: true,
           allowNull: false,
-          autoIncrement: true,
-          unique: true
+          autoIncrement: true
         },
         // user_id: {
         //     type: Sequelize.INTEGER,
@@ -20,7 +19,6 @@ module.exports = {
         invoiceNumber: {
             type: Sequelize.INTEGER,
             allowNull: false,
-            autoIncrement: true,
             unique: true
         },
         sharesPurchased: {

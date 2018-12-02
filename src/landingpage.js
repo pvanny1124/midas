@@ -4,12 +4,14 @@ import Home from "./components/Home";
 import About from "./components/About";
 import News from "./components/News";
 import Navbar from "./components/CustomNavbar";
+import Footer from "./components/Footer";
 import Signup from "./components/Signup";
 import Signout from "./components/Signout";
 import Login from "./components/Login";
 import StockInfo from './components/StockInfo';
 import getStockInfo from './helpers/interactions/iex_interactions';
 import './landingpage.css'
+import './styles/style.css';
 
 
 class App extends Component {
@@ -77,6 +79,7 @@ class App extends Component {
                 <Route path="/login" render={() => <Login getUser={(user) => this.getUserData(user)} />} />
                 <Route path="/signout" render={() => <Signout resetUser={() => this.resetUserData()} />} />
                 <Route path="/news" component={News} />
+                <Footer />
              </div>
          ) }
          

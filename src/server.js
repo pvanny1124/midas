@@ -69,7 +69,7 @@ app.use(function(req, res, next) {
   //Following is needed to allow a fetch put request to work on the client side:
 
     //Website you wish to allow to connect
-    var allowedOrigins = ['localhost:3000', 'http://127.0.0.1:3001', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://localhost:3000'];
+    var allowedOrigins = ['localhost:3000', 'http://127.0.0.1:3001', 'http://localhost:3002', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://localhost:3000'];
     var origin = req.headers.origin;
   
     if(allowedOrigins.indexOf(origin) > -1){
@@ -88,7 +88,7 @@ app.use(function(req, res, next) {
 
 app.use(controllers)
 
-const PORT = 3089;
+const PORT = 3000;
 const server = http.createServer(app);
 const io = socketIo(server); 
 
