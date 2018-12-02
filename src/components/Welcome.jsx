@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import {Jumbotron,Media,Button} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine, faHandHoldingUsd, faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
-import { convertHexToRGB } from 'material-ui/utils/colorManipulator';
 
 const Welcome = () => (
     <Jumbotron className="row">
