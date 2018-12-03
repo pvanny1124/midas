@@ -86,13 +86,72 @@ input[type=number]::-webkit-outer-spin-button {
   appearance: none;
   margin: 0; }
 
+.list-group {
+  height: 500px;
+  width: 200px;
+  overflow-y: scroll;
+}
+
 .list-group-item {
   width: 200px;
   height: 50px;
   font-size: 10px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis; 
+ 
+}
+
+.loader {
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid gold;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin .7s linear infinite;
+  animation: spin .7s linear infinite;
+}
+
+.welcome-headline {
+  position: absolute;
+  left: 50.20%;
+  top: 70%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+}
+
+.signing-out {
+
+    position: absolute;
+    left: 50.20%;
+    top: 70%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+  
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 .login_form {
   margin: 0 auto;

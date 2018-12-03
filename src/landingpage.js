@@ -38,7 +38,10 @@ class App extends Component {
           console.log(data);
       })
       .catch(error => {
-        this.setState({isLoading: false})
+        setTimeout(() => {
+          this.setState({isLoading: false})
+        }, 3000)
+        
           console.log(error);
       })
   }
@@ -67,7 +70,12 @@ class App extends Component {
       <Router>
          
          { this.state.isLoading ? (
-            <div>Loading.. please wait!</div>
+           <div>
+              <div className="loader"></div>
+              <p className="welcome-headline">Welcome to Midas</p>
+
+           </div>
+            
          ) : (
               
              <div>

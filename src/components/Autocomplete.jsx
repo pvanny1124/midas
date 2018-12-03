@@ -38,8 +38,8 @@ class Autocomplete extends Component {
     // Filter our suggestions that don't contain the user's input
     const filteredSuggestions = suggestions.filter(
       suggestion =>
-        suggestion.symbol.toLowerCase().indexOf(userInput.toLowerCase()) > -1 || suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-    ).slice(0, 4);
+        suggestion.symbol.toLowerCase() == userInput.toLowerCase() > -1 || suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+    ).slice(0, 20);
 
     // Update the user input and filtered suggestions, reset the active
     // suggestion and make sure the suggestions are shown

@@ -23,7 +23,15 @@ class Signout extends Component {
     render(){
       return this.state.redirect
       ? <Redirect to="/" />
-      : <div>Signing you out...</div>
+      : ( 
+        <div>
+             <div className="loader"></div>
+             <p className="signing-out">Signing you out...</p>
+
+        </div>
+         
+
+        )
 
     }
 }
