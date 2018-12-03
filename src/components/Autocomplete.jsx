@@ -38,7 +38,7 @@ class Autocomplete extends Component {
     // Filter our suggestions that don't contain the user's input
     const filteredSuggestions = suggestions.filter(
       suggestion =>
-        suggestion.symbol.toLowerCase() == userInput.toLowerCase() > -1 || suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        suggestion.symbol.toLowerCase() == userInput.toLowerCase()  || suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     ).slice(0, 20);
 
     // Update the user input and filtered suggestions, reset the active
@@ -58,8 +58,16 @@ class Autocomplete extends Component {
       activeSuggestion: 0,
       filteredSuggestions: [],
       showSuggestions: false,
-      userInput: e.currentTarget.innerText
+      userInput: ""
     });
+
+    const { activeSuggestion, filteredSuggestions } = this.state;
+    let enteredSymbol = filteredSuggestions[activeSuggestion].symbol;
+
+      //pass name of ticker up to main component
+      this.props.getTicker(enteredSymbol);
+
+    this.props.history.push(`/stocks/${enteredSymbol.toLowerCase()}`);
   };
 
   // Event fired when the user presses a key down
