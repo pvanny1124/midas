@@ -5,34 +5,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine, faHandHoldingUsd, faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
 
 const Welcome = () => (
-    <Jumbotron className="row">
+    <Jumbotron className="row welcome-jumbo">
         <div className="welcome-info col-md-7">
             <h1><strong>Welcome to Midas</strong></h1>
-            <h4>Ever consider trying the stock market but afraid to lose because of inexperience? We provide you a platform where you can practice investing fake currency we provide and keep track of for you.</h4>
+            {/* <h4>Ever consider trying the stock market but afraid to lose because of inexperience? We provide you a platform where you can practice investing fake currency we provide and keep track of for you.</h4> */}
             <Media className={"welcome-bullets"}>
     
-                <div>
+                <div className="welcome-bullet-item">
                     <Media.Left>
-                        <FontAwesomeIcon icon={faChartLine} size={"4x"} />
+                        <FontAwesomeIcon icon={faChartLine} size={"4x"} color={"springgreen"}/>
                     </Media.Left>
                     <Media.Body>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium ipsum quaerat eaque est aliquid doloremque dignissimos consectetur veniam eligendi. Molestiae asperiores labore ipsa hic deleniti adipisci numquam rerum nesciunt quis.</p>
                     </Media.Body>
                 </div>
     
-                <div>
+                <div className="welcome-bullet-item">
                     <Media.Left>
-                        <FontAwesomeIcon icon={faHandHoldingUsd} size={"4x"} />
+                        <FontAwesomeIcon icon={faHandHoldingUsd} size={"4x"} color={"orange"} />
                     </Media.Left>
                     <Media.Body>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, consectetur animi tenetur ut earum et dolorem laudantium officiis incidunt mollitia corporis eaque eligendi dolores delectus inventore cumque doloremque rerum officia.</p>
                     </Media.Body>
                 </div>
     
-                <div>
+                <div className="welcome-bullet-item">
                     <Media.Left>
                         
-                        <FontAwesomeIcon icon={faCommentsDollar} size={"4x"} />
+                        <FontAwesomeIcon icon={faCommentsDollar} size={"4x"} color={"steelblue"} />
                     </Media.Left>
                     <Media.Body>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, consectetur animi tenetur ut earum et dolorem laudantium officiis incidunt mollitia corporis eaque eligendi dolores delectus inventore cumque doloremque rerum officia.</p>
