@@ -11,6 +11,7 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
+
 const User = require("../models/users")(sequelize, Sequelize);
 const passport = require('../middlewares/auth');
 

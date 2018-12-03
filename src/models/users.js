@@ -90,11 +90,6 @@ module.exports = (sequelize, DataTypes) => {
           user.password_hash = hashedPw;
       })
   );
-
-  User.associate = models => {
-    User.hasMany(models.Orders, {foreignKey: 'user_id'});
-  };
-
   return User;
 }
 

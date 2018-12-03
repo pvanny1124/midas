@@ -13,7 +13,6 @@
     "child_process": "^1.0.2",
     "cli-table": "^0.3.1",
     "cookie-parser": "^1.4.3",
-    "dns": "file:./src/mock/dns",
     "express-session": "^1.15.6",
     "eyes": "^0.1.8",
     "material-ui": "^0.20.2",
@@ -53,5 +52,11 @@
   },
   "devDependencies": {
     "dotenv": "^6.1.0"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
