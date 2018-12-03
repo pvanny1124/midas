@@ -1,7 +1,8 @@
 html, body {
   height: 100%;
   position: relative;
-  color: #777; }
+  background-color:  rgb(241, 241, 241); 
+  color: black; }
 
 body {
   margin: 0;
@@ -36,7 +37,7 @@ body {
   font-weight: 700; }
 
 .display-field-value {
-  color: #929292; }
+  color:  black; }
 
 #footer {
   position: absolute;
@@ -56,9 +57,13 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  background-color: #f8f8f8;
+  background-color: white;
   padding: 20px;
-  margin: 30px auto; }
+  margin: 30px auto;
+  box-shadow: 5px 5px #929292;
+  -moz-box-shadow: 0 0 3px #ccc;
+  -webkit-box-shadow: 0 0 3px #ccc;
+  box-shadow: 0 0 3px #ccc; }
 
 .form-title {
   color: #8843d6;
@@ -196,16 +201,51 @@ input[type="password"]:focus {
 .navbar-default .navbar-brand {
   color: #777; }
 
+  /* override bootstrap navbar colors */
+.navbar,
+.navbar-default {
+    
+    background-image: linear-gradient(to bottom,#2c4053 0,#2c4053 100%) !important; /* override background image gradient w/ flat color */
+}
+
 .navbar-brand {
   float: left;
   height: 500px;
   padding: 15px 15px;
   font-size: 18px;
-  line-height: 20px; }
+  line-height: 20px; 
+  color: white;
+}
 
-.navbar-brand,
-.navbar-nav > li > a {
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25); }
+.navbar-default .navbar-nav>li>a {
+    color: white;
+    text-shadow: none;
+    
+}
+
+.navbar-default, .navbar-brand, .navbar-nav>li>a:active { outline: 0; color: white}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-brand, .navbar-nav>li>a {
+  text-shadow: none;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: gold;
+}
+
+.navbar-default, .navbar-nav>li>a:hover {
+  color: gold;
+}
+
+.input-group .form-control:last-child, .input-group-addon:last-child, .input-group-btn:first-child>.btn-group:not(:first-child)>.btn, .input-group-btn:first-child>.btn:not(:first-child), .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group>.btn, .input-group-btn:last-child>.dropdown-toggle {
+  border-radius: 5px;
+  width: 400px;
+}
+
 
 .navbar-brand {
   float: left;
