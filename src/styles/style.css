@@ -293,7 +293,7 @@ input[type="password"]:focus {
   width: 50%; }
 
 .range-switch {
-  border-bottom: 1px solid greenyellow;
+  border-bottom: 1px solid gold;
   text-align: center;
 }
 
@@ -328,6 +328,10 @@ input[type="password"]:focus {
 .stock-info-title {
   color: #777;
   margin: 10px 0; }
+
+.stock-info-main {
+  width: 50%;
+}
 
 .stock-info-price {
   color: #d1bb3d;
@@ -365,6 +369,7 @@ input[type="password"]:focus {
 .stock-info {
   float: left;
   width: 70%; }
+
 
 .user-home {
   display: inline; }

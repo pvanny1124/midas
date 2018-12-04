@@ -42,9 +42,7 @@ class Home extends Component {
             <div className="simulator">
                 <Simulator userId={this.props.user.id} />
             </div>
-           <div className="stock-info">
-                <StockInfo ticker="msft" />    
-          </div>
+           <p>FEED GOES HERE</p>
            
         </div>
          
