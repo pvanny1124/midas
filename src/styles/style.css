@@ -29,6 +29,67 @@
   font-size: 18px;
   line-height: 20px; }
 
+.welcome-bullets {
+  display: flex;
+  flex-direction: column; }
+
+.welcome-bullet-item {
+  padding: 5px; }
+
+.welcome-button {
+  align-self: center; }
+
+.welcome-chart {
+  flex: 1 1 40%; }
+
+.welcome-component {
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  margin-top: 50px;
+  align-items: center; }
+
+.welcome-headline {
+  position: absolute;
+  left: 50.20%;
+  top: 70%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px; }
+
+.welcome-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1 1 40%; }
+
+.welcome-info > h1 {
+  text-align: center; }
+
+.welcome-info > h4 {
+  margin-top: 20px;
+  padding: 0 20px; }
+
+@media screen and (max-width: 992px) {
+  .welcome-component {
+    flex-direction: column; }
+
+  .welcome-bullets {
+    flex-direction: row; }
+
+  .welcome-chart {
+    margin-top: 40px; } }
+@media screen and (max-width: 767px) {
+  .welcome-component {
+    flex-direction: column; }
+
+  .welcome-bullets {
+    flex-direction: column; }
+
+  .welcome-chart {
+    margin-top: 40px; } }
 /* Safari */
 @-webkit-keyframes spin {
   0% {
@@ -298,49 +359,5 @@ input[type="password"]:focus {
 
 .week-52-high {
   color: #29a329; }
-
-.welcome-bullets {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid pink; }
-
-.welcome-bullet-item {
-  padding: 5px;
-  border: 1px solid orange; }
-
-.welcome-chart {
-  flex: 1 1 40%;
-  align-self: center;
-  border: 1px solid green; }
-
-.welcome-headline {
-  position: absolute;
-  left: 50.20%;
-  top: 70%;
-  z-index: 1;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px; }
-
-.welcome-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  flex: 1 1 60%;
-  border: 1px solid blue; }
-
-.welcome-info > h1 {
-  text-align: center; }
-
-.welcome-info > h4 {
-  margin-top: 20px;
-  padding: 0 20px; }
-
-.welcome-component {
-  display: flex;
-  flex-direction: row;
-  padding: 30px;
-  border: 1px solid red;
-  margin-top: 50px; }
 
 /*# sourceMappingURL=style.css.map */
