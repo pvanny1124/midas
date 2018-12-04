@@ -4,7 +4,9 @@ import DisplayTitle from './DisplayTitle';
 import Price from './Price';
 import TrendingNews from './TrendingNews';
 import Trade from './Trade';
-import {withRouter} from 'react-router';
+import { withRouter } from 'react-router';
+import Chart from './Chart';
+import SelectRange from './SelectRange';
 // import './css/StockInfo.css';
 
 
@@ -28,7 +30,7 @@ class StockInfo extends Component {
          }
     }
 
-    componentDidMount(){
+    componentWillMount(){
         console.log("PROPS IN STOCK INFO")
         console.log(this.props)
 
@@ -84,6 +86,7 @@ class StockInfo extends Component {
 
     render() { 
 
+        console.log("ticker in stock info" + this.state.ticker)
 
         return ( 
             <div className="stock-info-main"> 
@@ -93,6 +96,13 @@ class StockInfo extends Component {
                         <div className="col-md-6">
                             <Price price={this.state.price} w52high={this.state.week52High} w52low={this.state.week52Low} />
                         </div>
+                    </div>
+                    <div className="stock-info-chart row">
+                        {console.log("in stockingo div... " + this.state.ticker)}
+                        <Chart stockName={this.state.ticker} range="1m"/>
+                    </div>
+                    <div className="stock-info-select-range row">
+                        <SelectRange />
                     </div>
                     <div className="stock-info-body row">
                         <div className="stock-info-left col-md-4">

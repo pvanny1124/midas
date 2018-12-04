@@ -8,7 +8,7 @@ const Welcome = () => (
     <Jumbotron className="row">
         <div className="welcome-info col-md-7">
             <h1><strong>Welcome to Midas</strong></h1>
-            <h4>Ever consider trying the stock market but afraid to lose because of inexperience? We provide you a platform where you can practice investing fake currency we provide and keep track of for you.</h4>
+            <h4>Ever consider trying the stock market but afraid to lose because of inexperience? We provide you a platform where you can practice investing with virtual cash that we provide for you.</h4>
             <Media className={"welcome-bullets"}>
     
                 <div>

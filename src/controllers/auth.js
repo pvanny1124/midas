@@ -42,9 +42,8 @@ router.post('/signup', (req, res) => {
       }
       
   }).catch((errorObject) => {
-    
+      res.send(errorObject);
     //TODO: error handle different causes for validation errors..
-    res.status(401).json({error: error, userCreated: false});
   });
 });
 
