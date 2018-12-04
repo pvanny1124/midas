@@ -1,8 +1,110 @@
+.navbar {
+  border: none;
+  border-radius: 0; }
+
+.navbar-default .navbar-brand {
+  color: #525252; }
+
+.navbar-brand {
+  float: left;
+  height: 500px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px; }
+
+.navbar-brand,
+.navbar-nav > li > a {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+  color: white; }
+
+/* override bootstrap navbar colors */
+.navbar,
+.navbar-default {
+  background: #2c4053; }
+
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px; }
+
+.welcome-bullets {
+  display: flex;
+  flex-direction: column; }
+
+.welcome-bullet-item {
+  padding: 5px; }
+
+.welcome-button {
+  align-self: center; }
+
+.welcome-chart {
+  flex: 1 1 40%; }
+
+.welcome-component {
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  margin-top: 50px;
+  align-items: center; }
+
+.welcome-headline {
+  position: absolute;
+  left: 50.20%;
+  top: 70%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px; }
+
+.welcome-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1 1 40%; }
+
+.welcome-info > h1 {
+  text-align: center; }
+
+.welcome-info > h4 {
+  margin-top: 20px;
+  padding: 0 20px; }
+
+@media screen and (max-width: 992px) {
+  .welcome-component {
+    flex-direction: column; }
+
+  .welcome-bullets {
+    flex-direction: row; }
+
+  .welcome-chart {
+    margin-top: 40px; } }
+@media screen and (max-width: 767px) {
+  .welcome-component {
+    flex-direction: column; }
+
+  .welcome-bullets {
+    flex-direction: column; }
+
+  .welcome-chart {
+    margin-top: 40px; } }
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 html, body {
   height: 100%;
   position: relative;
-  background-color:  rgb(241, 241, 241); 
-  color: black; }
+  color: #525252; }
 
 body {
   margin: 0;
@@ -37,7 +139,7 @@ body {
   font-weight: 700; }
 
 .display-field-value {
-  color:  black; }
+  color: #929292; }
 
 #footer {
   position: absolute;
@@ -57,13 +159,9 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  background-color: white;
+  background-color: #f8f8f8;
   padding: 20px;
-  margin: 30px auto;
-  box-shadow: 5px 5px #929292;
-  -moz-box-shadow: 0 0 3px #ccc;
-  -webkit-box-shadow: 0 0 3px #ccc;
-  box-shadow: 0 0 3px #ccc; }
+  margin: 30px auto; }
 
 .form-title {
   color: #8843d6;
@@ -115,12 +213,14 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 10px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; 
- 
-}
+  text-overflow: ellipsis; }
+
+.login_form {
+  margin: 0 auto;
+  width: 50%;
+  text-align: center; }
 
 .loader {
-
   position: absolute;
   left: 50%;
   top: 50%;
@@ -134,46 +234,7 @@ input[type=number]::-webkit-outer-spin-button {
   width: 120px;
   height: 120px;
   -webkit-animation: spin .7s linear infinite;
-  animation: spin .7s linear infinite;
-}
-
-.welcome-headline {
-  position: absolute;
-  left: 50.20%;
-  top: 70%;
-  z-index: 1;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
-}
-
-.signing-out {
-
-    position: absolute;
-    left: 50.20%;
-    top: 70%;
-    z-index: 1;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-  
-}
-/* Safari */
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
-.login_form {
-  margin: 0 auto;
-  width: 50%;
-  text-align: center; }
+  animation: spin .7s linear infinite; }
 
 .main-container {
   min-height: 100vh;
@@ -206,6 +267,7 @@ input[type="password"]:focus {
   box-shadow: 0 0 5px 1px gold; }
 
 .jumbotron {
+  background-color: white;
   height: 600px;
   margin: 30px 0 auto auto;
   box-shadow: 2px 2px 2px 2px #e4e1e1; }
@@ -326,7 +388,7 @@ input[type="password"]:focus {
 
 /* Stock Info style */
 .stock-info-title {
-  color: #777;
+  color: #525252;
   margin: 10px 0; }
 
 .stock-info-main {
@@ -379,21 +441,5 @@ input[type="password"]:focus {
 
 .week-52-high {
   color: #29a329; }
-
-.welcome-bullets {
-  display: flex;
-  flex-direction: column; }
-
-.welcome-info > h4 {
-  margin-top: 20px;
-  padding: 0 20px; }
-
-.welcome-placeholder {
-  background-color: rgba(0, 0, 0, 0.2);
-  border: 2px solid black;
-  height: 100%;
-  text-align: center;
-  justify-self: center;
-  border-radius: 5px; }
 
 /*# sourceMappingURL=style.css.map */

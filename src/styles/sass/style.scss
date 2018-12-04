@@ -1,4 +1,18 @@
 @import "variables";
+@import "nav";
+@import "welcomeComponent";
+
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+  
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
 
 html, body {
     height: 100%;
@@ -103,6 +117,11 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0; 
 }
 
+.input-group .form-control:last-child, .input-group-addon:last-child, .input-group-btn:first-child>.btn-group:not(:first-child)>.btn, .input-group-btn:first-child>.btn:not(:first-child), .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group>.btn, .input-group-btn:last-child>.dropdown-toggle {
+    border-radius: 5px;
+    width: 400px;
+  }
+
 .list-group-item {
     width: 200px;
     height: 50px;
@@ -117,6 +136,23 @@ input[type=number]::-webkit-outer-spin-button {
     width: 50%;
     text-align: center;
 }
+
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid gold;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin .7s linear infinite;
+    animation: spin .7s linear infinite;
+  }
 
 .main-container {
     min-height: 100vh;
@@ -156,34 +192,9 @@ input[type="password"]:focus{
 }
 
 .jumbotron{
+    background-color: white;
     height: 600px;
     margin: 30px 0 auto auto;
-    box-shadow: 2px 2px 2px 2px rgb(228, 225, 225);
-}
-
-.navbar-default .navbar-brand {
-    color: $color_text;
-}
-
-.navbar-brand {
-  float: left;
-  height: 500px;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px;
-}
-
-.navbar-brand,
-.navbar-nav > li > a {
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
-}
-
-.navbar-brand {
-  float: left;
-  height: 50px;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px;
 }
 
 .portfolio-item {
@@ -213,6 +224,18 @@ input[type="password"]:focus{
 
 .profile-pic {
     width: 50%;
+}
+
+.signing-out {
+
+    position: absolute;
+    left: 50.20%;
+    top: 70%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+  
 }
 
 .signup_form {
@@ -301,21 +324,3 @@ width: 300px;
     color: #29a329; 
 }
 
-.welcome-bullets{
-    display: flex;
-    flex-direction: column;
-}
-
-.welcome-info>h4{
-    margin-top: 20px;
-    padding: 0 20px;
-}
-
-.welcome-placeholder{
-    background-color: rgba(0,0,0,.2);
-    border: 2px solid black;
-    height: 100%;
-    text-align: center;
-    justify-self: center;
-    border-radius: 5px;
-}
