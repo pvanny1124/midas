@@ -8,7 +8,7 @@ class SelectRange extends Component {
     render() {
         return (
             <div>
-                <nav>
+                <nav className="range-switch">
                     <a>1d</a>
                     <a>1w</a>
                     <a>1m</a>

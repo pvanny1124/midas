@@ -292,6 +292,19 @@ input[type="password"]:focus {
 .profile-pic {
   width: 50%; }
 
+.range-switch {
+  border-bottom: 1px solid greenyellow;
+  text-align: center;
+}
+
+.range-switch > a {
+  padding-right: 30px;
+}
+
+.range-switch > a:hover {
+  cursor: pointer;
+}
+
 .signup_form {
   margin: 0 auto;
   width: 50%;
