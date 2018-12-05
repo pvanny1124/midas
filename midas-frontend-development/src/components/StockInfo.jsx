@@ -26,7 +26,8 @@ class StockInfo extends Component {
             CEO: null,
             num_of_employees: null,
             week52High: null,
-            week52Low: null
+            week52Low: null,
+            graphRange: "1d"
          }
     }
 
@@ -84,6 +85,12 @@ class StockInfo extends Component {
         })
     }
 
+    setGraphRange(range){
+        this.setState({
+            graphRange: range
+        })
+    }
+
     render() { 
 
         console.log("ticker in stock info" + this.state.ticker)
@@ -99,11 +106,11 @@ class StockInfo extends Component {
 
                     <div className="stock-info-chart">
                         {console.log("in stockingo div... " + this.state.ticker)}
-                        <Chart stockName={this.state.ticker} range="1m"/>
+                        <Chart stockName={this.state.ticker} range={this.state.graphRange}/>
                     </div>
                     
                     <div className="stock-info-select-range">
-                        <SelectRange />
+                        <SelectRange setGraphRange={(range) => this.setGraphRange(range)}/>
                     </div>
 
                     <div className="stock-info-body">

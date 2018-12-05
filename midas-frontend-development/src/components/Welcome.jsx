@@ -16,7 +16,7 @@ const Welcome = () => (
                         <FontAwesomeIcon icon={faChartLine} size={"4x"} color={"mediumseagreen"}/>
                     </Media.Left>
                     <Media.Body>
-                        <p>Get started with the stock market using our simulator</p>
+                        <p>Get started with the stock market risk free using our portfolio simulator</p>
                     </Media.Body>
                 </div>
     
@@ -25,7 +25,7 @@ const Welcome = () => (
                         <FontAwesomeIcon icon={faHandHoldingUsd} size={"4x"} color={"orange"} />
                     </Media.Left>
                     <Media.Body>
-                        <p>Use fake currency we keep track of for you to practice investing in the stock market</p>
+                        <p>Use fake currency to trade stocks. Practice investing in the stock market</p>
                     </Media.Body>
                 </div>
     
@@ -44,6 +44,10 @@ const Welcome = () => (
             
             <Link to={"/signup"}>
                 <Button className={"welcome-button"} bsStyle={"primary"}> Sign Up Today </Button>
+            </Link>
+            <br></br>
+            <Link to={"/login"}>
+                <Button className={"welcome-button"} bsStyle={"primary"}> Already a user? Log in here</Button>
             </Link>
         </div>
         <div class={"welcome-chart"}>

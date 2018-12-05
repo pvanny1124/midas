@@ -40,7 +40,7 @@ const Users             = require('./models/users');
 const bodyParser        = require('body-parser');
 
 //require iex trading helpers
-const iextrading        = require('./helpers/interactions/iex_interactions');
+const iextrading        = require('../midas-frontend-development/src/helpers/interactions/iex_interactions');
 
 //need redis for caching in memory
 const redis             = require('redis');
