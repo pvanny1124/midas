@@ -42,7 +42,10 @@ module.exports = (sequelize, DataTypes) => {
           },
       },
       password_hash: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        validate: {
+            notEmpty: true
+        }
       },
       age: {
         type: DataTypes.INTEGER,

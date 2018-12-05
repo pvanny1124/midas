@@ -41,7 +41,10 @@ module.exports = {
           },
       },
       password_hash: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+          notEmpty: true
+        }
       },
       age: {
         type: Sequelize.INTEGER,

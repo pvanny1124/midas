@@ -94,6 +94,13 @@ class StockInfo extends Component {
     render() { 
 
         console.log("ticker in stock info" + this.state.ticker)
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            // the default value for minimumFractionDigits depends on the currency
+            // and is usually already 2
+        });
 
         return ( 
             <div className="page"> 
@@ -116,7 +123,7 @@ class StockInfo extends Component {
                     <div className="stock-info-body">
                         <div className="stock-info-left">
                             <DisplayField d_key={"Chart"} value={this.state.chart}/>
-                            <DisplayField d_key={"Market Cap"} value={this.state.market_cap}/>
+                            <DisplayField d_key={"Market Cap"} value={formatter.format(this.state.market_cap)}/>
                             <DisplayField d_key={"Volume"} value={this.state.volume}/>
                             <DisplayField d_key={"CEO"} value={this.state.CEO} />
                         </div>
