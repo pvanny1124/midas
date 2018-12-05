@@ -9,18 +9,29 @@
 
 .welcome-button{
     align-self: center;
+    color: white;
+    background: slategrey;
+    border: none;
+}
+
+.welcome-button:hover{
+    color: black;
+    background: $color_text_nav;
+    border: 1px solid gold;
+    box-shadow: 0 0 5px 1px gold;
 }
 
 .welcome-chart{
     flex: 1 1 40%;
-    // align-self: center;
+    align-self: center;
 }
 
 .welcome-component{
+    height: 55%;
     display: flex;
     flex-direction: row;
     padding: 30px;
-    margin-top: 50px;
+    margin-top: 7%;
     align-items: center;
 }
 
@@ -36,6 +47,7 @@
 
 .welcome-info{
     display: flex;
+    height: 100%;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -44,6 +56,8 @@
 
 .welcome-info>h1{
     text-align: center;
+    font-size: 55px;
+    color: $color_bg_nav;
 }
 
 .welcome-info>h4{
