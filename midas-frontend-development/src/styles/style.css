@@ -47,16 +47,27 @@
   padding: 5px; }
 
 .welcome-button {
-  align-self: center; }
+  align-self: center;
+  color: white;
+  background: slategrey;
+  border: none; }
+
+.welcome-button:hover {
+  color: black;
+  background: #d3cb9b;
+  border: 1px solid gold;
+  box-shadow: 0 0 5px 1px gold; }
 
 .welcome-chart {
-  flex: 1 1 40%; }
+  flex: 1 1 40%;
+  align-self: center; }
 
 .welcome-component {
+  height: 55%;
   display: flex;
   flex-direction: row;
   padding: 30px;
-  margin-top: 50px;
+  margin-top: 7%;
   align-items: center; }
 
 .welcome-headline {
@@ -70,13 +81,16 @@
 
 .welcome-info {
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   flex: 1 1 40%; }
 
 .welcome-info > h1 {
-  text-align: center; }
+  text-align: center;
+  font-size: 55px;
+  color: #2c4053; }
 
 .welcome-info > h4 {
   margin-top: 20px;
@@ -230,30 +244,48 @@ body {
   text-align: center; }
 
 /* Forms */
-.form-container {
-  width: 512px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  background-color: #f8f8f8;
-  padding: 20px;
-  margin: 30px auto; }
+form {
+  width: 25%;
+  min-width: 350px;
+  margin: 5% auto 0 auto;
+  text-align: center; }
+  form button {
+    color: white;
+    background: slategrey;
+    border: none; }
+  form button:hover {
+    color: black;
+    background: #d3cb9b;
+    border: 1px solid gold;
+    box-shadow: 0 0 5px 1px gold; }
+
+.form-body {
+  padding-top: 10px;
+  background: linear-gradient(slategrey 0%, white 100%); }
 
 .form-title {
-  color: #8843d6;
-  font-size: 40px;
-  display: flex;
-  margin-bottom: 20px; }
+  color: white;
+  height: 50px;
+  background-color: slategrey;
+  border-top-left-radius: 60% 60%;
+  border-top-right-radius: 60% 60%;
+  padding-top: 1px; }
 
 .form-control {
-  padding: 5px;
-  margin: 0 auto;
-  width: 50%; }
+  width: 100%; }
+
+.form-group {
+  width: 100%;
+  padding: 10px;
+  margin: 3px; }
 
 .header-image {
   width: 100%;
   margin-top: -2em;
   margin-bottom: 2em; }
+
+.home {
+  height: 100vh; }
 
 /*
     Following removes scrollbars from inputs with type="number"...
@@ -290,11 +322,6 @@ input[type="password"]:focus {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
-.login_form {
-  margin: 0 auto;
-  width: 50%;
-  text-align: center; }
 
 .loader {
   position: absolute;
