@@ -47,7 +47,7 @@ const Welcome = () => (
             </Link>
         </div>
         <div class={"welcome-chart"}>
-            <Chart stockName={"aapl"} range={"1d"} />
+            <Chart stockName={"msft"} range={"1m"} />
         </div>
     </div>
 )

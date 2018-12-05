@@ -7,7 +7,6 @@ import Trade from './Trade';
 import { withRouter } from 'react-router';
 import Chart from './Chart';
 import SelectRange from './SelectRange';
-// import './css/StockInfo.css';
 
 
 const API_PREFIX = "https://api.iextrading.com/1.0";
@@ -117,9 +116,9 @@ class StockInfo extends Component {
                             <DisplayField d_key={"Description"} value={this.state.description}/>
                         </div>
                     </div>
-                    <div className="stock-info-bottom">
-                        <TrendingNews articles={this.state.trending_news} />
-                    </div>
+                </div>
+                <div className="stock-info-bottom">
+                    <TrendingNews articles={this.state.trending_news} />
                 </div>
             </div>
          );

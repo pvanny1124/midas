@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MediaDisplay from './MediaDisplay';
+import PropTypes from 'prop-types';
 
 class TrendingNews extends Component {
     constructor(props) {
@@ -8,6 +9,10 @@ class TrendingNews extends Component {
             news: []
          }
     }
+
+    static propTypes = {
+        articles: PropTypes.objectOf(PropTypes.any.isRequired)
+      }
 
     componentWillReceiveProps(nextProps){
         if(nextProps.articles !== undefined && nextProps.articles !== null){
@@ -30,5 +35,3 @@ class TrendingNews extends Component {
 }
  
 export default TrendingNews;
-
-/* let news = <MediaDisplay article={props.articles} />; */
