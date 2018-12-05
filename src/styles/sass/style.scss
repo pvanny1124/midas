@@ -1,6 +1,7 @@
 @import "variables";
 @import "nav";
 @import "welcomeComponent";
+@import "stockInfo";
 
 
 /* Safari */
@@ -58,7 +59,7 @@ body {
 }
   
 .display-field-value {
-    color: #929292; 
+    color: $color_text; 
 }
 
 #footer{
@@ -186,18 +187,15 @@ input[type="password"]:focus{
 */
 .media {
     border-radius: 10px;
-    // background-color: #364361;
     margin: 10px;
     padding: 10px; 
 }
   
 .media-heading {
-    color: #6dc9e6;
     font-size: 18px; 
 }
   
 .media-body p {
-    color: #929292;
     font-size: 14px; 
 }
 
@@ -229,7 +227,8 @@ input[type="password"]:focus{
 .price {
     display: flex;
     flex-direction: row;
-    height: 100%; 
+    justify-content: center;
+    flex: 1 1;
 }
 
 .profile-pic {
@@ -271,66 +270,11 @@ input[type="password"]:focus{
 width: 300px;
 }
 
-/* Stock Info style */
-.stock-info-title {
-    color: $color_text;
-    margin: 10px 0; 
-}
-  
-.stock-info-price {
-    color: #d1bb3d;
-    align-self: center;
-    margin: 0 10px; 
-}
-  
-.stock-info-head {
-    border-bottom: solid 2px rgba(255, 255, 255, 0.06);
-    margin: 10px 20px; 
-}
-  
-.stock-info-ticker {
-    font-size: 45px;
-    width: 200px; 
-}
-  
-.stock-info-body {
-    margin: 10px 10px;
-    justify-content: center; 
-}
-  
-.stock-info-left {
-    border: 1px inset #929292;
-    background-color: white;
-    border-radius: 10px;
-    padding: 10px; 
-}
-  
-.stock-info-bottom {
-    padding: 10px;
-    text-align: left;
-    border-top: solid 2px rgba(255, 255, 255, 0.06);
-    margin-top: 20px; 
-}
-  
-.stock-info-week52Limits {
-    align-self: center;
-    justify-content: center; 
-}
-
-.stock-info {
-    float: left;
-    width: 70%;
+.trader{
+    flex: 1 1;
 }
 
 .user-home {
     display: inline;
-}
-
-.week-52-low {
-    color: #b83535; 
-}
-  
-.week-52-high {
-    color: #29a329; 
 }
 

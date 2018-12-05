@@ -36,7 +36,7 @@ class StockInfo extends Component {
 
         if(this.props.location.pathname == "/"){
             //hold a dummy for now
-            this.getStockInfo("msft");
+            this.getStockInfo("aapl");
         } else {
             this.getStockInfo(this.props.match.params.ticker);
         }
@@ -89,38 +89,38 @@ class StockInfo extends Component {
         console.log("ticker in stock info" + this.state.ticker)
 
         return ( 
-            <div className="stock-info-main"> 
-                <div className="form-container stock-info">
-                    <div className="stock-info-head row">
-                        <DisplayTitle classname={"stock-info-title col-md-6 stock-info-ticker"} title={this.state.ticker}/>
-                        <div className="col-md-6">
-                            <Price price={this.state.price} w52high={this.state.week52High} w52low={this.state.week52Low} />
-                        </div>
+            <div className="page"> 
+                <div className="stock-info">
+                    <div className="stock-info-head">
+                        <DisplayTitle classname={"stock-info-ticker"} title={this.state.ticker}/>
+                        <Price price={this.state.price} w52high={this.state.week52High} w52low={this.state.week52Low} />
+                        <Trade getUser={(user) => this.props.getUser(user)} className="trade-tool" tickerData={this.state} user={this.props.user}/>
                     </div>
-                    <div className="stock-info-chart row">
+
+                    <div className="stock-info-chart">
                         {console.log("in stockingo div... " + this.state.ticker)}
                         <Chart stockName={this.state.ticker} range="1m"/>
                     </div>
-                    <div className="stock-info-select-range row">
+                    
+                    <div className="stock-info-select-range">
                         <SelectRange />
                     </div>
-                    <div className="stock-info-body row">
-                        <div className="stock-info-left col-md-4">
+
+                    <div className="stock-info-body">
+                        <div className="stock-info-left">
                             <DisplayField d_key={"Chart"} value={this.state.chart}/>
                             <DisplayField d_key={"Market Cap"} value={this.state.market_cap}/>
                             <DisplayField d_key={"Volume"} value={this.state.volume}/>
                             <DisplayField d_key={"CEO"} value={this.state.CEO} />
                         </div>
-                        <div className="stock-info-right col-md-8">
+                        <div className="stock-info-right">
                             <DisplayField d_key={"Description"} value={this.state.description}/>
                         </div>
-                        <div className="stock-info-bottom col-md-12">
-                            <TrendingNews articles={this.state.trending_news} />
-                        </div>
+                    </div>
+                    <div className="stock-info-bottom">
+                        <TrendingNews articles={this.state.trending_news} />
                     </div>
                 </div>
-
-                <Trade getUser={(user) => this.props.getUser(user)} className="trade-tool" tickerData={this.state} user={this.props.user}/>
             </div>
          );
     }

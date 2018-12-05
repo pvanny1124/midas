@@ -35,14 +35,14 @@ class Home extends Component {
 
   render() {
     return (
-      <Grid>
+      <div className="container">
       
         {this.state.user ? (
           <div className="user-home">
             <div className="simulator">
                 <Simulator userId={this.props.user.id} />
             </div>
-           <p>FEED GOES HERE</p>
+           <StockInfo />
            
         </div>
          
@@ -52,7 +52,7 @@ class Home extends Component {
      
       
         
-      </Grid>
+      </div>
     );
   }
 }

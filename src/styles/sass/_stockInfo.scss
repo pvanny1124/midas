@@ -1,0 +1,77 @@
+.page{
+    display: flex;
+    flex-direction: column;
+}
+
+.stock-info {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(231, 230, 230);
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.stock-info-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px inset rgb(194, 193, 193);
+}
+  
+.stock-info-price {
+    color: #d1bb3d;
+    align-self: center;
+    margin: 0 10px; 
+}
+  
+.stock-info-ticker {
+    flex: 1 1;
+    text-align: center;
+    color: $color_text;
+    font-size: 45px;
+    text-shadow: $color_bg_nav 1px 1px 4px;
+}
+  
+.stock-info-body {
+    display: flex;
+    flex-direction: row;
+    margin: 10px 10px;
+}
+  
+.stock-info-left {
+    flex-grow: 1;
+    border: 1px dotted #929292;
+    background-color: white;
+    border-radius: 3px;
+    padding: 15px; 
+}
+
+.stock-info-right{
+    flex-grow: 2;
+    padding: 15px;
+}
+  
+.stock-info-bottom {
+    padding: 10px;
+    text-align: left;
+    border-top: solid 2px rgba(255, 255, 255, 0.06);
+    margin-top: 20px; 
+}
+  
+.stock-info-week52Limits {
+    align-self: center;
+    justify-content: center; 
+}
+
+.week-52-low {
+    color: #b83535; 
+    padding: 3px;
+}
+  
+.week-52-high {
+    color: #29a329; 
+    padding: 3px;
+}

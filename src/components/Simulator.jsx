@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import StockPrice from './Stock-Price';
 import { updateUserPortfolio } from '../helpers/interactions/user_interactions';
-// import { updateUserPortfolio } from '';
 import { getStockPrice } from '../helpers/interactions/iex_interactions';
 import ShowPortfolio from './Show-Portfolio';
 import ShowCashValue from './Show-Cash-Value';
 import PropTypes from 'prop-types';
-// import './css/simulator.css';
 import ShowPortfolioValue from './Show-Portfolio-Value';
 import ReturnOnInvestment from './ReturnOnInvestment';
 

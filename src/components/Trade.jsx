@@ -202,10 +202,10 @@ class Trade extends Component {
 
   
         return (
-            <div>
+            <div className="trader">
 
                 { this.state.user ? (
-                         <div className="container-fluid trader">
+                         <div className="container-fluid">
                                 <p>Available buying power: {formatter.format(this.props.user.cash)}</p>
                                 <p>Shares of {this.props.tickerData.ticker} owned: {ownedShares}</p>
                                 {/*Buy button*/}

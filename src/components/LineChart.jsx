@@ -31,7 +31,7 @@ class LineChart extends Component{
           options={{
             title:{
               display:this.props.displayTitle,
-              text:'Price of '+this.props.stockName,
+              text:'Price of '+this.props.stockName.toUpperCase(),
               fontSize:25
             },
             legend:{
