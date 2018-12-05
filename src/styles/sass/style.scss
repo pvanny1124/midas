@@ -117,6 +117,23 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0; 
 }
 
+input[type=text],
+input[type="password"]{
+    text-align: center;
+}
+
+.input-group>input[type=text]{
+    text-align: left;
+    padding-left: 10px;
+}
+
+input[type=text]:focus,
+input[type="password"]:focus{
+    background-color: rgb(252, 246, 216);
+    border: 1px solid gold;
+    box-shadow: 0 0 5px 1px gold;
+}
+
 .input-group .form-control:last-child, .input-group-addon:last-child, .input-group-btn:first-child>.btn-group:not(:first-child)>.btn, .input-group-btn:first-child>.btn:not(:first-child), .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group>.btn, .input-group-btn:last-child>.dropdown-toggle {
     border-radius: 5px;
     width: 400px;
@@ -182,13 +199,6 @@ input[type=number]::-webkit-outer-spin-button {
 .media-body p {
     color: #929292;
     font-size: 14px; 
-}
-
-input[type=text]:focus,
-input[type="password"]:focus{
-    // background-color: white;
-    border: 1px solid gold;
-    box-shadow: 0 0 5px 1px gold;
 }
 
 .jumbotron{

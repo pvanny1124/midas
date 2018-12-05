@@ -13,7 +13,7 @@ const Welcome = () => (
     
                 <div className={"welcome-bullet-item"}>
                     <Media.Left>
-                        <FontAwesomeIcon icon={faChartLine} size={"4x"} color={"springgreen"}/>
+                        <FontAwesomeIcon icon={faChartLine} size={"4x"} color={"mediumseagreen"}/>
                     </Media.Left>
                     <Media.Body>
                         <p>Get started with the stock market using our simulator</p>

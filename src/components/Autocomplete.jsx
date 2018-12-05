@@ -171,7 +171,7 @@ class Autocomplete extends Component {
       <div>
             <Fragment>
             
-            <div class="input-group mb-3">
+            <div class="input-group">
                 <input type="text" 
                       className="form-control nav-input" 
                       placeholder="Lookup a stock" 
