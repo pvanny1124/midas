@@ -24,8 +24,8 @@
 
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #dfdfdf;
-  background-color: #364e64; }
+  color: #d3cb9b;
+  background-color: #2c4053; }
 
 /* override bootstrap navbar colors */
 .navbar,

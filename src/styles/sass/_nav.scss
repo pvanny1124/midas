@@ -29,8 +29,8 @@
 
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-nav>li>a:focus{
-  color: $color_text_nav_hover;
-  background-color: $color_bg_nav_hover;
+  color: $color_text_nav;
+  background-color: $color_bg_nav;
 }
 
 /* override bootstrap navbar colors */
