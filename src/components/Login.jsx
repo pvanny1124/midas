@@ -53,12 +53,11 @@ class Login extends Component {
      
         return ( 
 
-                <form className="login_container" onSubmit={(event) => this.handleSubmit(event)}>
-                    <div className="login_form">
-                    { this.state.exists && <div> The password you entered does not match the email provided </div>}
-                    <div className="login_title">
-                        <h1>Log In</h1>
-                    </div>
+            <form onSubmit={(event) => this.handleSubmit(event)}>
+                <div className="form-title">
+                    <h1>Log In</h1>
+                </div>
+                <div class="form-body">
                     <div className="form-group">
                         <input className="form-control" type="text" name="email" placeholder="email" required onChange={(event) => this.handleEmailChange(event)}/>
                     </div>
@@ -69,8 +68,9 @@ class Login extends Component {
                         <button type="submit" className="login-btn btn btn-dark">Log In</button>
                     </div>
                     <Link className="not-user" to="/signup">Not a user? Create an account</Link>
-                    </div>
-                </form>
+                    { this.state.exists && <div> The password you entered does not match the email provided </div>}
+                </div>
+            </form>
         
          );
     }
