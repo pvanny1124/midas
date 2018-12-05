@@ -267,8 +267,8 @@ form {
   color: white;
   height: 50px;
   background-color: slategrey;
-  border-top-left-radius: 60% 60%;
-  border-top-right-radius: 60% 60%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   padding-top: 1px; }
 
 .form-control {
