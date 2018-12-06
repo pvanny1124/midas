@@ -49,8 +49,8 @@ class CustomNavbar extends Component {
             {this.props.user ? (
                 <NavItem eventKey={2}
                         componentClass={Link}
-                        href="/about"
-                        to="/about"
+                        href="/profile"
+                        to="/profile"
                 >
                     Profile
                 </NavItem>

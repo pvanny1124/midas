@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Home from "./components/Home";
-import About from "./components/About";
+import ProfilePage from "./components/Profile-Page";
 import News from "./components/News";
 import Navbar from "./components/CustomNavbar";
 import Footer from "./components/Footer";
@@ -10,7 +10,6 @@ import Signout from "./components/Signout";
 import Login from "./components/Login";
 import StockInfo from './components/StockInfo';
 import getStockInfo from './helpers/interactions/iex_interactions';
-import './landingpage.css'
 import './styles/style.css';
 
 
@@ -89,7 +88,7 @@ class App extends Component {
                 <Route path="/stocks/:ticker" render={(props) => <div class="container">
                   <StockInfo key={props.location.key} {...props} reset={() => this.reset()} getUser={(user) => this.getUserData(user)} ticker={this.state.searchedTicker} user={this.state.user} getUser={(user) => this.getUserData(user)} />
                 </div>} />
-                <Route path="/about" component={About} />
+                <Route path="/profile" render={() => <ProfilePage user={this.state.user} />} />
                 <Route path="/signup" render={() => <Signup getUser={(user) => this.getUserData(user)}/>} />
                 <Route path="/login" render={() => <Login getUser={(user) => this.getUserData(user)} />} />
                 <Route path="/signout" render={() => <Signout resetUser={() => this.resetUserData()} />} />
