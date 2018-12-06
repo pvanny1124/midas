@@ -1,0 +1,38 @@
+.profile-card{
+    background-color: rgb(231, 230, 230);
+    border-radius: 4px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 0 1px 1px rgb(190, 188, 188);
+}
+
+.profile-card-top{
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-image{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 4px solid $color_bg_nav;
+    padding: 10px;
+    margin: 20px;
+    background-color: $color_text_nav;
+}
+
+.user-info{
+    flex: 1 1;
+    align-self: center; 
+    margin-left: 8%;
+}
+
+.user-data{
+    flex: 1 1;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+}

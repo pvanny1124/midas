@@ -1,0 +1,16 @@
+.profile-page, 
+.stockInfo-page{
+    display: flex;
+    flex-direction: row;
+    padding: 0 5%;
+}
+
+.page-left{
+    // background-color: steelblue;
+    flex: 1 1 70%;
+}
+
+.page-right{
+    // background-color: cadetblue;
+    flex: 0 1 30%;
+}

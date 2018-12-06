@@ -2,6 +2,8 @@
 @import "nav";
 @import "welcomeComponent";
 @import "stockInfo";
+@import "profile";
+@import "pageLayouts";
 
 
 /* Safari */
@@ -60,6 +62,11 @@ body {
   
 .display-field-value {
     color: $color_text; 
+    padding-left: 15px;
+}
+
+.error{
+    color: red;
 }
 
 #footer{

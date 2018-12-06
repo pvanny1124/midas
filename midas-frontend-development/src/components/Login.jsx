@@ -38,7 +38,8 @@ class Login extends Component {
             return response.json();
         })
         .then(user => {
-            console.log(user);
+            console.log("%cLogin-user-debug", "color: purple");
+            console.log({user});
             if(user){
                 this.props.getUser(user);
                 this.props.history.push("/");
@@ -68,7 +69,7 @@ class Login extends Component {
                         <button type="submit" className="login-btn btn btn-dark">Log In</button>
                     </div>
                     <Link className="not-user" to="/signup">Not a user? Create an account</Link>
-                    { this.state.exists && <div> The password you entered does not match the email provided </div>}
+                    { this.state.exists && <div className="error"> The password you entered does not match the email provided </div>}
                 </div>
             </form>
         

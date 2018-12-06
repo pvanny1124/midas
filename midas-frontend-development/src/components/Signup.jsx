@@ -19,7 +19,15 @@ class Signup extends Component {
             cash: 10000,
             wrongPassword: false,
             emailExists: false,
-            usernameExists: false
+            usernameExists: false,
+            displayError: false,
+            errorMessageObject: { //will hold respective error messages for each input field
+                email: "",
+                username: "",
+                password: "",
+                firstName: "",
+                lastName: "",
+            }
         }
     }
 
@@ -53,6 +61,64 @@ class Signup extends Component {
 
     handleSubmit(event){
         event.preventDefault();
+        //first check if the input fields are not empty
+
+        let { firstName, lastName, username, password, email } = this.state;
+
+        if(firstName || lastName || username || password || email){
+                if(!firstName){
+                    this.setState({
+                        displayError: true,
+                        errorMessageObject: Object.assign({}, this.state.errorObject, {
+                            firstName: "You must include your first name"
+                        })
+                    })
+                } 
+                
+                if(!lastName){
+                    this.setState({
+                        displayError: true,
+                        errorMessageObject: Object.assign({}, this.state.errorObject, {
+                            lastName: "You must include your last name"
+                        })
+                    })
+                }
+                
+                if(!username){
+                    this.setState({
+                        displayError: true,
+                        errorMessageObject: Object.assign({}, this.state.errorObject, {
+                            username: "username can't be empty"
+                        })
+                    })
+                } 
+                
+                if(!password){
+                    this.setState({
+                        displayError: true,
+                        errorMessageObject: Object.assign({}, this.state.errorObject, {
+                            password: "password can't be empty"
+                        })
+                    })
+                }
+
+                if(!email){
+                    this.setState({
+                        displayError: true,
+                        errorMessageObject: Object.assign({}, this.state.errorObject, {
+                            email: "email can't be empty"
+                        })
+                    })
+                }
+
+                return;
+
+        }
+ 
+    
+            
+        
+
         //make request to backend api to signup user
         fetch("/signup", {
             method: "post",
@@ -106,16 +172,31 @@ class Signup extends Component {
               } 
           })
           .catch((err) => {
+              this.setState({
+                  displayError: true
+              })
               console.log(err);
           })
     }
     render(){
+
+        let errors = [];
+        console.log(this.state.errorMessageObject);
+        for(let message in this.state.errorMessageObject){
+            errors.push(<li key={message}>this.state.errorMessageObject[message]</li>);
+        }
+        console.log(errors);
         return (
             
             <form onSubmit={(event) => this.handleSubmit(event)} >
                 <div class="form-title">
                     <h1>Sign Up</h1>
                 </div>
+                {this.state.displayError && 
+                        <div className="signup-error">
+                            <p>{errors}</p>
+                        </div>}
+                
                 <div class="form-body">
                     <div className="form-group">
                         <input className="form-control" type="text" name="first_name" placeholder="First Name" onChange={(event) => this.handleFirstNameChange(event)}/>

@@ -7,7 +7,6 @@ import Trade from './Trade';
 import { withRouter } from 'react-router';
 import Chart from './Chart';
 import SelectRange from './SelectRange';
-// import './css/StockInfo.css';
 
 
 const API_PREFIX = "https://api.iextrading.com/1.0";
