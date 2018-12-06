@@ -188,7 +188,8 @@
   display: flex;
   flex-direction: column;
   margin: 20px;
-  padding: 20px; }
+  padding: 20px;
+  box-shadow: 0 0 1px 1px #bebcbc; }
 
 .profile-card-top {
   display: flex;
@@ -214,7 +215,8 @@
   display: flex;
   flex-direction: row; }
 
-.profile-page {
+.profile-page,
+.stockInfo-page {
   display: flex;
   flex-direction: row;
   padding: 0 5%; }

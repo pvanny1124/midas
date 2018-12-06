@@ -85,8 +85,11 @@ class App extends Component {
                 <Navbar user={this.state.user} forceUpdate={() => this.forceUpdate} getTicker={(ticker) => this.getSearchedTicker(ticker)}/>
                 <Route exact path="/" render={() => <Home user={this.state.user} getUser={(user) => this.getUserData(user)} />} />
                 {/* For the following view to render properly, pass key={props.location.key} to make the component re-render since the location changes if the user looks up a new stock*/}
-                <Route path="/stocks/:ticker" render={(props) => <div class="container">
-                  <StockInfo key={props.location.key} {...props} reset={() => this.reset()} getUser={(user) => this.getUserData(user)} ticker={this.state.searchedTicker} user={this.state.user} getUser={(user) => this.getUserData(user)} />
+                <Route path="/stocks/:ticker" render={(props) => <div class="container stockInfo-page">
+                  <div className="page-left">
+                    <StockInfo key={props.location.key} {...props} reset={() => this.reset()} getUser={(user) => this.getUserData(user)} ticker={this.state.searchedTicker} user={this.state.user} getUser={(user) => this.getUserData(user)} />
+                  </div>
+                  <div className="page-right"></div>
                 </div>} />
                 <Route path="/profile" render={() => <ProfilePage user={this.state.user} />} />
                 <Route path="/signup" render={() => <Signup getUser={(user) => this.getUserData(user)}/>} />
