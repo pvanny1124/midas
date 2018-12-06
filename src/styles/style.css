@@ -277,6 +277,9 @@ body {
   color: #525252;
   padding-left: 15px; }
 
+.error {
+  color: red; }
+
 #footer {
   position: absolute;
   bottom: 0;
