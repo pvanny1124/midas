@@ -19,6 +19,7 @@
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav>li>a{
   color: $color_text_nav;
+  text-shadow: none;
 }
 
 .navbar-default .navbar-brand:hover,
