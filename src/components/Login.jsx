@@ -69,7 +69,7 @@ class Login extends Component {
                         <button type="submit" className="login-btn btn btn-dark">Log In</button>
                     </div>
                     <Link className="not-user" to="/signup">Not a user? Create an account</Link>
-                    { this.state.exists && <span> The password you entered does not match the email provided </span>}
+                    { this.state.exists && <div> The password you entered does not match the email provided </div>}
                 </div>
             </form>
         
