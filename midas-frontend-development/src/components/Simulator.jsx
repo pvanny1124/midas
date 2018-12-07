@@ -89,8 +89,8 @@ class Simulator extends Component {
 
     return (
       <div className="simulator-card card">
-        <p>Your portfolio</p> 
-        <p>Your all-time return: <ReturnOnInvestment startingValue={10000} endingValue={user.portfolioValue} /></p>
+        <h3>{user.firstName}'s Portfolio</h3> 
+        <ReturnOnInvestment startingValue={10000} endingValue={user.portfolioValue} />
         <ShowPortfolioValue user={user} portfolioValue={user.portfolioValue} />
         <ShowCashValue cashValue={user.cash} /> 
         <ShowPortfolio cashValue={parseInt(user.cash)} user={user} />

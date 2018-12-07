@@ -11,18 +11,25 @@ class StockInfoPage extends Component {
     }
 
     render() { 
+        console.log("%cTICKER","color: green");
+        console.log(this.props.ticker);
         return ( 
             <div className="stockInfo-page container">
                 <div className="page-left">
-                    <Trade getUser={(user) => this.props.getUser(user)} tickerData={this.state} user={this.props.user}/>
+                    <Simulator userId={this.props.user.id} />    
                 </div>
 
                 <div className="page-center">
-                    <StockInfo key={this.props.key} {...this.props}  getUser={(user) => this.props.getUserData(user)} ticker={this.props.ticker} user={this.props.user} getUser={(user) => this.props.getUserData(user)} />
+                    <StockInfo  key={this.props.key} {...this.props}  
+                                getUser={(user) => this.props.getUserData(user)} 
+                                ticker={this.props.ticker} 
+                                user={this.props.user}  />
                 </div>
 
                 <div className="page-right">
-                    <Simulator userId={this.props.user.id} />
+                    <Trade  getUser={(user) => this.props.getUser(user)} 
+                            tickerData={this.props} 
+                            user={this.props.user}/>
                 </div>
             </div>
          );

@@ -51,7 +51,7 @@ export default class ShowPortfolioValue extends Component {
          }, 1000);
         }
       return (
-          <li>{"Total portfolio value: " + this.state.portfolioValue}</li>
+          <h4>{"Total portfolio value: " + this.state.portfolioValue}</h4>
       );
     }
   }
