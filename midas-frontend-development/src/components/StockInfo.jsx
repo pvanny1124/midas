@@ -103,7 +103,7 @@ class StockInfo extends Component {
 
         return ( 
             <div className="page"> 
-                <div className="stock-info">
+                <div className="stock-info-card card">
                     <div className="stock-info-head">
                         <DisplayTitle classname={"stock-info-ticker"} title={this.state.ticker}/>
                         <Price price={this.state.price} w52high={this.state.week52High} w52low={this.state.week52Low} />

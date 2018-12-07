@@ -3,13 +3,9 @@
     flex-direction: column;
 }
 
-.stock-info {
+.stock-info-card {
     display: flex;
     flex-direction: column;
-    background-color: $color_bg_card;
-    border-radius: 4px;
-    box-shadow: 0 0 1px 1px rgb(190, 188, 188);
-    padding: 15px;
 }
 
 .stock-info-head {

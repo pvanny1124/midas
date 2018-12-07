@@ -31,7 +31,7 @@ class ShowPortfolio extends Component {
      for(let ticker in user.portfolio) portfolioList.push(<PortfolioTicker ticker={ticker} user={user} />);
      
      return (
-      <div className="container-list">
+      <div className="simulator-card">
 
           <ul className="portfolio-stocks">
                   {portfolioList}

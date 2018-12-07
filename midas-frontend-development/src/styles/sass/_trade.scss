@@ -1,0 +1,16 @@
+.trade-card{
+    flex: 1 1;
+    
+}
+
+.trade-user-logged-in{
+    // width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.trade-guest{
+    text-align: center;
+}

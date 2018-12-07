@@ -2,7 +2,7 @@ import React from 'react';
 import DisplayField from './DisplayField';
 
 const ProfileCard = (props) => (
-    <div className="profile-card">
+    <div className="profile-card card">
 
         <div class="profile-card-top">
             <img className="profile-image" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" alt="UserProfile"/>
