@@ -77,7 +77,7 @@ class CustomNavbar extends Component {
             News
           </NavItem>)}
 
-          <NavItem eventKey={5}>Leaderboards</NavItem>
+          <NavItem eventKey={5} componentClass={Link} href="/leaderboards" to="/leaderboards" >Leaderboards</NavItem>
             
           
           </Nav>
