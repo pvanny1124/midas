@@ -24,6 +24,7 @@ html, body {
 }
   
 body {
+    background-color: $color_bg_body;
     margin: 0;
     font-family: sans-serif;
     background-size: cover;
@@ -104,13 +105,13 @@ form{
 
 .form-body{
     padding-top: 10px;
-    background: linear-gradient( slategrey 0%, white 100%);
+    background: linear-gradient( $color_bg_nav 0%, $color_bg_body 100%);
 }
   
 .form-title {
     color: white;
     height: 50px;
-    background-color: slategrey;
+    background-color: $color_bg_nav;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     padding-top: 1px;
@@ -134,6 +135,7 @@ form{
 
 .home{
     height: 100vh;
+    background-color: white;
 }
 
 /*
