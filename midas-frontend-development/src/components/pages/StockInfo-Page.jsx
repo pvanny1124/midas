@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import StockInfo from '../StockInfo';
+import Simulator from '../Simulator';
+import Trade from '../Trade';
 
 
 class StockInfoPage extends Component {
@@ -10,9 +12,9 @@ class StockInfoPage extends Component {
 
     render() { 
         return ( 
-            <div className="stock-info-page container">
+            <div className="stockInfo-page container">
                 <div className="page-left">
-                
+                    <Trade getUser={(user) => this.props.getUser(user)} tickerData={this.state} user={this.props.user}/>
                 </div>
 
                 <div className="page-center">
@@ -20,7 +22,7 @@ class StockInfoPage extends Component {
                 </div>
 
                 <div className="page-right">
-                
+                    <Simulator userId={this.props.user.id} />
                 </div>
             </div>
          );

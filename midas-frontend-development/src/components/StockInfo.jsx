@@ -107,7 +107,6 @@ class StockInfo extends Component {
                     <div className="stock-info-head">
                         <DisplayTitle classname={"stock-info-ticker"} title={this.state.ticker}/>
                         <Price price={this.state.price} w52high={this.state.week52High} w52low={this.state.week52Low} />
-                        <Trade getUser={(user) => this.props.getUser(user)} className="trade-tool" tickerData={this.state} user={this.props.user}/>
                     </div>
 
                     <div className="stock-info-chart">

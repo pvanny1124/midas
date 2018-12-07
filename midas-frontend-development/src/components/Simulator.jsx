@@ -88,7 +88,7 @@ class Simulator extends Component {
     var { user } = this.state;
 
     return (
-      <div className="App container-fluid">
+      <div className="simulator">
         <p>Your portfolio</p> 
           <p>Your all-time return: <ReturnOnInvestment startingValue={10000} endingValue={user.portfolioValue} /></p>
           <ShowPortfolioValue user={user} portfolioValue={user.portfolioValue} />

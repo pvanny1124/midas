@@ -35,14 +35,7 @@ class Home extends Component {
       <div className="container home">
       
         {this.state.user ? (
-          <div className="user-home">
-            <div className="simulator">
-                <Simulator userId={this.props.user.id} />
-            </div>
-           <StockInfo />
-           
-        </div>
-         
+         <div>Find something nice to put here</div>
         ) : (
           <Welcome />
         )}

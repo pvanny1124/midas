@@ -124,6 +124,7 @@
   flex-direction: column;
   background-color: white;
   border-radius: 4px;
+  box-shadow: 0 0 1px 1px #bebcbc;
   padding: 15px; }
 
 .stock-info-head {
@@ -182,7 +183,7 @@
   padding: 3px; }
 
 .profile-card {
-  background-color: #e7e6e6;
+  background-color: white;
   border-radius: 4px;
   width: 500px;
   display: flex;
@@ -218,17 +219,16 @@
 .profile-page,
 .stockInfo-page {
   display: flex;
-  flex-direction: row;
-  padding: 0 5%; }
+  flex-direction: row; }
 
-.page-left {
-  flex: 1 1 20%; }
-
-.page.center {
-  flex: 1 1 60%; }
-
+.page-left,
 .page-right {
-  flex: 1 1 20%; }
+  flex: 1 1 25%;
+  margin-top: 10px; }
+
+.page-center {
+  flex: 1 1 50%;
+  margin: 10px; }
 
 /* Safari */
 @-webkit-keyframes spin {
@@ -461,10 +461,6 @@ input[type="password"]:focus {
   margin: 0 auto;
   width: 50%;
   text-align: center; }
-
-.simulator {
-  float: right;
-  width: 30%; }
 
 .search {
   position: absolute;
