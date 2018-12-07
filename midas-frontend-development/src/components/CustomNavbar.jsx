@@ -71,12 +71,6 @@ class CustomNavbar extends Component {
               </NavItem>
             )}
 
-            {this.props.user  ? (
-                <NavItem eventKey={4}>Welcome, {this.props.user.firstName + "!"}</NavItem>
-            ) : (<NavItem eventKey={4} componentClass={Link} href="/news" to="/news">
-            News
-          </NavItem>)}
-
           <NavItem eventKey={5} componentClass={Link} href="/leaderboards" to="/leaderboards" >Leaderboards</NavItem>
             
           

@@ -97,7 +97,6 @@ class App extends Component {
                 <Route path="/login" render={() => <Login getUser={(user) => this.getUserData(user)} />} />
                 <Route path="/signout" render={() => <Signout resetUser={() => this.resetUserData()} />} />
                 <Route path="/leaderboards" render={() => <Leaderboards />} />
-                <Route path="/news" component={News} />
                 {/* <Footer /> */}
              </div>
          ) }
