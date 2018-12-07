@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import Home from "./components/Home";
-import ProfilePage from "./components/Profile-Page";
-import News from "./components/News";
+import Home from "./components/pages/Home-Page";
+import ProfilePage from "./components/pages/Profile-Page";
+import StockInfoPage from './components/pages/StockInfo-Page';
 import Navbar from "./components/CustomNavbar";
 import Footer from "./components/Footer";
 import Signup from "./components/Signup";
 import Signout from "./components/Signout";
 import Login from "./components/Login";
-import StockInfo from './components/StockInfo';
 import Leaderboards from './components/Leaderboards';
 import getStockInfo from './helpers/interactions/iex_interactions';
 import './styles/style.css';
@@ -86,12 +85,7 @@ class App extends Component {
                 <Navbar user={this.state.user} forceUpdate={() => this.forceUpdate} getTicker={(ticker) => this.getSearchedTicker(ticker)}/>
                 <Route exact path="/" render={() => <Home user={this.state.user} getUser={(user) => this.getUserData(user)} />} />
                 {/* For the following view to render properly, pass key={props.location.key} to make the component re-render since the location changes if the user looks up a new stock*/}
-                <Route path="/stocks/:ticker" render={(props) => <div class="container stockInfo-page">
-                  <div className="page-left">
-                    <StockInfo key={props.location.key} {...props} reset={() => this.reset()} getUser={(user) => this.getUserData(user)} ticker={this.state.searchedTicker} user={this.state.user} getUser={(user) => this.getUserData(user)} />
-                  </div>
-                  <div className="page-right"></div>
-                </div>} />
+                <Route path="/stocks/:ticker" render={(props) => <StockInfoPage key={props.location.key} {...props} reset={() => this.reset()} getUser={(user) => this.getUserData(user)} ticker={this.state.searchedTicker} user={this.state.user} getUser={(user) => this.getUserData(user)} /> } />
                 <Route path="/profile" render={() => <ProfilePage user={this.state.user} />} />
                 <Route path="/signup" render={() => <Signup getUser={(user) => this.getUserData(user)}/>} />
                 <Route path="/login" render={() => <Login getUser={(user) => this.getUserData(user)} />} />

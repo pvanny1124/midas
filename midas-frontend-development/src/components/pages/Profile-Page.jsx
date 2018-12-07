@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router';
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "../ProfileCard";
 
 class ProfilePage extends Component {
   constructor(props){

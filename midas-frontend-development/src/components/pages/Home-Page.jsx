@@ -1,10 +1,7 @@
 import React, { Component } from "react";
-import { Link, Redirect, Route } from "react-router-dom";
-import { Jumbotron, Grid, Row, Col, Image, Button, Media } from "react-bootstrap";
-import Simulator from './Simulator';
-import StockInfo from './StockInfo';
-import Welcome from './Welcome';
-import "../styles/style.css";
+import Simulator from '../Simulator';
+import StockInfo from '../StockInfo';
+import Welcome from '../Welcome';
 
 
 
