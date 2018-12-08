@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LineChart from './LineChart';
+import LineChart from './linechart';
 
 
 class Chart extends Component {
@@ -13,21 +13,17 @@ class Chart extends Component {
     }
   }
 
-
-  //need to place logic in render or else the component wont update its props acordingly
-  render() {
-
-    console.log(this.props)
+  componentWillMount(){
     fetch(`https://api.iextrading.com/1.0/stock/${this.props.stockName}/chart/${this.props.range}?filter=high,label`)
-    .then(response => { 
-        return response.json()
-    })
+    .then(response => response.json())
     .then(result => {
 
       var labels_temp = [];
       var price_temp = [];
 
       for(var i = 0; i < result.length; i++) {
+        if(result[i].high < 0 || result[i].high === undefined)
+          continue;
         labels_temp.push(result[i].label);
         price_temp.push(result[i].high);
       }
@@ -45,19 +41,21 @@ class Chart extends Component {
             data: price_temp,
             borderColor: borderCol
           }]
-        },
-        isLoading:false
+        }
       });
-    })
-    .catch(error => {
-        console.log(error);
-    })
+      this.setState({ isLoading:false});
+    });
 
-    return (
-                <div>
-                    {this.state.isLoading ? <p>Loading...</p> : <LineChart chartData={this.state.chartData} stockName={this.props.stockName}/>}
-                </div>
-        );
+  }
+
+
+  render() {
+    if (this.state.isLoading)
+      return <p>Loading...</p>;
+    else 
+      return (
+          <LineChart chartData={this.state.chartData} stockName={this.props.stockName}/>
+      );
     }
   }
 
