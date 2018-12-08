@@ -10,7 +10,19 @@ import Signout from "./components/Signout";
 import Login from "./components/Login";
 import Leaderboards from './components/Leaderboards';
 import getStockInfo from './helpers/interactions/iex_interactions';
+
+//use createStore to create a store, use applyMiddleware to cancel or reject actions before a reducer is applied on the action
+import { applyMiddleware, createStore } from 'redux';
+
+//used to display previous state, current action, and next state
+import { logger } from 'redux-logger'; 
+
+//middleware package for async ops
+import thunk from 'redux-thunk';
+
+//main styles
 import './styles/style.css';
+
 
 
 class App extends Component {
@@ -25,6 +37,7 @@ class App extends Component {
   }
 
   componentWillMount(){
+    
     //check if user is already logged in session
     fetch("/api/auth")
       .then(response => {
@@ -33,13 +46,12 @@ class App extends Component {
       })
       .then(data => {
           this.setState({user: data, isLoading: false});
-          console.log("hi pat")
           console.log(data);
       })
       .catch(error => {
         setTimeout(() => {
           this.setState({isLoading: false})
-        }, 3000)
+        }, 1000)
         
           console.log(error);
       })

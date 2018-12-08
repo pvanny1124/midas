@@ -1,12 +1,18 @@
-import { USER_LOGGED_IN } from "../actions/actionCreators";
+// combineReducers is used to package all reducers under one object mapped to a 
+// specific state that the reducer is supposed to change/update
+import { combineReducers } from "redux";
 
-const initialState = {
-    user: null,
-    ticker: null
-}
+// import all necessary reducers
+import { userReducer } from './userReducer';
 
-export default function rootReducer(state = initialState, action){
-    switch(action.type){
-        case USER_LOGGED_IN:
-    }
-}
+
+const rootReducer = combineReducers({
+        //map specific reducers to the state variables that they are supposed to handle
+        currentUser: userReducer
+})
+
+export default rootReducer;
+
+
+
+
