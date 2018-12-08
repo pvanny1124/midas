@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import LineChart from './LineChart';
+import { FormGroup, Radio } from "react-bootstrap";
+
+// import './Chart.css'
 
 
 class Chart extends Component {
@@ -13,9 +16,13 @@ class Chart extends Component {
     }
   }
 
-  componentWillMount(){
+
+  //need to place logic in render or else the component wont update its props acordingly
+  render() {
     fetch(`https://api.iextrading.com/1.0/stock/${this.props.stockName}/chart/${this.props.range}?filter=high,label`)
-    .then(response => response.json())
+    .then(response => { 
+        return response.json()
+    })
     .then(result => {
 
       var labels_temp = [];
@@ -41,21 +48,43 @@ class Chart extends Component {
             data: price_temp,
             borderColor: borderCol
           }]
-        }
+        },
+        isLoading:false
       });
-      this.setState({ isLoading:false});
-    });
+    })
+    .catch(error => {
+        console.log(error);
+    })
 
-  }
-
-
-  render() {
-    if (this.state.isLoading)
-      return <p>Loading...</p>;
-    else 
-      return (
-          <LineChart chartData={this.state.chartData} stockName={this.props.stockName}/>
-      );
+    return (
+        <div>
+          {this.state.isLoading ? <p>Loading...</p> : <LineChart chartData={this.state.chartData} stockName={this.props.stockName}/>}
+      
+      <FormGroup className="switches">
+        <Radio name="radioGroup" inline>
+        1d
+        </Radio>{' '}
+        <Radio name="radioGroup" inline>
+        1w
+        </Radio>{' '}
+        <Radio name="radioGroup" inline>
+        1m
+        </Radio>
+        <Radio name="radioGroup" inline>
+        1y
+        </Radio>
+        <Radio name="radioGroup" inline>
+        3m
+        </Radio>
+        <Radio name="radioGroup" inline>
+        1y
+        </Radio>
+        <Radio name="radioGroup" inline>
+        5y
+        </Radio>
+      </FormGroup>
+                </div>
+        );
     }
   }
 
