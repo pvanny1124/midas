@@ -29,18 +29,18 @@ const store = createStore(reducers);
             -must pass into third argument of store.
 --------------------------------------------------------*/
 
-//log the prev, current, and next state on the console for debugging purposes..
-const logger = (store) => (next) => (action) => {
+// //log the prev, current, and next state on the console for debugging purposes..
+// const logger = (store) => (next) => (action) => {
 
-    //do something with the action (cancel or modify)
-    console.log(action); /*debug*/
+//     //do something with the action (cancel or modify)
+//     console.log(action); /*debug*/
 
-    //modify
-    action.type = "DEC";
+//     //modify
+//     action.type = "DEC";
 
-    //continue on to reducer and pass the action
-    next(action)
-}
+//     //continue on to reducer and pass the action
+//     next(action)
+// }
 
 //test whether the action will return an error before moving on
 const error = (store) => (next) => (action) => {

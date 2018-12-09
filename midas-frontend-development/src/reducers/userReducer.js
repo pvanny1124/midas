@@ -1,6 +1,6 @@
 
 //User actions
-import userConstants from '../actions/actions.users';
+import { userConstants } from '../actions/actions.users';
 
 const userReducer = function(state = {}, action){
     switch(action.type){
@@ -96,3 +96,5 @@ const userReducer = function(state = {}, action){
 
     }
 }
+
+export default userReducer;
