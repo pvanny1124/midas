@@ -116,9 +116,6 @@ class Signup extends Component {
         }
  
     
-            
-        
-
         //make request to backend api to signup user
         fetch("/signup", {
             method: "post",
@@ -187,44 +184,47 @@ class Signup extends Component {
         }
         console.log(errors);
         return (
-            
-            <form onSubmit={(event) => this.handleSubmit(event)} >
-                <div class="form-title">
-                    <h1>Sign Up</h1>
-                </div>
-                {this.state.displayError && 
-                        <div className="signup-error">
-                            <p>{errors}</p>
-                        </div>}
-                
-                <div class="form-body">
-                    <div className="form-group">
-                        <input className="form-control" type="text" name="first_name" placeholder="First Name" onChange={(event) => this.handleFirstNameChange(event)}/>
+            <div className="signup-form">
+
+                <form onSubmit={(event) => this.handleSubmit(event)} >
+                    <div class="form-title">
+                        <h1>Sign Up</h1>
                     </div>
-                    <div className="form-group">
-                        <input className="form-control" type="text" name="last_name" placeholder="Last Name" onChange={(event) => this.handleLastNameChange(event)} />
+                    {this.state.displayError && 
+                            <div className="signup-error">
+                                <p>{errors}</p>
+                            </div>}
+                    
+                    <div class="form-body">
+                        <div className="form-group">
+                            <input className="form-control" type="text" name="first_name" placeholder="First Name" onChange={(event) => this.handleFirstNameChange(event)}/>
+                        </div>
+                        <div className="form-group">
+                            <input className="form-control" type="text" name="last_name" placeholder="Last Name" onChange={(event) => this.handleLastNameChange(event)} />
+                        </div>
+                        <div className="form-group">
+                            <input className="form-control" type="text" name="username" placeholder="Username" onChange={(event) => this.handleUsernameChange(event)} />
+                        </div>
+                        <div className="form-group">
+                            <input className="form-control" type="text" name="email" placeholder="Email" onChange={(event) => this.handleEmailChange(event)} />
+                        </div>
+                        <div className="form-group">
+                            <input className="form-control" type="password" name="password" placeholder="Password" onChange={(event) => this.handlePasswordChange(event)} />
+                        </div>
+                        <div className="form-group">
+                            <input className="form-control" type="text" name="age" placeholder="Age" onChange={(event) => this.handleAgeChange(event) }/>
+                        </div>
+                        <div className="form-group">
+                            <input className="form-control" type="text" name="country" placeholder="Country" onChange={(event) => this.handleCountryChange(event)} />
+                        </div>
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-dark">Sign Up</button>
+                        </div>
+                        <Link className="not-user" to="/login">Already a user? Log in here.</Link>
                     </div>
-                    <div className="form-group">
-                        <input className="form-control" type="text" name="username" placeholder="Username" onChange={(event) => this.handleUsernameChange(event)} />
-                    </div>
-                    <div className="form-group">
-                        <input className="form-control" type="text" name="email" placeholder="Email" onChange={(event) => this.handleEmailChange(event)} />
-                    </div>
-                    <div className="form-group">
-                        <input className="form-control" type="password" name="password" placeholder="Password" onChange={(event) => this.handlePasswordChange(event)} />
-                    </div>
-                    <div className="form-group">
-                        <input className="form-control" type="text" name="age" placeholder="Age" onChange={(event) => this.handleAgeChange(event) }/>
-                    </div>
-                    <div className="form-group">
-                        <input className="form-control" type="text" name="country" placeholder="Country" onChange={(event) => this.handleCountryChange(event)} />
-                    </div>
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-dark">Sign Up</button>
-                    </div>
-                    <Link className="not-user" to="/login">Already a user? Log in here.</Link>
-                </div>
-            </form>
+                </form>
+                                
+            </div>
         );
     }
     
