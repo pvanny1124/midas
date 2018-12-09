@@ -2,6 +2,8 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons' 
 import './Footer.css'
+
+
 const Footer = () => (
     <footer id="myFooter" >
         <div className="container">

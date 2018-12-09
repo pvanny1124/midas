@@ -10,14 +10,15 @@ import Signout from "./components/Signout";
 import Login from "./components/Login";
 import Leaderboards from './components/Leaderboards';
 import getStockInfo from './helpers/interactions/iex_interactions';
-import Footer from './com'
 
+// //use createStore to create a store, use applyMiddleware to cancel or reject actions before a reducer is applied on the action
+// import { applyMiddleware, createStore } from 'redux';
 
-//used to display previous state, current action, and next state
-import { logger } from 'redux-logger'; 
+// //used to display previous state, current action, and next state
+// import { logger } from 'redux-logger'; 
 
-//middleware package for async ops
-import thunk from 'redux-thunk';
+// //middleware package for async ops
+// import thunk from 'redux-thunk';
 
 //main styles
 import './styles/style.css';
