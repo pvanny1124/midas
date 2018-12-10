@@ -136,10 +136,12 @@
   color: #d1bb3d;
   align-self: center;
   margin: 0 10px; }
+  .stock-info-price h2 {
+    line-height: 20px; }
 
 .stock-info-ticker {
   flex: 1 1;
-  text-align: center;
+  padding-left: 20px;
   color: #525252;
   font-size: 45px;
   text-shadow: #2c4053 1px 1px 4px; }
@@ -150,14 +152,11 @@
   margin: 10px 10px; }
 
 .stock-info-left {
-  flex-grow: 1;
-  border: 1px dotted white;
-  background-color: white;
-  border-radius: 3px;
+  flex-grow: 1 1;
   padding: 15px; }
 
 .stock-info-right {
-  flex-grow: 2;
+  flex-grow: 1 1;
   padding: 15px; }
 
 .stock-info-bottom {
@@ -168,13 +167,20 @@
 
 .stock-info-week52Limits {
   align-self: center;
-  justify-content: center; }
+  display: flex;
+  flex-direction: column; }
 
 .week-52-low {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   color: #b83535;
   padding: 3px; }
 
 .week-52-high {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   color: #29a329;
   padding: 3px; }
 
@@ -215,15 +221,14 @@
 
 .page-left {
   flex: 1 1 20%;
-  margin-top: 10px; }
+  margin-right: 10px; }
 
 .page-center {
-  flex: 1 1 50%;
-  margin: 10px; }
+  flex: 1 1 50%; }
 
 .page-right {
   flex: 1 1 20%;
-  margin-top: 10px; }
+  margin-left: 10px; }
 
 .trade-card {
   flex: 1 1; }
@@ -281,7 +286,8 @@ body {
   background-color: white;
   border-radius: 4px;
   box-shadow: 0 0 1px 1px #bebcbc;
-  padding: 15px; }
+  padding: 15px;
+  margin-top: 10px; }
 
 .display-field-key {
   color: black;

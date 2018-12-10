@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router';
 import ProfileCard from "../ProfileCard";
+import Simulator from "../Simulator";
 
 class ProfilePage extends Component {
   constructor(props){
@@ -21,7 +22,7 @@ class ProfilePage extends Component {
           }
         </div>
         <div className="page-right">
-          
+          <Simulator userId={this.props.user.id} />  
         </div>
       </div>
     );

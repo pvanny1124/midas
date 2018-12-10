@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StockInfo from '../StockInfo';
 import Simulator from '../Simulator';
 import Trade from '../Trade';
+import TrendingNews from '../TrendingNews';
 
 
 class StockInfoPage extends Component {
@@ -24,6 +25,8 @@ class StockInfoPage extends Component {
                                 getUser={(user) => this.props.getUserData(user)} 
                                 ticker={this.props.ticker} 
                                 user={this.props.user}  />
+
+                    <TrendingNews ticker={this.props.ticker} />
                 </div>
 
                 <div className="page-right">

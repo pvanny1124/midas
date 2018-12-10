@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import DisplayField from './DisplayField';
 import DisplayTitle from './DisplayTitle';
 import Price from './Price';
-import TrendingNews from './TrendingNews';
-import Trade from './Trade';
 import { withRouter } from 'react-router';
 import Chart from './Chart';
 import SelectRange from './SelectRange';
@@ -21,11 +19,8 @@ class StockInfo extends Component {
             market_cap: null,
             volume: null,
             description: null,
-            trending_news: null,
             CEO: null,
             num_of_employees: null,
-            week52High: null,
-            week52Low: null,
             graphRange: "1d"
          }
     }
@@ -48,7 +43,6 @@ class StockInfo extends Component {
     getStockInfo = async (ticker) =>{
         await this.getStockInfo_Company(ticker);
         await this.getStockInfo_Quote(ticker);
-        await this.getStockInfo_News(ticker);
     }
 
     getStockInfo_Company = async (ticker) => {
@@ -69,18 +63,7 @@ class StockInfo extends Component {
         this.setState({
             price: data.latestPrice,
             volume: data.latestVolume,
-            market_cap: data.marketCap,
-            week52High: data.week52High,
-            week52Low: data.week52Low
-        })
-    }
-
-    getStockInfo_News = async (ticker) => {
-        const api_call = await fetch(`${API_PREFIX}/stock/${ticker}/news/last/4`)
-        const data = await api_call.json();
-
-        this.setState({
-            trending_news: data
+            market_cap: data.marketCap
         })
     }
 
@@ -126,11 +109,12 @@ class StockInfo extends Component {
                             <DisplayField d_key={"CEO"} value={this.state.CEO} />
                         </div>
                         <div className="stock-info-right">
-                            <DisplayField d_key={"Description"} value={this.state.description}/>
+                            <DisplayField d_key={"52 Week High"} value={formatter.format(this.state.week52High)}/>    
+                            <DisplayField d_key={"52 Week Low"} value={formatter.format(this.state.week52Low)}/>    
                         </div>
                     </div>
                     <div className="stock-info-bottom">
-                        <TrendingNews articles={this.state.trending_news} />
+                        <DisplayField d_key={"About"} value={this.state.description}/>
                     </div>
                 </div>
             </div>

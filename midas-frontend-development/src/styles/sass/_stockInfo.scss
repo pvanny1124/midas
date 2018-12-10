@@ -22,11 +22,15 @@
     color: #d1bb3d;
     align-self: center;
     margin: 0 10px; 
+    h2{
+        line-height: 20px;
+    }
 }
   
 .stock-info-ticker {
     flex: 1 1;
-    text-align: center;
+    // text-align: center;
+    padding-left: 20px;
     color: $color_text;
     font-size: 45px;
     text-shadow: $color_bg_nav 1px 1px 4px;
@@ -39,15 +43,12 @@
 }
   
 .stock-info-left {
-    flex-grow: 1;
-    border: 1px dotted white;
-    background-color: white;
-    border-radius: 3px;
+    flex-grow: 1 1;
     padding: 15px; 
 }
 
 .stock-info-right{
-    flex-grow: 2;
+    flex-grow: 1 1;
     padding: 15px;
 }
   
@@ -60,15 +61,22 @@
   
 .stock-info-week52Limits {
     align-self: center;
-    justify-content: center; 
+    display: flex;
+    flex-direction: column;
 }
 
 .week-52-low {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     color: #b83535; 
     padding: 3px;
 }
   
 .week-52-high {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     color: #29a329; 
     padding: 3px;
 }

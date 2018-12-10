@@ -16,7 +16,7 @@ const Price = props => {
             <div className="stock-info-price">
                 {
                     props.price &&
-                    <h2>{formatter.format(props.price)}</h2>
+                    <h2><strong>{formatter.format(props.price)}</strong></h2>
                 }
             </div>
             <div className="stock-info-week52Limits">

@@ -1,34 +1,39 @@
 import React, { Component } from 'react';
 import MediaDisplay from './MediaDisplay';
 
+const API_PREFIX = "https://api.iextrading.com/1.0";
+
 class TrendingNews extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            news: []
+            trending_news: []
          }
     }
 
-    componentWillReceiveProps(nextProps){
-        if(nextProps.articles !== undefined && nextProps.articles !== null){
-            console.log(`New props coming in: `);
+    componentWillMount(){
+        this.getStockInfo_News("googl");
+    }
 
+    getStockInfo_News = async (ticker) => {
+        const api_call = await fetch(`${API_PREFIX}/stock/${ticker}/news/last/4`)
+        const data = await api_call.json();
 
-            this.setState({news: nextProps.articles}, ()=> {
-                console.log('%c TrendingNews data','color: green;');
-                console.log(this.state.news);
-            })
-        }
+        this.setState({
+            trending_news: data
+        })
     }
 
     render() { 
-        const {news} = this.state;
-        const newsFeed = news.map(item => <MediaDisplay news={item} />)
+        const { trending_news} = this.state;
+        const newsFeed = trending_news.map(item => <MediaDisplay news={item} />)
 
-        return news !== undefined ? newsFeed : <span>Loading</span>
+        return (
+            <div className="trendingNews-card card">
+                {trending_news !== undefined ? newsFeed : <span>Loading</span>}
+            </div>
+        )
     }
 }
  
 export default TrendingNews;
-
-/* let news = <MediaDisplay article={props.articles} />; */
