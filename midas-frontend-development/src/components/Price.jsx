@@ -23,7 +23,7 @@ const Price = props => {
                 {
                     props.w52high &&
                     <div class="week-52-high">
-                        {formatter.format(props.w52high)}
+                        <span className="week-52-value"><strong>{formatter.format(props.w52high)}</strong></span>
                         <FontAwesomeIcon icon={faArrowUp} size={"lg"} color={"#29a329"} />
                     </div> 
                 }
@@ -31,7 +31,7 @@ const Price = props => {
                 {
                     props.w52low &&
                     <div class="week-52-low">
-                        {formatter.format(props.w52low)}
+                        <span className="week-52-value"><strong>{formatter.format(props.w52low)}</strong></span>
                         <FontAwesomeIcon icon={faArrowDown} size={"lg"} color={"#b83535"} />
                     </div>
                 }

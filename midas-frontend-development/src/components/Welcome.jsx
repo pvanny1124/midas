@@ -50,7 +50,7 @@ const Welcome = () => (
                 <Button className={"welcome-button"} bsStyle={"primary"}> Already a user? Log in here</Button>
             </Link>
         </div>
-        <div class={"welcome-chart"}>
+        <div className={"welcome-chart"}>
             <Chart stockName={"aapl"} range={"1d"} />
         </div>
     </div>

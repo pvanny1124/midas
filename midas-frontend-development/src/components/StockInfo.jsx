@@ -23,11 +23,11 @@ class StockInfo extends Component {
             num_of_employees: null,
             week52High: null,
             week52Low: null,
-            graphRange: "1d"
+            chartRange: "1m"
          }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         console.log("PROPS IN STOCK INFO")
         console.log(this.props)
 
@@ -36,6 +36,7 @@ class StockInfo extends Component {
             this.getStockInfo("aapl");
         } else {
             this.getStockInfo(this.props.match.params.ticker);
+            this.setState({ticker:this.props.match.params.ticker});
         }
        
     }
@@ -71,9 +72,9 @@ class StockInfo extends Component {
         })
     }
 
-    setGraphRange(range){
+    setChartRange(range){
         this.setState({
-            graphRange: range
+            chartRange: range
         })
     }
 
@@ -88,38 +89,38 @@ class StockInfo extends Component {
             // and is usually already 2
         });
 
+        const { ticker, price, week52High, week52Low, chartRange, market_cap, volume, CEO, description } = this.state;
+
         return ( 
-            <div className="page"> 
-                <div className="stock-info-card card">
-                    <div className="stock-info-head">
-                        <DisplayTitle classname={"stock-info-ticker"} title={this.state.ticker}/>
-                        <Price price={this.state.price} w52high={this.state.week52High} w52low={this.state.week52Low} />
-                    </div>
+            <div className="stock-info-card card">
+                <div className="stock-info-head">
+                    <DisplayTitle classname={"stock-info-ticker"} title={ticker}/>
+                    <Price price={price} w52high={week52High} w52low={week52Low} />
+                </div>
 
-                    <div className="stock-info-chart">
-                        {console.log("in stockingo div... " + this.state.ticker)}
-                        <Chart stockName={this.state.ticker} range={this.state.graphRange}/>
-                    </div>
-                    
-                    <div className="stock-info-select-range">
-                        <SelectRange setGraphRange={(range) => this.setGraphRange(range)}/>
-                    </div>
+                <div className="stock-info-chart">
+                    {console.log("in stockingo div... " + ticker)}
+                    <Chart ticker={ticker} range={chartRange}/>
+                </div>
+                
+                <div className="stock-info-select-range">
+                    <SelectRange setChartRange={this.setChartRange}/>
+                </div>
 
-                    <div className="stock-info-body">
-                        <div className="stock-info-left">
-                            <DisplayField d_key={"Chart"} value={this.state.chart}/>
-                            <DisplayField d_key={"Market Cap"} value={formatter.format(this.state.market_cap)}/>
-                            <DisplayField d_key={"Volume"} value={this.state.volume}/>
-                            <DisplayField d_key={"CEO"} value={this.state.CEO} />
-                        </div>
-                        <div className="stock-info-right">
-                            <DisplayField d_key={"52 Week High"} value={formatter.format(this.state.week52High)}/>    
-                            <DisplayField d_key={"52 Week Low"} value={formatter.format(this.state.week52Low)}/>    
-                        </div>
+                <div className="stock-info-body">
+                    <div className="stock-info-left">
+                        {/* <DisplayField d_key={"Chart"} value={chart}/> */}
+                        <DisplayField d_key={"Market Cap"} value={formatter.format(market_cap)}/>
+                        <DisplayField d_key={"Volume"} value={volume}/>
+                        <DisplayField d_key={"CEO"} value={CEO} />
                     </div>
-                    <div className="stock-info-bottom">
-                        <DisplayField d_key={"About"} value={this.state.description}/>
+                    <div className="stock-info-right">
+                        <DisplayField d_key={"52 Week High"} value={formatter.format(week52High)}/>    
+                        <DisplayField d_key={"52 Week Low"} value={formatter.format(week52Low)}/>    
                     </div>
+                </div>
+                <div className="stock-info-bottom">
+                    <DisplayField d_key={"About"} value={description}/>
                 </div>
             </div>
          );

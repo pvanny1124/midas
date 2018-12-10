@@ -19,8 +19,9 @@ class LineChart extends Component{
   componentWillMount(){
       this.setState({
         chartData: this.props.chartData
-
       })
+      console.log("%cChart Data","color:blue");
+      console.log(this.state.chartData);
   }
 
   render(){
@@ -29,11 +30,11 @@ class LineChart extends Component{
         <Line
           data={this.state.chartData}
           options={{
-            title:{
-              display:this.props.displayTitle,
-              text:'Price of '+this.props.stockName.toUpperCase(),
-              fontSize:25
-            },
+            // title:{
+            //   display:this.props.displayTitle,
+            //   text:'Price of '+this.props.stockName.toUpperCase(),
+            //   fontSize:25
+            // },
             legend:{
               display:this.props.displayLegend,
               position:this.props.legendPosition
