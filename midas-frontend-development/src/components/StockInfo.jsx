@@ -21,6 +21,8 @@ class StockInfo extends Component {
             description: null,
             CEO: null,
             num_of_employees: null,
+            week52High: null,
+            week52Low: null,
             graphRange: "1d"
          }
     }
@@ -63,7 +65,9 @@ class StockInfo extends Component {
         this.setState({
             price: data.latestPrice,
             volume: data.latestVolume,
-            market_cap: data.marketCap
+            market_cap: data.marketCap,
+            week52High: data.week52High,
+            week52Low: data.week52Low
         })
     }
 
