@@ -11,13 +11,6 @@ import rootReducer from './rootReducer';
 
 *----------------------------------------------------------------------*/
 
-const initialState = {
-    isUserAuthenticated: false,
-    fetching: true,
-    fetched: false, //dont show users object
-    currentUser: null,
-    ticker: null
-}
 
 
 export default rootReducer;

@@ -4,11 +4,14 @@ import { combineReducers } from "redux";
 
 // import all necessary reducers
 import userReducer from './userReducer';
+import stocksReducer from './stocksReducer';
 
 
 const rootReducer = combineReducers({
         //map specific reducers to the state variables that they are supposed to handle
-        currentUser: userReducer
+        currentUser: userReducer,
+        suggestions: stocksReducer,
+        stocksFound: stocksReducer
 })
 
 export default rootReducer;

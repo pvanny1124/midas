@@ -14,12 +14,35 @@ import reducers from './reducers';
 
 //used to display previous state, current action, and next state
 import { logger } from 'redux-logger'; 
-
+import { createLogger } from "redux-logger";
 //middleware package for async ops
 import thunk from 'redux-thunk';
 
-//generate the store for the entire application
-const store = createStore(reducers);
+//initial state of application
+const initialState = {
+    // use this attribute for authorization
+    isUserAuthenticated: false,
+    fetching: true,
+    // dont show users object
+    fetched: false, 
+    // Holds current users information
+    currentUser: null,
+    ticker: null,
+    // need to pass in list of tickers from IEX for suggestion box
+    suggestions: [], 
+    // check if the stocks from IEX were properly loaded
+    stocksFound: false,
+    // check which suggestion is activated by the user
+    activeSuggestion: 0,
+    // The suggestions that match the user's input
+    filteredSuggestions: [],
+    // Whether or not the suggestion list is shown
+    showSuggestions: false,
+    // What the user has entered
+    userInput: "",
+    // Redirect if the user has entered a stock
+    redirect: false
+}
 
 /*----------------------------------------------------------------
             REDUX MIDDLEWARE
@@ -28,32 +51,12 @@ const store = createStore(reducers);
             -could also cancel that action or modify it
             -must pass into third argument of store.
 --------------------------------------------------------*/
+// const logger = createLogger()
+const middleware = applyMiddleware(thunk, logger);
 
-// //log the prev, current, and next state on the console for debugging purposes..
-// const logger = (store) => (next) => (action) => {
+//generate the store for the entire application
+const store = createStore(reducers, middleware);
 
-//     //do something with the action (cancel or modify)
-//     console.log(action); /*debug*/
-
-//     //modify
-//     action.type = "DEC";
-
-//     //continue on to reducer and pass the action
-//     next(action)
-// }
-
-//test whether the action will return an error before moving on
-const error = (store) => (next) => (action) => {
-
-    try {
-        next(action)
-    } catch (error){
-        console.log(error);
-    }
-}
-
-//apply middleware
-const middleware = applyMiddleware(logger(), thunk, logger, error);
 
 ReactDOM.render(
     // wrap the entire wrap with Provider to pass down the store state 

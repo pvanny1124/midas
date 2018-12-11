@@ -4,6 +4,51 @@ import PropTypes from "prop-types";
 // import "../../public/styles/style.css";
 import { BrowserHistory, withRouter} from 'react-router-dom';
 
+import { connect } from 'react-redux';
+
+//import action creators for suggestion box
+import { updateSuggestionBoxUserInput, 
+         resetInput, 
+         updateTicker,
+         incrementActiveSuggestion,
+         decrementActiveSuggestion 
+       } from "../actions/actionCreators";
+
+
+//Redux Mapping
+const mapStateToProps = state => {
+   return {
+        activeSuggestion: state.activeSuggestion,
+        filteredSuggestions: state.filteredSuggestions,
+        showSuggestions: state.showSuggestions,
+        userInput: state.userInput
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    updateInput(input_value, filteredSuggestions) {
+      dispatch(updateSuggestionBoxUserInput(input_value, filteredSuggestions));
+    },
+
+    updateTicker(ticker) {
+      dispatch(updateTicker(ticker));
+    },
+    
+    resetInput() {
+      dispatch(resetInput());
+    },
+
+    incrementActiveSuggestion(){
+      dispatch(incrementActiveSuggestion());
+    },
+
+    decrementActiveSuggestion(){
+      dispatch(decrementActiveSuggestion());
+    }
+})
+
+
+
 class Autocomplete extends Component {
   static propTypes = {
     suggestions: PropTypes.instanceOf(Array)
@@ -12,23 +57,6 @@ class Autocomplete extends Component {
   static defaultProps = {
     suggestions: []
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      // The active selection's index
-      activeSuggestion: 0,
-      // The suggestions that match the user's input
-      filteredSuggestions: [],
-      // Whether or not the suggestion list is shown
-      showSuggestions: false,
-      // What the user has entered
-      userInput: "",
-      // Redirect if the user has entered a stock
-      redirect: false
-    };
-  }
 
   // Event fired when the input value is changed
   onChange = e => {
@@ -43,65 +71,54 @@ class Autocomplete extends Component {
 
     // Update the user input and filtered suggestions, reset the active
     // suggestion and make sure the suggestions are shown
-    this.setState({
-      activeSuggestion: 0,
-      filteredSuggestions,
-      showSuggestions: true,
-      userInput: e.currentTarget.value
-    });
+    this.props.updateInput(e.currentTarget.value, filteredSuggestions);
+
+    
   };
 
   // Event fired when the user clicks on a suggestion
   onClick = e => {
     // Update the user input and reset the rest of the state
-    this.setState({
-      activeSuggestion: 0,
-      filteredSuggestions: [],
-      showSuggestions: false,
-      userInput: ""
-    });
+    this.props.resetInput();
 
-    const { activeSuggestion, filteredSuggestions } = this.state;
+    const { activeSuggestion, filteredSuggestions } = this.props;
     let enteredSymbol = filteredSuggestions[activeSuggestion].symbol;
 
-      //pass name of ticker up to main component
-      this.props.getTicker(enteredSymbol);
+    //update ticker in state
+    this.props.updateTicker(enteredSymbol);
 
     this.props.history.push(`/stocks/${enteredSymbol.toLowerCase()}`);
   };
 
   // Event fired when the user presses a key down
   onKeyDown = e => {
-    const { activeSuggestion, filteredSuggestions } = this.state;
 
-    // User pressed the enter key, update the input and close the
-    // suggestions
+    const { activeSuggestion, filteredSuggestions } = this.props;
+
     try {
 
-    if (e.keyCode === 13) {
-      
-      let enteredSymbol = filteredSuggestions[activeSuggestion].symbol;
+      // User pressed the enter key, update the input and close the suggestions
+      if (e.keyCode === 13) {
+        
+        let enteredSymbol = filteredSuggestions[activeSuggestion].symbol;
 
-      //pass name of ticker up to main component
-      this.props.getTicker(enteredSymbol);
+        //pass name of ticker up to main component
+        this.props.updateTicker(enteredSymbol);
 
-      this.setState({
-        activeSuggestion: 0,
-        showSuggestions: false,
-        userInput: "",
-        redirect: true
-      });
+        //reset so that the user doesnt have to manually delete the input field to enter another stock
+        this.props.resetInput()
 
-      //Show stock info page as soon as user presses enter
-      this.props.history.push(`/stocks/${enteredSymbol.toLowerCase()}`);
-    }
-    // User pressed the up arrow, decrement the index
-    else if (e.keyCode === 38) {
-      if (activeSuggestion === 0) {
-        return;
+        //Show stock info page as soon as user presses enter
+        this.props.history.push(`/stocks/${enteredSymbol.toLowerCase()}`);
       }
 
-      this.setState({ activeSuggestion: activeSuggestion - 1 });
+      // User pressed the up arrow, decrement the index
+      else if (e.keyCode === 38) {
+        if (activeSuggestion === 0) {
+          return;
+        }
+
+      this.props.decrementActiveSuggestion();
     }
     // User pressed the down arrow, increment the index
     else if (e.keyCode === 40) {
@@ -109,7 +126,7 @@ class Autocomplete extends Component {
         return;
       }
 
-      this.setState({ activeSuggestion: activeSuggestion + 1 });
+      this.props.incrementActiveSuggestion();
     }
 
   } catch (error) {
@@ -120,17 +137,9 @@ class Autocomplete extends Component {
 
 
   render() {
-    const {
-      onChange,
-      onClick,
-      onKeyDown,
-      state: {
-        activeSuggestion,
-        filteredSuggestions,
-        showSuggestions,
-        userInput
-      }
-    } = this;
+    const { onChange, onClick, onKeyDown } = this;
+
+    const { activeSuggestion, filteredSuggestions, showSuggestions, userInput } = this.props;
 
     let suggestionsListComponent;
 
@@ -192,4 +201,4 @@ class Autocomplete extends Component {
   }
 }
 
-export default withRouter(Autocomplete);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Autocomplete));

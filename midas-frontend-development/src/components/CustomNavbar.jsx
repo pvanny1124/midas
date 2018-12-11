@@ -2,31 +2,30 @@ import React, { Component } from "react";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Autocomplete from './Autocomplete';
+import { connect } from 'react-redux';
+import { getAllSymbols } from '../actions/actionCreators';
 
 // import "../../public/styles/style.css";
 
+const mapStateToProps = state => {
+  return  {
+    currentUser: state.currentUser,
+    isUserAuthenticated: state.isUserAuthenticated,
+    suggestions: state.suggestions,
+    stocksFound: state.stocksFound
+
+  }
+}
 
 class CustomNavbar extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      suggestions: []
-    }
-  }
 
   componentDidMount(){
-    fetch("https://api.iextrading.com/1.0/ref-data/symbols")
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        console.log(data);
-          this.setState({suggestions: data});
-      });
+      //load the stocks from IEX
+      this.props.dispatch(getAllSymbols());
   }
  
   render() {
-  
+    console.log(this.props.suggestions)
     return (
       <Navbar default collapseOnSelect>
         <Navbar.Header>
@@ -38,7 +37,7 @@ class CustomNavbar extends Component {
 
         <Nav className="search">
           {/* <Search getTicker={(ticker) => this.props.getTicker(ticker)}/> */}
-          <Autocomplete forceUpdate={() => this.forceUpdate} className="search-bar" suggestions={this.state.suggestions} getTicker={(ticker) => this.props.getTicker(ticker)}/>
+          <Autocomplete forceUpdate={() => this.forceUpdate} className="search-bar" suggestions={this.props.suggestions} getTicker={(ticker) => this.props.getTicker(ticker)}/>
         </Nav>
 
         <Navbar.Collapse>
@@ -46,7 +45,7 @@ class CustomNavbar extends Component {
             <NavItem eventKey={1} componentClass={Link} href="/" to="/">
               Home
             </NavItem>
-            {this.props.user ? (
+            {this.props.isUserAuthenticated ? (
                 <NavItem eventKey={2}
                         componentClass={Link}
                         href="/profile"
@@ -61,7 +60,7 @@ class CustomNavbar extends Component {
             )}
           
             
-            {this.props.user ? (
+            {this.props.isUserAuthenticated ? (
                 <NavItem eventKey={3} componentClass={Link} href="/signout" to="/signout">
                   Signout
                 </NavItem>
@@ -81,4 +80,4 @@ class CustomNavbar extends Component {
   }
 }
 
-export default CustomNavbar;
+export default connect(mapStateToProps, null)(CustomNavbar);

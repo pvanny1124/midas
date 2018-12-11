@@ -6,10 +6,7 @@ const userReducer = function(state = {}, action){
     switch(action.type){
 
         case userConstants.LOGIN_REQUEST: {
-            return { 
-                ...state, 
-                 fetching: true
-            } 
+            return Object.assign({}, state, {fetching: true})
             break;
         }
 

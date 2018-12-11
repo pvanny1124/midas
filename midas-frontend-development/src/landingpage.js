@@ -10,56 +10,33 @@ import Signout from "./components/Signout";
 import Login from "./components/Login";
 import Leaderboards from './components/Leaderboards';
 import getStockInfo from './helpers/interactions/iex_interactions';
-
-//use createStore to create a store, use applyMiddleware to cancel or reject actions before a reducer is applied on the action
-import { applyMiddleware, createStore } from 'redux';
-
-//used to display previous state, current action, and next state
-import { logger } from 'redux-logger'; 
-
-//middleware package for async ops
-import thunk from 'redux-thunk';
+import { connect } from 'react-redux';
+import  { getUserSession } from './actions/actionCreators';
 
 //main styles
 import './styles/style.css';
 
+//state variables to be passed to our main app component
+const mapStateToProps = state => {
+      return  {
+        currentUser: state.currentUser,
+        fetching: state.fetching,
+        fetched: state.fetched,
+        ticker: state.ticker,
+        isUserAuthenticated: state.isUserAuthenticated
+
+      }
+}
+
 
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      user: null,
-      searchedTicker: null,
-      isLoading: true,
-      stockData: null
-    }
-  }
-
+ 
+  //check if user is already logged in session
   componentWillMount(){
-    
-    //check if user is already logged in session
-    fetch("/api/auth")
-      .then(response => {
-          console.log(response);
-          return response.json();
-      })
-      .then(data => {
-          this.setState({user: data, isLoading: false});
-          console.log(data);
-      })
-      .catch(error => {
-        setTimeout(() => {
-          this.setState({isLoading: false})
-        }, 1000)
-        
-          console.log(error);
-      })
+    this.props.dispatch(getUserSession());
   }
 
-  getUserData(user){
-    this.setState({user: user});
-  }
 
   getSearchedTicker(ticker){
     this.setState({searchedTicker: ticker});
@@ -79,12 +56,12 @@ class App extends Component {
   }
 
   render(){
-    console.log(this.state.user);
+    console.log(this.props.currentUser);
     return (
-      
+     
       <Router>
          
-         { this.state.isLoading ? (
+         { this.props.fetching ? (
            <div>
               <div className="loader"></div>
               <p className="welcome-headline">Welcome to Midas</p>
@@ -94,11 +71,11 @@ class App extends Component {
          ) : (
               
              <div>
-                <Navbar user={this.state.user} forceUpdate={() => this.forceUpdate} getTicker={(ticker) => this.getSearchedTicker(ticker)}/>
-                <Route exact path="/" render={() => <Home user={this.state.user} getUser={(user) => this.getUserData(user)} />} />
+                <Navbar  forceUpdate={() => this.forceUpdate} getTicker={(ticker) => this.getSearchedTicker(ticker)}/>
+                {/* <Route exact path="/" render={() => <Home user={this.state.user} getUser={(user) => this.getUserData(user)} />} />
                 {/* For the following view to render properly, pass key={props.location.key} to make the component re-render since the location changes if the user looks up a new stock*/}
 
-                <Route path="/stocks/:ticker" render={(props) => <StockInfoPage key={props.location.key} {...props} 
+                 {/* <Route path="/stocks/:ticker" render={(props) => <StockInfoPage key={props.location.key} {...props} 
                         reset={() => this.reset()} getUser={(user) => this.getUserData(user)} 
                         ticker={this.state.searchedTicker} user={this.state.user} /> } />
                 
@@ -106,7 +83,7 @@ class App extends Component {
                 <Route path="/signup" render={() => <Signup getUser={(user) => this.getUserData(user)}/>} />
                 <Route path="/login" render={() => <Login getUser={(user) => this.getUserData(user)} />} />
                 <Route path="/signout" render={() => <Signout resetUser={() => this.resetUserData()} />} />
-                <Route path="/leaderboards" render={() => <Leaderboards />} />
+                <Route path="/leaderboards" render={() => <Leaderboards />} /> */}
                 {/* <Footer /> */}
              </div>
          ) }
@@ -118,4 +95,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default connect(mapStateToProps, null)(App)
