@@ -4,14 +4,31 @@ import { combineReducers } from "redux";
 
 // import all necessary reducers
 import userReducer from './userReducer';
-import stocksReducer from './stocksReducer';
-
+import showSuggestionsReducer from './showSuggestionsReducer';
+import fetchedReducer from './fetchedReducer';
+import fetchingReducer from './fetchingReducer';
+import authenticationReducer from './authenticationReducer';
+import stocksFoundReducer from './stocksFoundReducer';
+import filteredSuggestionsReducer from './filteredSuggestionsReducer';
+import activeSuggestionReducer from './activeSuggestionReducer';
+import suggestionsReducer from './suggestionsReducer';
+import tickerReducer from './tickerReducer';
+import userInputReducer from './userInputReducer';
 
 const rootReducer = combineReducers({
         //map specific reducers to the state variables that they are supposed to handle
         currentUser: userReducer,
-        suggestions: stocksReducer,
-        stocksFound: stocksReducer
+        fetched: fetchedReducer,
+        fetching: fetchingReducer,
+        isUserAuthenticated: authenticationReducer,
+        suggestions: suggestionsReducer,
+        stocksFound: stocksFoundReducer,
+        showSuggestions: showSuggestionsReducer,
+        filteredSuggestions: filteredSuggestionsReducer,
+        activeSuggestion: activeSuggestionReducer,
+        ticker: tickerReducer,
+        userInput: userInputReducer
+
 })
 
 export default rootReducer;

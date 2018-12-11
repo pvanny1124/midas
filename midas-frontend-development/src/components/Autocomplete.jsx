@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { Redirect } from 'react-router-dom';
 import PropTypes from "prop-types";
 // import "../../public/styles/style.css";
 import { BrowserHistory, withRouter} from 'react-router-dom';
@@ -71,7 +70,10 @@ class Autocomplete extends Component {
 
     // Update the user input and filtered suggestions, reset the active
     // suggestion and make sure the suggestions are shown
-    this.props.updateInput(e.currentTarget.value, filteredSuggestions);
+    console.log("%cINPUT BEFORE DISPATCH: " + e.target.value, "color: orange");
+    console.log("%cFILTERED SUGGESTIONS BEFORE DISPATCH: ", "color: blue");
+    console.log(filteredSuggestions);
+    this.props.updateInput(e.target.value, filteredSuggestions);
 
     
   };

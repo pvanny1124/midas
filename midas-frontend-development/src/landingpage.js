@@ -56,12 +56,11 @@ class App extends Component {
   }
 
   render(){
-    console.log(this.props.currentUser);
     return (
      
       <Router>
          
-         { this.props.fetching ? (
+         { this.props.fetching.fetching ? (
            <div>
               <div className="loader"></div>
               <p className="welcome-headline">Welcome to Midas</p>

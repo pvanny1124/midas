@@ -121,6 +121,8 @@ export function getAllSymbols(){
 // suggestion and make sure the suggestions are shown
 export function updateSuggestionBoxUserInput(input_value, filteredSuggestions){
     return dispatch => {
+        console.log("%cUPDATING BOX INPUT", "color: green");
+        console.log("%cINPUT VALUE: ", "color: purple");
         dispatch({ type: suggestionBoxConstants.UPDATE_SUGGESTION_BOX_INPUT, 
                    payload: {
                        userInput: input_value,
@@ -135,6 +137,8 @@ export function resetInput(){
         dispatch({ type: suggestionBoxConstants.RESET_INPUT })
     }
 }
+
+
 
 export function updateTicker(ticker){
     return dispatch => {
