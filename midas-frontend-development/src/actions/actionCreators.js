@@ -1,6 +1,8 @@
 import  { userConstants } from './actions.users';
 import { stocksConstants } from './actions.stocks';
 import { suggestionBoxConstants } from './actions.suggestionBox';
+import { emailConstants } from './actions.email';
+
 //check if the user is in session
 export function getUserSession() {
 
@@ -138,8 +140,6 @@ export function resetInput(){
     }
 }
 
-
-
 export function updateTicker(ticker){
     return dispatch => {
         dispatch({ type: suggestionBoxConstants.UPDATE_TICKER, payload: ticker })
@@ -154,7 +154,53 @@ export function incrementActiveSuggestion(){
 
 export function decrementActiveSuggestion(){
     return dispatch => {
-        dispatch({ type: suggestionBoxConstants.DECREMENT_ACTIVE_SUGGESTION })
+        dispatch({ type: suggestionBoxConstants.DECREMENT_ACTIVE_SUGGESTION });
     }
 }
     
+
+//Email action creators
+
+export function updateEmailInput(email_value){
+    return dispatch => {
+        dispatch({ type: emailConstants.UPDATE_EMAIL_INPUT, payload: email_value });
+    }
+}
+
+export function updatePasswordInput(password_value){
+    return dispatch => {
+        dispatch({ type: emailConstants.UPDATE_PASSWORD_INPUT, payload: password_value });
+    }
+}
+
+export function login(email, password){
+    return dispatch => {
+        fetch("/login", {
+            method: "post",
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+        .then(response => {
+            console.log(response)
+            return response.json();
+        })
+        .then(user => {
+            console.log("%cLogin-user-debug", "color: purple");
+            console.log({user});
+
+            if(user){
+                //save user data in state
+                dispatch({ type: userConstants.LOGIN_SUCCESS, payload: user });
+                this.props.history.push("/");
+            }
+        })
+        .catch(error => {
+            dispatch({ type: userConstants.LOGIN_FAILURE, payload: error })
+        })
+    }
+}

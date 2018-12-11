@@ -71,6 +71,7 @@ class App extends Component {
               
              <div>
                 <Navbar  forceUpdate={() => this.forceUpdate} getTicker={(ticker) => this.getSearchedTicker(ticker)}/>
+                <Route path="/login" render={() => <Login />} />
                 {/* <Route exact path="/" render={() => <Home user={this.state.user} getUser={(user) => this.getUserData(user)} />} />
                 {/* For the following view to render properly, pass key={props.location.key} to make the component re-render since the location changes if the user looks up a new stock*/}
 
@@ -80,7 +81,7 @@ class App extends Component {
                 
                 <Route path="/profile" render={() => <ProfilePage user={this.state.user} />} />
                 <Route path="/signup" render={() => <Signup getUser={(user) => this.getUserData(user)}/>} />
-                <Route path="/login" render={() => <Login getUser={(user) => this.getUserData(user)} />} />
+               
                 <Route path="/signout" render={() => <Signout resetUser={() => this.resetUserData()} />} />
                 <Route path="/leaderboards" render={() => <Leaderboards />} /> */}
                 {/* <Footer /> */}

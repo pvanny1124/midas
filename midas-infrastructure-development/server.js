@@ -80,31 +80,31 @@ const PORT = process.env.PORT || 3000;
 var text, parser, xmlDoc;
 parser = new DOMParser();
 
-const command = "curl \"http://wu-quotes.apple.com/dgw?imei=42&apptype=finance\" -H \"Content-type: text/xml\" -d \"<?xml version='1.0' encoding='utf−8'?><request devtype='Apple_OSX' deployver='APPLE_DASHBOARD_1_0' app='YGoAppleStocksWidget' appver='unknown' api='finance' apiver='1.0.1' acknotification='0000'><query id='0' timestamp='`date +%s000`' type='getquotes'><list><symbol>GE</symbol></list></query></request>\"";
+// const command = "curl \"http://wu-quotes.apple.com/dgw?imei=42&apptype=finance\" -H \"Content-type: text/xml\" -d \"<?xml version='1.0' encoding='utf−8'?><request devtype='Apple_OSX' deployver='APPLE_DASHBOARD_1_0' app='YGoAppleStocksWidget' appver='unknown' api='finance' apiver='1.0.1' acknotification='0000'><query id='0' timestamp='`date +%s000`' type='getquotes'><list><symbol>GE</symbol></list></query></request>\"";
 
-child = exec(command, function(error, stdout, stderr){
+// child = exec(command, function(error, stdout, stderr){
 
-            //convert stdout into xml
-            xmlDoc = parser.parseFromString(stdout,"text/xml");
-            console.log(xmlDoc);
-            //turn xmlDoc into JSON
-            parseString(xmlDoc, function (err, result) {
+//             //convert stdout into xml
+//             xmlDoc = parser.parseFromString(stdout,"text/xml");
+//             console.log(xmlDoc);
+//             //turn xmlDoc into JSON
+//             parseString(xmlDoc, function (err, result) {
               
-              inspect(result) //Check output on console
+//               inspect(result) //Check output on console
 
-              //check status code that tells you whether the market is open or not.
-              console.log(result.response.result[0].list[0].quote[0].status[0]); 
-              console.log(util.inspect(result, false, null)) //another way to look at the entire json object
-              //used to display part of the [Object] object..only goes 2 levels deep though.
-              //That's why using the eyes framework works best to view the entire thing!
-            });
+//               //check status code that tells you whether the market is open or not.
+//               console.log(result.response.result[0].list[0].quote[0].status[0]); 
+//               console.log(util.inspect(result, false, null)) //another way to look at the entire json object
+//               //used to display part of the [Object] object..only goes 2 levels deep though.
+//               //That's why using the eyes framework works best to view the entire thing!
+//             });
 
-            if(error !== null)
-            {
-                console.log('exec error: ' + error);
-            }
+//             if(error !== null)
+//             {
+//                 console.log('exec error: ' + error);
+//             }
 
-});
+// });
 /*******************Basic Setup and Configuration**********************/
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
@@ -126,7 +126,8 @@ app.use((req, res, next) => {
       //allow access to our API with these urls
       var allowedOrigins = [
           'http://127.0.0.1:3003', 
-          'http://localhost:3001', 
+          'http://localhost:3001',
+          'http://127.0.0.1:3001', 
           'http://127.0.0.1:3000', 
           'http://localhost:3000',
           'https://aqueous-castle-51032.herokuapp.com'
