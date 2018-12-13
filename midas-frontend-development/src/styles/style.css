@@ -396,9 +396,15 @@ form {
 .display-field-value {
   color: #525252; }
 
-.leaderboard img {
-  height: 64px;
-  border-radius: 50%; }
+.leaderboard {
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 0 1px 1px #bebcbc; }
+  .leaderboard img {
+    height: 64px;
+    border-radius: 50%; }
 
 /* Safari */
 @-webkit-keyframes spin {

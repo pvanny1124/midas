@@ -78,7 +78,7 @@ class Leaderboards extends Component {
     </tr>
 
   	</tbody>
-	</Table>;
+	</Table>
     </div>;
   }
 }
