@@ -4,6 +4,7 @@
 @import "stockInfo";
 @import "profile";
 @import "pageLayouts";
+@import "footer";
 
 
 /* Safari */
@@ -18,13 +19,14 @@
 }
 
 html, body {
+    margin: 0;
+    padding: 0;
     height: 100%;
     position: relative; 
     color: $color_text;
 }
   
 body {
-    margin: 0;
     font-family: sans-serif;
     background-size: cover;
     background-attachment: fixed; 
@@ -67,20 +69,6 @@ body {
 
 .error{
     color: red;
-}
-
-#footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
-    font-size: 20px;
-    background-image: linear-gradient(to top,#fff 0%,#f8f8f8 100%);
-    box-shadow: 0 -1px 1px 0 rgb(228, 225, 225);
-    height: $height_footer;
-    line-height: $height_footer;
-    margin: 0;
-    text-align: center;
 }
 
 /* Forms */
@@ -132,9 +120,9 @@ form{
     margin-bottom: 2em;
 }
 
-.home{
-    height: 100vh;
-}
+// .home{
+//     min-height: 100vh;
+// }
 
 /*
     Following removes scrollbars from inputs with type="number"...

@@ -35,7 +35,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="container home">
+      <div className="container home-page">
       
         {this.state.user ? (
           <div className="user-home">

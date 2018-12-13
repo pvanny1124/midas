@@ -1,11 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter, faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons' 
-import './Footer.css'
 
 
 const Footer = () => (
-    <footer id="myFooter" >
+    <footer id="footer" >
         <div className="container">
             <div className="row">
                 <div className="col-sm-3 myCols">
