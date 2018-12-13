@@ -24,6 +24,9 @@ import thunk from 'redux-thunk';
 import './styles/style.css';
 
 
+import demoUser from './helpers/demoUser.js';
+
+
 
 class App extends Component {
   constructor(props){
@@ -37,24 +40,26 @@ class App extends Component {
   }
 
   componentWillMount(){
-    
+    this.setState({user: demoUser, isLoading: false});
+
+
     //check if user is already logged in session
-    fetch("/api/auth")
-      .then(response => {
-          console.log(response);
-          return response.json();
-      })
-      .then(data => {
-          this.setState({user: data, isLoading: false});
-          console.log(data);
-      })
-      .catch(error => {
-        setTimeout(() => {
-          this.setState({isLoading: false})
-        }, 1000)
+    // fetch("/api/auth")
+    //   .then(response => {
+    //       console.log(response);
+    //       return response.json();
+    //   })
+    //   .then(data => {
+    //       this.setState({user: data, isLoading: false});
+    //       console.log(data);
+    //   })
+    //   .catch(error => {
+    //     setTimeout(() => {
+    //       this.setState({isLoading: false})
+    //     }, 1000)
         
-          console.log(error);
-      })
+    //       console.log(error);
+    //   })
   }
 
   getUserData(user){
