@@ -1,5 +1,5 @@
 .profile-card{
-    width: 500px;
+    // width: 500px;
     display: flex;
     flex-direction: column;
     margin-left: 15%;
@@ -23,14 +23,18 @@
 }
 
 .user-info{
+    background-color: rgb(223, 228, 235);
     flex: 1 1 auto;
     align-self: center; 
-    margin-left: 10px;
+    margin: 0 10px;
     height: 100%;
+    border-radius: 4px;
     border-top: 1px solid rgb(126, 126, 126);
     border-bottom: 1px solid rgb(126, 126, 126);
     border-left: 5px solid rgb(126, 126, 126);
     border-right: 5px solid rgb(126, 126, 126);
+    // box-shadow: 0 0 1px rgb(95, 95, 95);;
+    
 
     display: flex;
     display: flex;
