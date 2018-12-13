@@ -18,7 +18,9 @@ class StockInfoPage extends Component {
         return ( 
             <div className="stockInfo-page container">
                 <div className="page-left">
-                    <Simulator userId={this.props.user.id} />    
+                    <Trade  getUser={(user) => this.props.getUser(user)} 
+                            tickerData={this.props} 
+                            user={this.props.user}/>
                 </div>
 
                 <div className="page-main">
@@ -31,9 +33,7 @@ class StockInfoPage extends Component {
                 </div>
 
                 <div className="page-right">
-                    <Trade  getUser={(user) => this.props.getUser(user)} 
-                            tickerData={this.props} 
-                            user={this.props.user}/>
+                    <Simulator userId={this.props.user.id} />    
                 </div>
             </div>
          );
