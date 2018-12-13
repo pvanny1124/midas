@@ -26,6 +26,7 @@
 .navbar-default .navbar-nav>li>a:hover{
   color: $color_text_nav_hover;
   background-color: $color_bg_nav_hover;
+  transition: background-color .1s ease-in, color .1s ease-in;
 }
 
 .navbar-default .navbar-brand:focus,

@@ -21,7 +21,8 @@
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-nav > li > a:hover {
   color: #dfdfdf;
-  background-color: #364e64; }
+  background-color: #364e64;
+  transition: background-color .1s ease-in, color .1s ease-in; }
 
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-nav > li > a:focus {
@@ -67,7 +68,7 @@
   height: 55%;
   display: flex;
   flex-direction: row;
-  padding: 30px;
+  padding: 50px;
   margin-top: 7%;
   align-items: center; }
 
@@ -234,7 +235,9 @@
   min-height: 100vh; }
 
 .site-content {
-  flex: 1 0 auto; }
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column; }
 
 #footer {
   background-color: #2c3f53;
@@ -291,6 +294,46 @@
 @media screen and (max-width: 767px) {
   #myFooter {
     text-align: center; } }
+/* Forms */
+form {
+  width: 25%;
+  min-width: 350px;
+  margin: auto auto;
+  text-align: center; }
+  form button {
+    color: white;
+    background: slategrey;
+    border: none; }
+  form button:hover {
+    color: black;
+    background: #d3cb9b;
+    border: 1px solid gold;
+    box-shadow: 0 0 5px 1px gold; }
+
+.form-body {
+  padding-top: 10px;
+  background: linear-gradient(slategrey 0%, white 100%); }
+
+.form-title {
+  color: white;
+  height: 50px;
+  background-color: slategrey;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-top: 1px; }
+
+.form-control {
+  width: 100%; }
+
+.form-group {
+  width: 100%;
+  padding: 10px;
+  margin: 3px; }
+
+.signup-form,
+.login {
+  margin-top: 30px; }
+
 /* Safari */
 @-webkit-keyframes spin {
   0% {
@@ -346,42 +389,6 @@ body {
 
 .error {
   color: red; }
-
-/* Forms */
-form {
-  width: 25%;
-  min-width: 350px;
-  margin: 5% auto 0 auto;
-  text-align: center; }
-  form button {
-    color: white;
-    background: slategrey;
-    border: none; }
-  form button:hover {
-    color: black;
-    background: #d3cb9b;
-    border: 1px solid gold;
-    box-shadow: 0 0 5px 1px gold; }
-
-.form-body {
-  padding-top: 10px;
-  background: linear-gradient(slategrey 0%, white 100%); }
-
-.form-title {
-  color: white;
-  height: 50px;
-  background-color: slategrey;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  padding-top: 1px; }
-
-.form-control {
-  width: 100%; }
-
-.form-group {
-  width: 100%;
-  padding: 10px;
-  margin: 3px; }
 
 .header-image {
   width: 100%;
@@ -504,11 +511,6 @@ input[type="password"]:focus {
   width: 150px;
   height: 150px;
   margin: -75px 0 0 -75px; }
-
-.signup_form {
-  margin: 0 auto;
-  width: 50%;
-  text-align: center; }
 
 .simulator {
   float: right;

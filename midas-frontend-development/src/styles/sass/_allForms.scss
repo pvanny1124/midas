@@ -1,0 +1,47 @@
+/* Forms */
+form{
+    width: 25%;
+    min-width: 350px;
+    margin: auto auto;
+    text-align: center;
+    button{
+        color: white;
+        background: slategrey;
+        border: none;
+    }
+    button:hover{
+        color: black;
+        background: $color_text_nav;
+        border: 1px solid gold;
+        box-shadow: 0 0 5px 1px gold;
+    }
+}
+
+.form-body{
+    padding-top: 10px;
+    background: linear-gradient( slategrey 0%, white 100%);
+}
+  
+.form-title {
+    color: white;
+    height: 50px;
+    background-color: slategrey;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-top: 1px;
+}
+
+.form-control {
+    width: 100%;
+}
+
+.form-group{
+    width: 100%;
+    padding: 10px;
+    margin: 3px;
+}
+
+.signup-form,
+.login{
+    margin-top: 30px;
+}
