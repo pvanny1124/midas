@@ -3,6 +3,12 @@
     flex-direction: column;
 }
 
+.display-field-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .display-field-key {
     color: black;
     font-weight: 700; 

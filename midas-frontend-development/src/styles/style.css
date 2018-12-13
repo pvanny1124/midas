@@ -173,7 +173,10 @@
 .stock-info-week52Limits {
   align-self: center;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  background-color: #cecece;
+  border-radius: 20px;
+  padding: 5px; }
 
 .week-52-low,
 .week-52-high {
@@ -212,7 +215,10 @@
 .user-info {
   flex: 1 1;
   align-self: center;
-  margin-left: 8%; }
+  margin-left: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between; }
 
 .user-data {
   flex: 1 1;
@@ -363,12 +369,21 @@ form {
   display: flex;
   flex-direction: column; }
 
+.display-field-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; }
+
 .display-field-key {
   color: black;
   font-weight: 700; }
 
 .display-field-value {
   color: #525252; }
+
+.leaderboard img {
+  height: 64px;
+  border-radius: 50%; }
 
 /* Safari */
 @-webkit-keyframes spin {

@@ -10,19 +10,19 @@ const ProfileCard = (props) => (
             <div className="user-info">
                 {
                     props.user.firstName &&
-                    <DisplayField d_key={"First Name"} value={props.user.firstName} />
+                    <DisplayField style={"display-field-row"} d_key={"First Name"} value={props.user.firstName} />
                 }
                 {
                     props.user.lastName &&
-                    <DisplayField d_key={"Last Name"} value={props.user.lastName} />
+                    <DisplayField style={"display-field-row"} d_key={"Last Name"} value={props.user.lastName} />
                 }
                 {
                     props.user.username &&
-                    <DisplayField d_key={"User Name"} value={props.user.username} />
+                    <DisplayField style={"display-field-row"} d_key={"User Name"} value={props.user.username} />
                 }
                 {
                     props.user.country &&
-                    <DisplayField d_key={"Country"} value={props.user.country} />
+                    <DisplayField style={"display-field-row"} d_key={"Country"} value={props.user.country} />
                 }
             </div>
         </div>
@@ -30,11 +30,11 @@ const ProfileCard = (props) => (
         <div className="user-data">
             {
                 props.user.cash &&
-                <DisplayField d_key={"User Cash"} value={props.user.cash} />
+                <DisplayField style={"display-field-row"} d_key={"User Cash"} value={props.user.cash} />
             }
             {
                 props.user.portfolioValue &&
-                <DisplayField d_key={"Portfolio Value"} value={props.user.portfolioValue} />
+                <DisplayField style={"display-field-row"} d_key={"Portfolio Value"} value={props.user.portfolioValue} />
             }
         </div>
 

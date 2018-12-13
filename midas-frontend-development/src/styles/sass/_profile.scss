@@ -23,6 +23,9 @@
     flex: 1 1;
     align-self: center; 
     margin-left: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
 }
 
 .user-data{

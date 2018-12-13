@@ -4,11 +4,7 @@ import { Table } from "react-bootstrap";
 
 class Leaderboards extends Component {
   render() {
-    return <div className="container">
-    <div>
-    	Midas Touch
-    </div>
-
+    return <div className="leaderboard container">
 	<Table striped bordered condensed hover>
   	<thead>
     <tr>
