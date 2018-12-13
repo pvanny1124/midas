@@ -1,0 +1,13 @@
+.display-field-stack{
+    display: flex;
+    flex-direction: column;
+}
+
+.display-field-key {
+    color: black;
+    font-weight: 700; 
+}
+  
+.display-field-value {
+    color: $color_text; 
+}
