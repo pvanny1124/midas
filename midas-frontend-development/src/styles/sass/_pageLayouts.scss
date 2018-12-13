@@ -1,3 +1,4 @@
+.home-page,
 .profile-page, 
 .stockInfo-page{
     display: flex;
@@ -18,3 +19,16 @@
     flex: 1 1 20%;
     margin-left: 10px;
 }
+
+.site{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-content{
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+

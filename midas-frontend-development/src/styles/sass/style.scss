@@ -7,6 +7,8 @@
 @import "trade";
 @import "simulator";
 @import "trendingNews";
+@import "footer";
+@import "allForms";
 
 
 /* Safari */
@@ -21,6 +23,8 @@
 }
 
 html, body {
+    margin: 0;
+    padding: 0;
     height: 100%;
     position: relative; 
     color: $color_text;
@@ -72,72 +76,12 @@ body {
     color: red;
 }
 
-#footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
 
-    font-size: 20px;
-    background-image: linear-gradient(to top,#fff 0%,#f8f8f8 100%);
-    box-shadow: 0 -1px 1px 0 rgb(228, 225, 225);
-    height: $height_footer;
-    line-height: $height_footer;
-    margin: 0;
-    text-align: center;
-}
-
-/* Forms */
-form{
-    width: 25%;
-    min-width: 350px;
-    margin: 5% auto 0 auto;
-    text-align: center;
-    button{
-        color: white;
-        background: slategrey;
-        border: none;
-    }
-    button:hover{
-        color: black;
-        background: $color_text_nav;
-        border: 1px solid gold;
-        box-shadow: 0 0 5px 1px gold;
-    }
-}
-
-.form-body{
-    padding-top: 10px;
-    background: linear-gradient( $color_bg_nav 0%, $color_bg_body 100%);
-}
-  
-.form-title {
-    color: white;
-    height: 50px;
-    background-color: $color_bg_nav;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    padding-top: 1px;
-}
-
-.form-control {
-    width: 100%;
-}
-
-.form-group{
-    width: 100%;
-    padding: 10px;
-    margin: 3px;
-}
 
 .header-image {
     width: 100%;
     margin-top: -2em;
     margin-bottom: 2em;
-}
-
-.home{
-    height: 100vh;
-    background-color: white;
 }
 
 /*
@@ -228,10 +172,15 @@ input[type="password"]:focus{
     font-size: 14px; 
 }
 
-.jumbotron{
-    background-color: white;
-    height: 600px;
-    margin: 30px 0 auto auto;
+.not-user{
+    color: $color_text;
+    font-size: 12px;
+
+    &:hover{
+        color: gold;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px #000;
+    }
 }
 
 .portfolio-item {
@@ -274,12 +223,6 @@ input[type="password"]:focus{
     height: 150px;
     margin: -75px 0 0 -75px;
   
-}
-
-.signup_form {
-    margin: 0 auto;
-    width: 50%;
-    text-align: center;
 }
 
 .search {

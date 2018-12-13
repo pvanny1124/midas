@@ -46,9 +46,7 @@ const Welcome = () => (
                 <Button className={"welcome-button"} bsStyle={"primary"}> Sign Up Today </Button>
             </Link>
             <br></br>
-            <Link to={"/login"}>
-                <Button className={"welcome-button"} bsStyle={"primary"}> Already a user? Log in here</Button>
-            </Link>
+            <Link className="not-user" to="/login">Already a user? Log in here.</Link>
         </div>
         <div className={"welcome-chart"}>
             <Chart stockName={"aapl"} range={"1d"} />
