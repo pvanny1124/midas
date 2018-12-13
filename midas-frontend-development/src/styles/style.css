@@ -116,6 +116,9 @@
 
   .welcome-chart {
     margin-top: 40px; } }
+.about {
+  text-align: center; }
+
 .stock-info-card {
   display: flex;
   flex-direction: column; }
@@ -150,6 +153,7 @@
 .stock-info-body {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   margin: 10px 10px; }
 
 .stock-info-left {
@@ -355,6 +359,17 @@ form {
 .login {
   margin-top: 30px; }
 
+.display-field-stack {
+  display: flex;
+  flex-direction: column; }
+
+.display-field-key {
+  color: black;
+  font-weight: 700; }
+
+.display-field-value {
+  color: #525252; }
+
 /* Safari */
 @-webkit-keyframes spin {
   0% {
@@ -400,14 +415,6 @@ body {
   box-shadow: 0 0 1px 1px #bebcbc;
   padding: 15px;
   margin-top: 10px; }
-
-.display-field-key {
-  color: black;
-  font-weight: 700; }
-
-.display-field-value {
-  color: #525252;
-  padding-left: 15px; }
 
 .error {
   color: red; }

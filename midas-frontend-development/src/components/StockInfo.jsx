@@ -110,17 +110,17 @@ class StockInfo extends Component {
                 <div className="stock-info-body">
                     <div className="stock-info-left">
                         {/* <DisplayField d_key={"Chart"} value={chart}/> */}
-                        <DisplayField d_key={"Market Cap"} value={formatter.format(market_cap)}/>
-                        <DisplayField d_key={"Volume"} value={volume}/>
-                        <DisplayField d_key={"CEO"} value={CEO} />
+                        <DisplayField style={"display-field-stack"} d_key={"Market Cap"} value={formatter.format(market_cap)}/>
+                        <DisplayField style={"display-field-stack"} d_key={"Volume"} value={volume}/>
+                        <DisplayField style={"display-field-stack"} d_key={"CEO"} value={CEO} />
                     </div>
                     <div className="stock-info-right">
-                        <DisplayField d_key={"52 Week High"} value={formatter.format(week52High)}/>    
-                        <DisplayField d_key={"52 Week Low"} value={formatter.format(week52Low)}/>    
+                        <DisplayField style={"display-field-stack"} d_key={"52 Week High"} value={formatter.format(week52High)}/>    
+                        <DisplayField style={"display-field-stack"} d_key={"52 Week Low"} value={formatter.format(week52Low)}/>    
                     </div>
                 </div>
                 <div className="stock-info-bottom">
-                    <DisplayField d_key={"About"} value={description}/>
+                    <DisplayField style={"display-field-stack about"} d_key={"About"} value={description}/>
                 </div>
             </div>
          );

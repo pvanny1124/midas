@@ -1,3 +1,7 @@
+.about{
+    text-align: center;
+}
+
 .stock-info-card {
     display: flex;
     flex-direction: column;
@@ -41,6 +45,7 @@
 .stock-info-body {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     margin: 10px 10px;
 }
   

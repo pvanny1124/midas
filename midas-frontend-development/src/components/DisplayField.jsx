@@ -1,12 +1,11 @@
 import React from 'react';
 
 const DisplayField = props => (
-    <div>
+    <div className={props.style}>
+        <span className="display-field-key">{props.d_key}</span> 
         {
-            props.d_key && props.value && <div>
-                <div className="display-field-key">{props.d_key}</div> 
-                <div className="display-field-value">{props.value}</div>
-            </div>
+            props.value && 
+            <span className="display-field-value">{props.value}</span>
         }
     </div>
 )
