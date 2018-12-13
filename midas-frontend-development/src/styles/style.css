@@ -291,8 +291,6 @@
 @media screen and (max-width: 767px) {
   #myFooter {
     text-align: center; } }
-/* CSS used for positioning the footers at the bottom of the page. */
-/* You can remove this. */
 /* Safari */
 @-webkit-keyframes spin {
   0% {
@@ -465,10 +463,13 @@ input[type="password"]:focus {
 .media-body p {
   font-size: 14px; }
 
-.jumbotron {
-  background-color: white;
-  height: 600px;
-  margin: 30px 0 auto auto; }
+.not-user {
+  color: #525252;
+  font-size: 12px; }
+  .not-user:hover {
+    color: gold;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #000; }
 
 .portfolio-item {
   display: inline;

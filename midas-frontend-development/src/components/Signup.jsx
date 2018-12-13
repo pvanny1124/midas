@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {Link, Route, Redirect, withRouter} from 'react-router-dom';
-import Home from './Home';
-// import './css/Signup.css'
+import {Link, withRouter} from 'react-router-dom';
 
 
 class Signup extends Component {

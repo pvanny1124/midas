@@ -120,10 +120,6 @@ form{
     margin-bottom: 2em;
 }
 
-// .home{
-//     min-height: 100vh;
-// }
-
 /*
     Following removes scrollbars from inputs with type="number"...
 */
@@ -210,10 +206,15 @@ input[type="password"]:focus{
     font-size: 14px; 
 }
 
-.jumbotron{
-    background-color: white;
-    height: 600px;
-    margin: 30px 0 auto auto;
+.not-user{
+    color: $color_text;
+    font-size: 12px;
+
+    &:hover{
+        color: gold;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px #000;
+    }
 }
 
 .portfolio-item {
