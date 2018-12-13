@@ -1,50 +1,42 @@
 import React, { Component } from 'react';
 import LineChart from './LineChart';
-import SelectRange from "./SelectRange";
+import { FormGroup, Radio } from "react-bootstrap";
+
+// import './Chart.css'
 
 
 class Chart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ticker:null,
       labels:null,
       price:null,
       isLoading:true,
-      chartData:{},
-      range:"1m"
+      chartData:{}
     }
   }
 
-  componentDidMount() {
-    console.log("%cIncomingData","color:green");
-    console.log(this.props)
-    this.setState({ticker:this.props.ticker})
-    this.getChartData();
-  }
 
-  getChartData = async () => {
-    const { ticker, range} = this.state;
-
-    try{
-      const api_call = await fetch(`https://api.iextrading.com/1.0/stock/${ticker}/chart/${range}?filter=high,label`);
-      const data = await api_call.json()
-
-      console.log("%cChartData","color:green");
-      console.log({data})
+  //need to place logic in render or else the component wont update its props acordingly
+  render() {
+    fetch(`https://api.iextrading.com/1.0/stock/${this.props.stockName}/chart/${this.props.range}?filter=high,label`)
+    .then(response => { 
+        return response.json()
+    })
+    .then(result => {
 
       var labels_temp = [];
       var price_temp = [];
 
-      for(var i = 0; i < data.length; i++) {
-        if(data[i].high < 0 || data[i].high === undefined)
+      for(var i = 0; i < result.length; i++) {
+        if(result[i].high < 0 || result[i].high === undefined)
           continue;
-        labels_temp.push(data[i].label);
-        price_temp.push(data[i].high);
+        labels_temp.push(result[i].label);
+        price_temp.push(result[i].high);
       }
 
       var borderCol = "rgb(0,200,22)";
-      if(price_temp[0] > price_temp[data.length-1])
+      if(price_temp[0] > price_temp[result.length-1])
         borderCol = "rgb(222,0,0)";
 
       this.setState({
@@ -59,34 +51,41 @@ class Chart extends Component {
         },
         isLoading:false
       });
-    }
-    catch(error){
-      console.log("%cERROR","color:red");
-      console.log(error);
-    }
-  }
+    })
+    .catch(error => {
+        console.log(error);
+    })
 
-
-  setRange = (selection) => {
-    this.setState({
-      range:selection
-    });
-    this.getChartData();
-  }
-
-
-  render() {
     return (
         <div>
-          {
-            this.state.isLoading ? 
-            <p>Loading...</p> 
-            : 
-            <LineChart chartData={this.state.chartData} stockName={this.props.stockName}/>
-          }
-        </div>
-    );
+          {this.state.isLoading ? <p>Loading...</p> : <LineChart chartData={this.state.chartData} stockName={this.props.stockName}/>}
+      
+      {/* <FormGroup className="switches">
+        <Radio name="radioGroup" inline>
+        1d
+        </Radio>{' '}
+        <Radio name="radioGroup" inline>
+        1w
+        </Radio>{' '}
+        <Radio name="radioGroup" inline>
+        1m
+        </Radio>
+        <Radio name="radioGroup" inline>
+        1y
+        </Radio>
+        <Radio name="radioGroup" inline>
+        3m
+        </Radio>
+        <Radio name="radioGroup" inline>
+        1y
+        </Radio>
+        <Radio name="radioGroup" inline>
+        5y
+        </Radio>
+      </FormGroup> */}
+                </div>
+        );
+    }
   }
-}
 
 export default Chart;

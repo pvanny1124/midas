@@ -100,12 +100,12 @@ class StockInfo extends Component {
 
                 <div className="stock-info-chart">
                     {console.log("in stockingo div... " + ticker)}
-                    <Chart ticker={ticker} range={chartRange}/>
+                    <Chart stockName={ticker} range={chartRange}/>
                 </div>
                 
-                <div className="stock-info-select-range">
+                {/* <div className="stock-info-select-range">
                     <SelectRange setChartRange={this.setChartRange}/>
-                </div>
+                </div> */}
 
                 <div className="stock-info-body">
                     <div className="stock-info-left">
