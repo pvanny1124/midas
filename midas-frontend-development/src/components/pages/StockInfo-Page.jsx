@@ -13,6 +13,7 @@ class StockInfoPage extends Component {
 
     render() { 
         console.log("%cTICKER","color: green");
+        console.log(this.props.user);
         console.log(this.props.ticker);
         return ( 
             <div className="stockInfo-page container">

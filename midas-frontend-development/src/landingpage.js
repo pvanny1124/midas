@@ -40,26 +40,26 @@ class App extends Component {
   }
 
   componentWillMount(){
-    this.setState({user: demoUser, isLoading: false});
+    // this.setState({user: demoUser, isLoading: false});
 
 
     //check if user is already logged in session
-    // fetch("/api/auth")
-    //   .then(response => {
-    //       console.log(response);
-    //       return response.json();
-    //   })
-    //   .then(data => {
-    //       this.setState({user: data, isLoading: false});
-    //       console.log(data);
-    //   })
-    //   .catch(error => {
-    //     setTimeout(() => {
-    //       this.setState({isLoading: false})
-    //     }, 1000)
+    fetch("/api/auth")
+      .then(response => {
+          console.log(response);
+          return response.json();
+      })
+      .then(data => {
+          this.setState({user: data, isLoading: false});
+          console.log(data);
+      })
+      .catch(error => {
+        setTimeout(() => {
+          this.setState({isLoading: false})
+        }, 1000)
         
-    //       console.log(error);
-    //   })
+          console.log(error);
+      })
   }
 
   getUserData(user){
@@ -84,6 +84,7 @@ class App extends Component {
   }
 
   render(){
+    console.log("%cUSER: ", "color: green");
     console.log(this.state.user);
     return (
       

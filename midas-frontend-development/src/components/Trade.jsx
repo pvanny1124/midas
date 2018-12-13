@@ -204,7 +204,7 @@ class Trade extends Component {
         return (
             <div className="trade-card card">
 
-                { this.state.user ? (
+                { this.props.user ? (
                     <div className="trade-user-logged-in">
                         <h2>Trade Here</h2>
                         <p>Available buying power: {formatter.format(this.props.user.cash)}</p>
