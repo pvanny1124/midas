@@ -1,6 +1,13 @@
 .about{
-    text-align: center;
     padding: 10px;
+
+    .display-field-key{
+        text-align: center;
+        padding-bottom: 5px;
+    }
+    .display-field-value{
+        text-align: left;
+    }
 }
 
 .stock-info-card {

@@ -1,6 +1,9 @@
 .display-field-stack{
     display: flex;
     flex-direction: column;
+    .display-field-value{
+        margin-left: 10px;
+    }
 }
 
 .display-field-row{

@@ -117,8 +117,12 @@
   .welcome-chart {
     margin-top: 40px; } }
 .about {
-  text-align: center;
   padding: 10px; }
+  .about .display-field-key {
+    text-align: center;
+    padding-bottom: 5px; }
+  .about .display-field-value {
+    text-align: left; }
 
 .stock-info-card {
   display: flex;
@@ -402,6 +406,8 @@ form {
 .display-field-stack {
   display: flex;
   flex-direction: column; }
+  .display-field-stack .display-field-value {
+    margin-left: 10px; }
 
 .display-field-row {
   display: flex;
@@ -607,6 +613,9 @@ input[type="password"]:focus {
 
 .search-bar {
   width: 300px; }
+
+.white-bg {
+  background-color: white; }
 
 .user-home {
   display: inline; }

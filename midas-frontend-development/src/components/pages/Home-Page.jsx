@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Simulator from '../Simulator';
 import StockInfo from '../StockInfo';
 import Welcome from '../Welcome';
+import ProfilePage from "./Profile-Page";
 
 
 
@@ -35,7 +36,8 @@ class Home extends Component {
       <div className="container home-page">
       
         {this.state.user ? (
-         <div>Find something nice to put here</div>
+        //  <div>Find something nice to put here</div>
+            <ProfilePage user={this.state.user} />
         ) : (
           <Welcome />
         )}
