@@ -35,3 +35,19 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+
+
+
+var portfolio = {
+  amd: {
+    shares: 4,
+    dateBought: "12-14-06"
+  },
+  cron: 2,
+  cgc: 6
+}
+
+if( portfolio.amd == 4) {
+  console.log("well...im a booss");
+}

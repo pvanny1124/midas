@@ -64,12 +64,12 @@ const parseString       = require('xml2js').parseString;
 //test connection with pg
 const { Client } = require('pg');
 
-const client = new Client({
-  connectionString: process.env.HEROKU_POSTGRESQL_GOLD_URL,
-  ssl: true,
-});
+// const client = new Client({
+//   connectionString: process.env.HEROKU_POSTGRESQL_GOLD_URL,
+//   ssl: true,
+// });
 
-client.connect();
+// client.connect();
 
 //if not in heroku environment, then use port 3000
 const PORT = process.env.PORT || 3000;

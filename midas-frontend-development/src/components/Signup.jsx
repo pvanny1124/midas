@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import {Link, Route, Redirect, withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
 
+const mapStateToProps = state => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+
+}
 
 class Signup extends Component {
     constructor(props){
@@ -228,4 +238,4 @@ class Signup extends Component {
     
 }
 
-export default withRouter(Signup);;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));

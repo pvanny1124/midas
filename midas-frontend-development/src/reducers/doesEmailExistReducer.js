@@ -11,5 +11,9 @@ const doesEmailExistReducer = function(state = false, action){
             return false;
             break;
         }
+        default:
+        return state;
     }
 }
+
+export default doesEmailExistReducer;

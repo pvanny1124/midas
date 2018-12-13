@@ -14,6 +14,8 @@ import activeSuggestionReducer from './activeSuggestionReducer';
 import suggestionsReducer from './suggestionsReducer';
 import tickerReducer from './tickerReducer';
 import userInputReducer from './userInputReducer';
+import loginPasswordReducer from './loginPasswordReducer';
+import doesEmailExistReducer from './doesEmailExistReducer';
 
 const rootReducer = combineReducers({
         //map specific reducers to the state variables that they are supposed to handle
@@ -27,7 +29,9 @@ const rootReducer = combineReducers({
         filteredSuggestions: filteredSuggestionsReducer,
         activeSuggestion: activeSuggestionReducer,
         ticker: tickerReducer,
-        userInput: userInputReducer
+        userInput: userInputReducer,
+        loginPassword: loginPasswordReducer,
+        exists: doesEmailExistReducer
 
 })
 

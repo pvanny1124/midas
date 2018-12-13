@@ -6,7 +6,7 @@ import { updateEmailInput, updatePasswordInput, login } from '../actions/actionC
 const mapStateToProps = state => {
     return {
         email: state.email,
-        password: state.password,
+        password: state.loginPassword,
         exists: state.exists
     }
 }
@@ -40,6 +40,10 @@ class Login extends Component {
 
     handleSubmit(event){
         event.preventDefault();
+        console.log("%cthis-EMAIL:", "color: blue");
+        console.log("%c" + this.props.email, "color: green")
+        console.log("%cthis-PASSWORD:", "color: blue");
+        console.log("%c" + this.props.password, "color: green")
         this.props.login(this.props.email, this.props.password);   
     }
 

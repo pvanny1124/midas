@@ -18,7 +18,7 @@ const passport = require('../middlewares/auth');
 const router = express.Router();
 
 router.get('/auth/error', (req, res) => {
-  res.sendStatus(401).json({message: "something went wrong"});
+  res.status(401).json({message: "something went wrong"});
 })
 
 
@@ -38,7 +38,7 @@ router.post('/signup', (req, res) => {
       console.log(user.dataValues);
 
       if(user){
-          res.status(200).json({userCreated: true, user: user.dataValues});
+          return res.status(200).json({userCreated: true, user: user.dataValues});
       }
       
   }).catch((error) => {
@@ -60,7 +60,7 @@ router.post('/signup', (req, res) => {
         }
 
         //send error name and the different input fields that can't be empty back to client
-        res.json({
+        return res.json({
            error: errorPaths,
         })
     }
@@ -73,7 +73,7 @@ router.post('/signup', (req, res) => {
             errorPaths.push(error.path);
         }
 
-        res.json({
+        return res.json({
           error: error.name,
           type: "UniqueConstraintError",
           paths: errorPaths
@@ -86,7 +86,7 @@ router.post('/signup', (req, res) => {
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/auth/error' }),
   (req, res) => {
-    return res.status(200).json({
+    res.status(200).json({
       id: req.user.id,
       firstName: req.user.firstName,
       lastName: req.user.lastName,

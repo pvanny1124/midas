@@ -174,6 +174,10 @@ export function updatePasswordInput(password_value){
 }
 
 export function login(email, password){
+    console.log("%cEMAIL:", "color: blue");
+    console.log("%c" + email, "color: green")
+    console.log("%cPASSWORD:", "color: blue");
+    console.log("%c" + password, "color: green")
     return dispatch => {
         fetch("/login", {
             method: "post",
@@ -202,5 +206,75 @@ export function login(email, password){
         .catch(error => {
             dispatch({ type: userConstants.LOGIN_FAILURE, payload: error })
         })
+    }
+}
+
+
+
+/* --------------------------------------------------------------------
+    Signup creators
+    
+-----------------------------------------------------------------------*/
+
+export function signup(){
+    return dispatch => {
+          //make request to backend api to signup user
+          fetch("/signup", {
+            method: "post",
+            headers: new Headers({
+              'Content-Type': 'application/json'
+            }),
+            body: JSON.stringify({
+                firstName: this.state.firstName, 
+                lastName: this.state.lastName,
+                username: this.state.username,
+                email: this.state.email,
+                password: this.state.password,
+                age: this.state.age,
+                country: this.state.country,
+                cash: this.state.cash,
+                portfolio: this.state.portfolio,
+                portfolioValue: this.state.portfolioValue
+            })
+          })
+          .then((response) => {
+                console.log(response);
+                return response.json();
+          })
+
+          .then((message) => {
+              console.log(message);
+
+              //authenticate user in the backend to save them in session
+              if(message.userCreated){
+                    fetch("/login", {
+                        method: "post",
+                        headers: new Headers({
+                            "Content-Type": "application/json"
+                        }),
+                        body: JSON.stringify({
+                            email: this.state.email,
+                            password: this.state.password
+                        })
+                    })
+                    .then(response => {
+                        console.log(response)
+                        if(response === 200){
+                            console.log("successfully authenticated");
+                        }
+                    })
+                    .then(() => {
+                        this.props.getUser(message.user);
+                        this.props.history.push("/");
+                    })
+                    
+              } 
+          })
+          .catch((err) => {
+              this.setState({
+                  displayError: true
+              })
+              console.log(err);
+          })
     }
 }
