@@ -16,16 +16,12 @@ class ProfilePage extends Component {
     return (
       <div className="profile-page container">
       
-        <div className="page-left">
+        <div className="page-main">
           {
             
             this.props.user && <ProfileCard user={this.props.user}/>
           }
         </div>
-
-        {/* <div className="page-center">
-        
-        </div> */}
 
         <div className="page-right">
           <Simulator userId={this.props.user.id} />  

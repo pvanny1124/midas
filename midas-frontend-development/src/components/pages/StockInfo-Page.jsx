@@ -20,7 +20,7 @@ class StockInfoPage extends Component {
                     <Simulator userId={this.props.user.id} />    
                 </div>
 
-                <div className="page-center">
+                <div className="page-main">
                     <StockInfo  key={this.props.key} {...this.props}  
                                 getUser={(user) => this.props.getUserData(user)} 
                                 ticker={this.props.ticker} 

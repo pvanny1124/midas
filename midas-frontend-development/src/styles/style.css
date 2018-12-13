@@ -179,8 +179,7 @@
 
 .stock-info-bottom {
   padding: 10px;
-  text-align: left;
-  border-top: solid 2px rgba(255, 255, 255, 0.06); }
+  text-align: left; }
 
 .stock-info-week52Limits {
   align-self: center;
@@ -213,9 +212,11 @@
 .profile-card {
   width: 500px;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  margin-left: 15%; }
 
 .profile-card-top {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: row; }
 
@@ -229,18 +230,36 @@
   background-color: #d3cb9b; }
 
 .user-info {
-  flex: 1 1;
+  flex: 1 1 auto;
   align-self: center;
-  margin-left: 8%;
+  margin-left: 10px;
+  height: 100%;
+  border-top: 1px solid #7e7e7e;
+  border-bottom: 1px solid #7e7e7e;
+  border-left: 5px solid #7e7e7e;
+  border-right: 5px solid #7e7e7e;
+  display: flex;
   display: flex;
   flex-direction: column;
-  align-items: space-between; }
+  justify-content: space-around; }
+  .user-info div {
+    flex: 1;
+    padding: 7px 0; }
+    .user-info div .display-field-value {
+      color: #2c4053;
+      font-weight: 700; }
 
 .user-data {
   flex: 1 1;
   align-self: center;
   display: flex;
-  flex-direction: row; }
+  flex-direction: column; }
+  .user-data div {
+    flex: 1;
+    padding: 7px 0; }
+    .user-data div .display-field-value {
+      color: #2c4053;
+      font-weight: 700; }
 
 .home-page,
 .profile-page,
@@ -249,11 +268,14 @@
   flex-direction: row;
   justify-content: space-between; }
 
+.profile-page {
+  justify-content: space-around; }
+
 .page-left {
   flex: 1 1 20%;
   margin-right: 10px; }
 
-.page-center {
+.page-main {
   flex: 1 1 50%; }
 
 .page-right {

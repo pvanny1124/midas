@@ -2,9 +2,12 @@
     width: 500px;
     display: flex;
     flex-direction: column;
+    margin-left: 15%;
 }
 
 .profile-card-top{
+    flex: 1 1 auto;
+
     display: flex;
     flex-direction: row;
 }
@@ -20,17 +23,44 @@
 }
 
 .user-info{
-    flex: 1 1;
+    flex: 1 1 auto;
     align-self: center; 
-    margin-left: 8%;
+    margin-left: 10px;
+    height: 100%;
+    border-top: 1px solid rgb(126, 126, 126);
+    border-bottom: 1px solid rgb(126, 126, 126);
+    border-left: 5px solid rgb(126, 126, 126);
+    border-right: 5px solid rgb(126, 126, 126);
+
+    display: flex;
     display: flex;
     flex-direction: column;
-    align-items: space-between;
+    justify-content: space-around;
+    div{
+        flex: 1;
+        padding: 7px 0;
+        .display-field-value{
+            color: $color_bg_nav;
+            font-weight: 700;
+        }
+    }
+
+    //styling process aides
+    // border: 1px solid black;
 }
 
 .user-data{
     flex: 1 1;
     align-self: center;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+
+    div{
+        flex: 1;
+        padding: 7px 0;
+        .display-field-value{
+            color: $color_bg_nav;
+            font-weight: 700;
+        }
+    }
 }

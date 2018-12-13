@@ -18,7 +18,7 @@ const ProfileCard = (props) => (
                 }
                 {
                     props.user.username &&
-                    <DisplayField style={"display-field-row"} d_key={"User Name"} value={props.user.username} />
+                    <DisplayField style={"display-field-row"} d_key={"Username"} value={props.user.username} />
                 }
                 {
                     props.user.country &&

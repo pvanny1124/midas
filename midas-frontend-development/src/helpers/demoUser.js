@@ -1,9 +1,9 @@
 const demoUser = {
     id: 1,
-    firstName: 'demo',
-    lastName: 'user',
+    firstName: 'Frank',
+    lastName: 'The Tank',
     username: 'demo',
-    email: 'demo@demo',
+    email: 'email@domain.com',
     password_hash: "demo",
     age: 18,
     country: 'US',

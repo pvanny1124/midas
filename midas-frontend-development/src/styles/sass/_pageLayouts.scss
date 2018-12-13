@@ -6,12 +6,16 @@
     justify-content: space-between;
 }
 
+.profile-page{
+    justify-content: space-around;
+}
+
 .page-left{
     flex: 1 1 20%;
     margin-right: 10px;
 }
 
-.page-center{
+.page-main{
     flex: 1 1 50%;
 }
 
