@@ -137,11 +137,16 @@
   background-color: #9b9b9b; }
 
 .stock-info-price {
-  color: #d1bb3d;
+  color: #e07d2b;
   align-self: center;
-  margin: 0 10px; }
+  margin: 0 10px;
+  padding: 7px;
+  background-color: #d3cb9b;
+  border: 1px solid #7e7e7e;
+  box-shadow: 0 0 2px #7e7e7e;
+  border-radius: 4px; }
   .stock-info-price h2 {
-    line-height: 20px; }
+    line-height: 100%; }
 
 .stock-info-ticker {
   flex: 1 1;
@@ -154,7 +159,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 10px 10px; }
+  margin: 10px 10px;
+  padding: 10px;
+  border-top: 1px solid #7e7e7e;
+  border-bottom: 1px solid #7e7e7e; }
 
 .stock-info-left {
   flex-grow: 1 1;
@@ -167,15 +175,16 @@
 .stock-info-bottom {
   padding: 10px;
   text-align: left;
-  border-top: solid 2px rgba(255, 255, 255, 0.06);
-  margin-top: 20px; }
+  border-top: solid 2px rgba(255, 255, 255, 0.06); }
 
 .stock-info-week52Limits {
   align-self: center;
   display: flex;
   flex-direction: column;
-  background-color: #cecece;
-  border-radius: 20px;
+  background-color: #d3cb9b;
+  border: 1px solid #7e7e7e;
+  box-shadow: 0 0 2px #7e7e7e;
+  border-radius: 4px;
   padding: 5px; }
 
 .week-52-low,
@@ -268,6 +277,12 @@
 
 .simulator-card {
   text-align: center; }
+
+.trendingNews-card > h2 {
+  text-align: center;
+  padding: 10px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #7e7e7e; }
 
 #footer {
   margin-top: 30px;
@@ -375,7 +390,7 @@ form {
   justify-content: space-around; }
 
 .display-field-key {
-  color: black;
+  color: #525252;
   font-weight: 700; }
 
 .display-field-value {

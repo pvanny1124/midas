@@ -25,11 +25,16 @@
 }
   
 .stock-info-price {
-    color: #d1bb3d;
+    color: $color_displayField_key;
     align-self: center;
     margin: 0 10px; 
+    padding: 7px;
+    background-color: $color_text_nav;
+    border: 1px solid rgb(126, 126, 126);
+    box-shadow: 0 0 2px  rgb(126, 126, 126);
+    border-radius: 4px;
     h2{
-        line-height: 20px;
+        line-height: 100%;
     }
 }
   
@@ -47,6 +52,10 @@
     flex-direction: row;
     justify-content: space-around;
     margin: 10px 10px;
+    padding: 10px;
+
+    border-top: 1px solid rgb(126, 126, 126);
+    border-bottom: 1px solid rgb(126, 126, 126);
 }
   
 .stock-info-left {
@@ -63,15 +72,17 @@
     padding: 10px;
     text-align: left;
     border-top: solid 2px rgba(255, 255, 255, 0.06);
-    margin-top: 20px; 
 }
   
 .stock-info-week52Limits {
     align-self: center;
     display: flex;
     flex-direction: column;
-    background-color: rgb(206, 206, 206);
-    border-radius: 20px;
+    background-color: $color_text_nav;
+    border: 1px solid rgb(126, 126, 126);
+    box-shadow: 0 0 2px  rgb(126, 126, 126);
+    // background-color: rgb(206, 206, 206);
+    border-radius: 4px;
     padding:5px;
 }
 

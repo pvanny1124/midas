@@ -30,6 +30,7 @@ class TrendingNews extends Component {
 
         return (
             <div className="trendingNews-card card">
+                <h2>Trending News</h2>
                 {trending_news !== undefined ? newsFeed : <span>Loading</span>}
             </div>
         )
