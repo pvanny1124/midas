@@ -229,7 +229,7 @@ class Trade extends Component {
                                     <input type="submit" value="continue" />
                                 </div> 
                                 : 
-                                <div className="form-group">
+                                <div className="form-group trade-input">
                                     <input className="form-control" type="number" min="0" placeholder="x amount of shares" value={this.state.amountOfSharesToBuy} onChange={(event) => this.handleBuyChange(event)}/>
                                     <input type="submit" value="Buy" />
                                 </div>
@@ -266,7 +266,7 @@ class Trade extends Component {
                                 </div>
                                 : 
                                 <form onSubmit={(event) => this.handleSell(event)}>
-                                    <div className="form-group">
+                                    <div className="form-group trade-input">
                                         <input className="form-control" type="number" min="0" placeholder="x amount of shares" onChange={(event) => this.handleSellChange(event)}/>
                                         <input type="submit" value="Sell" />
                                     </div>

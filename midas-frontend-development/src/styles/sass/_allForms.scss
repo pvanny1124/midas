@@ -1,7 +1,7 @@
 /* Forms */
 form{
-    width: 25%;
-    min-width: 350px;
+    // width: 25%;
+    // min-width: 350px;
     margin: auto auto;
     text-align: center;
     button{
@@ -43,5 +43,8 @@ form{
 
 .signup-form,
 .login{
+    margin: 0 auto;
     margin-top: 30px;
+    min-width: 350px;
+    width: 25%;
 }

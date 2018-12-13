@@ -117,7 +117,8 @@
   .welcome-chart {
     margin-top: 40px; } }
 .about {
-  text-align: center; }
+  text-align: center;
+  padding: 10px; }
 
 .stock-info-card {
   display: flex;
@@ -273,9 +274,24 @@
   flex-direction: column;
   justify-content: center;
   text-align: center; }
+  .trade-user-logged-in h2 {
+    padding: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #7e7e7e; }
 
 .trade-guest {
   text-align: center; }
+
+.trade-input {
+  display: flex;
+  flex-direction: row; }
+  .trade-input input[type="submit"] {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: none;
+    border-style: none; }
+  .trade-input input[type="number"] {
+    border-radius: 0; }
 
 .simulator-card {
   text-align: center; }
@@ -344,8 +360,6 @@
     text-align: center; } }
 /* Forms */
 form {
-  width: 25%;
-  min-width: 350px;
   margin: auto auto;
   text-align: center; }
   form button {
@@ -380,7 +394,10 @@ form {
 
 .signup-form,
 .login {
-  margin-top: 30px; }
+  margin: 0 auto;
+  margin-top: 30px;
+  min-width: 350px;
+  width: 25%; }
 
 .display-field-stack {
   display: flex;

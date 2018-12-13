@@ -8,8 +8,27 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    h2{
+        padding: 10px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgb(126, 126, 126);
+    }
 }
 
 .trade-guest{
     text-align: center;
+}
+
+.trade-input{
+    display: flex;
+    flex-direction: row;
+    input[type="submit"]{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: none;
+        border-style: none;
+    }
+    input[type="number"]{
+        border-radius: 0;
+    }
 }
