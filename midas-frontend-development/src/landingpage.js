@@ -23,7 +23,7 @@ const mapStateToProps = state => {
         fetching: state.fetching,
         fetched: state.fetched,
         ticker: state.ticker,
-        isUserAuthenticated: state.isUserAuthenticated
+        isAuthenticated: state.currentUser.isAuthenticated
 
       }
 }
@@ -70,8 +70,12 @@ class App extends Component {
          ) : (
               
              <div>
-                <Navbar  forceUpdate={() => this.forceUpdate} getTicker={(ticker) => this.getSearchedTicker(ticker)}/>
+                <Navbar />
+                { this.props.isAuthenticated && <Route path="/profile" component={ProfilePage} /> }
+                { this.props.isAuthenticated && <Route path="/signout" component={Signout} /> }
                 <Route path="/login" render={() => <Login />} />
+                <Route path="/signup" render={() => <Signup />} />
+                
                 {/* <Route exact path="/" render={() => <Home user={this.state.user} getUser={(user) => this.getUserData(user)} />} />
                 {/* For the following view to render properly, pass key={props.location.key} to make the component re-render since the location changes if the user looks up a new stock*/}
 
@@ -79,10 +83,10 @@ class App extends Component {
                         reset={() => this.reset()} getUser={(user) => this.getUserData(user)} 
                         ticker={this.state.searchedTicker} user={this.state.user} /> } />
                 
-                <Route path="/profile" render={() => <ProfilePage user={this.state.user} />} />
+                
                 <Route path="/signup" render={() => <Signup getUser={(user) => this.getUserData(user)}/>} />
                
-                <Route path="/signout" render={() => <Signout resetUser={() => this.resetUserData()} />} />
+                
                 <Route path="/leaderboards" render={() => <Leaderboards />} /> */}
                 {/* <Footer /> */}
              </div>

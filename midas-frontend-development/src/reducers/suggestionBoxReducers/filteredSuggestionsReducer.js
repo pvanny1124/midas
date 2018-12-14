@@ -1,4 +1,4 @@
-import { suggestionBoxConstants } from '../actions/actions.suggestionBox';
+import { suggestionBoxConstants } from '../../actions/actions.suggestionBox';
 
 const initialState = {
     // The suggestions that match the user's input

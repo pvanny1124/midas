@@ -2,26 +2,26 @@ import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 import { updateEmailInput, updatePasswordInput, login } from '../actions/actionCreators';
+import { Redirect } from "react-router-dom"
 
 const mapStateToProps = state => {
     return {
-        email: state.email,
-        password: state.loginPassword,
-        exists: state.exists
+        loginFields: state.loginFields,
+        isAuthenticated: state.currentUser.isAuthenticated
     }
 }
 
 const mapDispatchToProps = dispatch => ({
-    updateEmailInput(value) {
-        dispatch(updateEmailInput(value))
+    updateEmailInput(email) {
+        dispatch(updateEmailInput(email))
     },
 
-    updatePasswordInput(value) {
-        dispatch(updatePasswordInput(value))
+    updatePasswordInput(password) {
+        dispatch(updatePasswordInput(password))
     },
 
-    login(email, password) {
-        dispatch(login(email, password));
+    login(loginFields) {
+        dispatch(login(loginFields));
     }
 })
 
@@ -40,35 +40,37 @@ class Login extends Component {
 
     handleSubmit(event){
         event.preventDefault();
-        console.log("%cthis-EMAIL:", "color: blue");
-        console.log("%c" + this.props.email, "color: green")
-        console.log("%cthis-PASSWORD:", "color: blue");
-        console.log("%c" + this.props.password, "color: green")
-        this.props.login(this.props.email, this.props.password);   
+        console.log("%cLOGIN FIELDS");
+        console.log(this.props.loginFields);
+        this.props.login(this.props.loginFields);
     }
 
     render() { 
      
         return ( 
-
-            <form onSubmit={(event) => this.handleSubmit(event)}>
-                <div className="form-title">
-                    <h1>Log In</h1>
-                </div>
-                <div class="form-body">
-                    <div className="form-group">
-                        <input className="form-control" type="text" name="email" placeholder="email" required onChange={(event) => this.handleEmailChange(event)}/>
-                    </div>
-                    <div className="form-group">
-                        <input className="form-control" type="password" name="password" placeholder="Password" required onChange={(event) => this.handlePasswordChange(event)}/>
-                    </div>
-                    <div className="form-group">
-                        <button type="submit" className="login-btn btn btn-dark">Log In</button>
-                    </div>
-                    <Link className="not-user" to="/signup">Not a user? Create an account</Link>
-                    { this.props.exists && <div className="error"> The password you entered does not match the email provided </div>}
-                </div>
-            </form>
+            <div>
+                { this.props.isAuthenticated ? (<Redirect to="/" />) :
+                    (<form onSubmit={(event) => this.handleSubmit(event)}>
+                        <div className="form-title">
+                            <h1>Log In</h1>
+                        </div>
+                        <div class="form-body">
+                            <div className="form-group">
+                                <input className="form-control" type="text" name="email" placeholder="email" required onChange={(event) => this.handleEmailChange(event)}/>
+                            </div>
+                            <div className="form-group">
+                                <input className="form-control" type="password" name="password" placeholder="Password" required onChange={(event) => this.handlePasswordChange(event)}/>
+                            </div>
+                            <div className="form-group">
+                                <button type="submit" className="login-btn btn btn-dark">Log In</button>
+                            </div>
+                            <Link className="not-user" to="/signup">Not a user? Create an account</Link>
+                            { this.props.exists && <div className="error"> The password you entered does not match the email provided </div>}
+                        </div>
+                    </form>)
+                }
+        
+            </div>
         
          );
     }

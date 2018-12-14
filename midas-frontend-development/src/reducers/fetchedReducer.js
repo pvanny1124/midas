@@ -28,6 +28,11 @@ const fetchedReducer = function(state = false, action){
             break;
         }
 
+        case userConstants.REGISTER_REQUEST: {
+            return false;
+            break;
+        }
+
         case userConstants.REGISTER_SUCCESS: {
             return true;
             break;

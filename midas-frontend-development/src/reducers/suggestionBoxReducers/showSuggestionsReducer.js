@@ -1,4 +1,4 @@
-import { suggestionBoxConstants } from '../actions/actions.suggestionBox';
+import { suggestionBoxConstants } from '../../actions/actions.suggestionBox';
 
 const initialState = {
     // Whether or not the suggestion list is shown

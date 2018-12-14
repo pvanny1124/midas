@@ -1,4 +1,4 @@
-export const emailConstants = {
+export const loginConstants = {
     UPDATE_EMAIL_INPUT: "UPDATE_EMAIL_INPUT",
     UPDATE_PASSWORD_INPUT: "UPDATE_PASSWORD_INPUT",
     EMAIL_EXISTS: "EMAIL_EXISTS",

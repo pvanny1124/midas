@@ -1,4 +1,4 @@
-import { stocksConstants } from '../actions/actions.stocks';
+import { stocksConstants } from '../../actions/actions.stocks';
 // import { initialState } from '../index';
 
 const initialState = {

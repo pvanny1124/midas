@@ -10,10 +10,9 @@ import { getAllSymbols } from '../actions/actionCreators';
 const mapStateToProps = state => {
   return  {
     currentUser: state.currentUser,
-    isUserAuthenticated: state.isUserAuthenticated,
+    isAuthenticated: state.currentUser.isAuthenticated,
     suggestions: state.suggestions,
     stocksFound: state.stocksFound
-
   }
 }
 
@@ -45,7 +44,7 @@ class CustomNavbar extends Component {
             <NavItem eventKey={1} componentClass={Link} href="/" to="/">
               Home
             </NavItem>
-            {this.props.isUserAuthenticated ? (
+            {this.props.isAuthenticated ? (
                 <NavItem eventKey={2}
                         componentClass={Link}
                         href="/profile"
@@ -60,7 +59,7 @@ class CustomNavbar extends Component {
             )}
           
             
-            {this.props.isUserAuthenticated ? (
+            {this.props.isAuthenticated ? (
                 <NavItem eventKey={3} componentClass={Link} href="/signout" to="/signout">
                   Signout
                 </NavItem>

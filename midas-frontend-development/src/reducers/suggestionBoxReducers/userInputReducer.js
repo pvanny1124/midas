@@ -1,11 +1,11 @@
-import { suggestionBoxConstants } from '../actions/actions.suggestionBox';
+import { suggestionBoxConstants } from '../../actions/actions.suggestionBox';
 
 const initialState = {
     // What the user has entered
-    userInput: ""
+    userInput: null
 }
 
-const userInputReducer = function(state = "", action){
+const userInputReducer = function(state = null, action){
     switch(action.type){
         case suggestionBoxConstants.UPDATE_SUGGESTION_BOX_INPUT: {
                 return action.payload.userInput;

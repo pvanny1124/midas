@@ -45,40 +45,40 @@ router.post('/signup', (req, res) => {
       console.log(error);
     //TODO: error handle different causes for validation errors..
 
-    //Check if first name, last name, username, or email fields are empty
-    if(error.name == 'SequelizeValidationError'){
-        console.log(error.errors);
+    // //Check if first name, last name, username, or email fields are empty
+    // if(error.name == 'SequelizeValidationError'){
+    //     console.log(error.errors);
 
-        //Cache errors with the fields that field, type of error, and validator
-        let errorPaths = []
-        for(var error of error.errors){
-            errorPaths.push({
-              type: error.validatorName,
-              path: error.path,
-              validator: error.validatorName
-            });
-        }
+    //     //Cache errors with the fields that field, type of error, and validator
+    //     let errorPaths = []
+    //     for(var error of error.errors){
+    //         errorPaths.push({
+    //           type: error.validatorName,
+    //           path: error.path,
+    //           validator: error.validatorName
+    //         });
+    //     }
 
-        //send error name and the different input fields that can't be empty back to client
-        return res.json({
-           error: errorPaths,
-        })
-    }
+    //     //send error name and the different input fields that can't be empty back to client
+    //     return res.json({
+    //        error: errorPaths,
+    //     })
+    // }
 
  
-    //Check for duplicate emails and usernames
-    if(error.name == 'SequelizeUniqueConstraintError'){
-        let errorPaths = []
-        for(var error of error[0]){
-            errorPaths.push(error.path);
-        }
+    // //Check for duplicate emails and usernames
+    // if(error.name == 'SequelizeUniqueConstraintError'){
+    //     let errorPaths = []
+    //     for(var error of error[0]){
+    //         errorPaths.push(error.path);
+    //     }
 
-        return res.json({
-          error: error.name,
-          type: "UniqueConstraintError",
-          paths: errorPaths
-        })
-    }
+    //     return res.json({
+    //       error: error.name,
+    //       type: "UniqueConstraintError",
+    //       paths: errorPaths
+    //     })
+    // }
   });
 });
 

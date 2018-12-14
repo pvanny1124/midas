@@ -2,42 +2,76 @@
 //User actions
 import { userConstants } from '../actions/actions.users';
 const initialState = {
-    isUserAuthenticated: false
+    currentUser: null,
+    isAuthenticated: false
 }
 
-const authenticationReducer = function(state = false, action){
+const authenticationReducer = function(state = initialState, action){
     switch(action.type){
 
         case userConstants.LOGIN_SUCCESS: {
-            return true;
+            return {
+                isAuthenticated: true,
+                currentUser: action.payload
+            }
             break;
         }
 
         case userConstants.LOGIN_FAILURE: {
-            return false;
+            return {
+                isAuthenticated: false,
+                currentUser: null
+            };
+            break;
+        }
+
+        case userConstants.LOGOUT_SUCCESS: {
+            return {
+                isAuthenticated: false,
+                currentUser: null
+            };
+            break;
+        }
+
+        case userConstants.LOGIN_FAILURE: {
+            return {
+                ...state
+            };
             break;
         }
 
         case userConstants.SESSION_ACTIVE: {
-            return true;
+            return {
+                isAuthenticated: true,
+                currentUser: action.payload
+            };
             break;
         }
 
         case userConstants.SESSION_NOT_FOUND: {
-            return false;
+            return {
+                isAuthenticated: false,
+                currentUser: null
+            };
+
             break;
         }
 
         case userConstants.REGISTER_SUCCESS: {
-            return true;
+            return {
+                isAuthenticated: true,
+                currentUser: action.payload
+            }
             break;
         }
 
         case userConstants.REGISTER_FAILURE: {
-            return false;
+            return {
+                isAuthenticated: false,
+                currentUser: null
+            };
             break;
         }
-
         default:
         return state;
 

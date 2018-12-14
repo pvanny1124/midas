@@ -1,7 +1,8 @@
 import  { userConstants } from './actions.users';
 import { stocksConstants } from './actions.stocks';
 import { suggestionBoxConstants } from './actions.suggestionBox';
-import { emailConstants } from './actions.email';
+import { loginConstants } from './actions.login';
+import { signupConstants } from './actions.signup';
 
 //check if the user is in session
 export function getUserSession() {
@@ -30,52 +31,12 @@ export function getUserSession() {
  
 }
 
-//Handle user signins.
-export function loginUser() {
 
-    return dispatch => {
-        //let the app know that we are attempting to log the user in
-        dispatch({ type: userConstants.LOGIN_REQUEST });
 
-        //check if the user is cached
-        fetch("api/auth")
-                .then((userData) => {
-                    //save user to state or... SESSION! :D
-                    console.log("%cUSER IS LOGGED IN", "color: green")
-                    dispatch({type: userConstants.LOGIN_SUCCESS, payload: userData});
-                })
-                .catch((error) => {
-                    //if something went wrong
-                    console.log("%cUSER COULD NOT LOGIN", "color: green")
-                    dispatch({type: userConstants.LOGIN_FAILURE, payload: error})
-                })
-        }
+/* --------------------------------------------------------------------
+    Logout creator
     
-}
-
-//handle new user registration
-export function registerUser(){
-
-    return dispatch => {
-        //let the app know that we are attempting to signup the user
-        dispatch({ type: userConstants.REGISTER_REQUEST });
-
-        //check if the user is cached
-        fetch("api/auth")
-                .then((userData) => {
-                    //save user to state or... SESSION! :D
-                    console.log("%cUSER IS NOW REGISTERED", "color: green")
-                    dispatch({type: userConstants.REGISTER_SUCCESS, payload: userData});
-                })
-                .catch((error) => {
-                    //if something went wrong
-                    console.log("%cUSER COULD NOT REGISTER", "color: green")
-                    dispatch({type: userConstants.REGISTER_FAILURE, payload: error})
-                })
-    }
-}
-
-//handle user logout
+-----------------------------------------------------------------------*/
 export function logoutUser(){
 
     return dispatch => {
@@ -87,7 +48,7 @@ export function logoutUser(){
         fetch("/logout")
             .then(response => {
                 console.log("%cUSER COULD LOGOUT", "color: green")
-                dispatch({ type: userConstants.LOGOUT_SUCCESS })
+                dispatch({ type: userConstants.LOGOUT_SUCCESS });
             })
             .catch(error => {
                 console.log("%cUSER COULD NOT LOGOUT", "color: green")
@@ -96,28 +57,13 @@ export function logoutUser(){
     }
 }
 
-//Get all the available stocks from the IEX API
-export function getAllSymbols(){
-
-    return dispatch => {
-        fetch("https://api.iextrading.com/1.0/ref-data/symbols")
-                .then(response => {
-                        return response.json();
-                })
-                .then(data => {
-                    console.log("%cALL STOCKS HAVE BEEN LOADED FROM IEX", "color: green");
-                        dispatch({ type: stocksConstants.STOCKS_LOADED, payload: data })
-                })
-                .catch(error => {
-                    console.log("%cALL STOCKS HAVE BEEN LOADED FROM IEX", "color: green");
-                    dispatch({ type: stocksConstants.STOCKS_NOT_FOUND, payload: error })
-                });
-    }
-
-}
 
 
-//SUGGESSTION BOXES
+
+/* --------------------------------------------------------------------
+    Suggestion Box creators
+    
+-----------------------------------------------------------------------*/
 
 // Update the user input and filtered suggestions, reset the active
 // suggestion and make sure the suggestions are shown
@@ -157,67 +103,140 @@ export function decrementActiveSuggestion(){
         dispatch({ type: suggestionBoxConstants.DECREMENT_ACTIVE_SUGGESTION });
     }
 }
+
+//Get all the available stocks from the IEX API
+export function getAllSymbols(){
+
+    return dispatch => {
+        fetch("https://api.iextrading.com/1.0/ref-data/symbols")
+                .then(response => {
+                        return response.json();
+                })
+                .then(data => {
+                    console.log("%cALL STOCKS HAVE BEEN LOADED FROM IEX", "color: green");
+                        dispatch({ type: stocksConstants.STOCKS_LOADED, payload: data })
+                })
+                .catch(error => {
+                    console.log("%cALL STOCKS HAVE BEEN LOADED FROM IEX", "color: green");
+                    dispatch({ type: stocksConstants.STOCKS_NOT_FOUND, payload: error })
+                });
+    }
+
+}
     
 
-//Email action creators
+/* --------------------------------------------------------------------
+    Login creators
+    
+-----------------------------------------------------------------------*/
 
 export function updateEmailInput(email_value){
     return dispatch => {
-        dispatch({ type: emailConstants.UPDATE_EMAIL_INPUT, payload: email_value });
+        dispatch({ type: loginConstants.UPDATE_EMAIL_INPUT, payload: email_value });
     }
 }
 
 export function updatePasswordInput(password_value){
     return dispatch => {
-        dispatch({ type: emailConstants.UPDATE_PASSWORD_INPUT, payload: password_value });
+        dispatch({ type: loginConstants.UPDATE_PASSWORD_INPUT, payload: password_value });
     }
 }
 
-export function login(email, password){
+export function login(user){
     console.log("%cEMAIL:", "color: blue");
-    console.log("%c" + email, "color: green")
+    console.log("%c" + user.email, "color: green")
     console.log("%cPASSWORD:", "color: blue");
-    console.log("%c" + password, "color: green")
+    console.log("%c" + user.password, "color: green")
+
+   
     return dispatch => {
+        dispatch({ type: userConstants.LOGIN_REQUEST })
         fetch("/login", {
             method: "post",
             headers: new Headers({
                 'Content-Type': 'application/json'
             }),
             body: JSON.stringify({
-                email: email,
-                password: password
+                email: user.email,
+                password: user.password
             })
         })
         .then(response => {
             console.log(response)
-            return response.json();
+            if(response.status == 200){
+                return response.json();
+            } else {
+                throw new Error("something went wrong")
+            }
+
         })
         .then(user => {
             console.log("%cLogin-user-debug", "color: purple");
             console.log({user});
 
-            if(user){
                 //save user data in state
                 dispatch({ type: userConstants.LOGIN_SUCCESS, payload: user });
-                this.props.history.push("/");
-            }
+                return true;
+    
         })
         .catch(error => {
             dispatch({ type: userConstants.LOGIN_FAILURE, payload: error })
+            return false;
         })
     }
 }
-
 
 
 /* --------------------------------------------------------------------
     Signup creators
     
 -----------------------------------------------------------------------*/
-
-export function signup(){
+export function updateFirstName(firstName){
     return dispatch => {
+        dispatch({ type: signupConstants.UPDATE_FIRST_NAME_INPUT, payload: firstName});
+    }
+}
+
+export function updateLastName(lastName){
+    return dispatch => {
+        dispatch({ type: signupConstants.UPDATE_LAST_NAME_INPUT, payload: lastName});
+    }
+}
+
+export function updateEmail(email){
+    return dispatch => {
+        dispatch({ type: signupConstants.UPDATE_EMAIL_INPUT, payload: email});
+    }
+}
+export function updateUsername(username){
+    return dispatch => {
+        dispatch({ type: signupConstants.UPDATE_USERNAME_INPUT, payload: username});
+    }
+}
+
+export function updatePassword(password){
+    return dispatch => {
+        dispatch({ type: signupConstants.UPDATE_PASSWORD_INPUT, payload: password });
+    }
+}
+
+export function updateCountry(country){
+    return dispatch => {
+        dispatch({ type: signupConstants.UPDATE_COUNTRY_INPUT, payload: country});
+    }
+}
+
+export function updateAge(age){
+    return dispatch => {
+        dispatch({ type: signupConstants.UPDATE_AGE_INPUT, payload: age });
+    }
+}
+
+export function signup(newUser){
+    return dispatch => {
+
+          dispatch({ type: userConstants.REGISTER_REQUEST });
+
           //make request to backend api to signup user
           fetch("/signup", {
             method: "post",
@@ -225,16 +244,16 @@ export function signup(){
               'Content-Type': 'application/json'
             }),
             body: JSON.stringify({
-                firstName: this.state.firstName, 
-                lastName: this.state.lastName,
-                username: this.state.username,
-                email: this.state.email,
-                password: this.state.password,
-                age: this.state.age,
-                country: this.state.country,
-                cash: this.state.cash,
-                portfolio: this.state.portfolio,
-                portfolioValue: this.state.portfolioValue
+                firstName: newUser.firstName, 
+                lastName: newUser.lastName,
+                username: newUser.username,
+                email: newUser.email,
+                password: newUser.password,
+                age: newUser.age,
+                country: newUser.country,
+                cash: 10000,
+                portfolio: {},
+                portfolioValue: 10000
             })
           })
           .then((response) => {
@@ -253,28 +272,54 @@ export function signup(){
                             "Content-Type": "application/json"
                         }),
                         body: JSON.stringify({
-                            email: this.state.email,
-                            password: this.state.password
+                            email: newUser.email,
+                            password: newUser.password
                         })
                     })
                     .then(response => {
                         console.log(response)
                         if(response === 200){
-                            console.log("successfully authenticated");
+                            return response.json();
+
                         }
                     })
-                    .then(() => {
-                        this.props.getUser(message.user);
+                    .then(authenticatedUser => {
+
+                        //save user to state or... SESSION! :D
+                        console.log("%cUSER IS NOW REGISTERED", "color: green")
+                        dispatch({type: userConstants.REGISTER_SUCCESS, payload: authenticatedUser });
+
+                        //Redirect to main home route
                         this.props.history.push("/");
                     })
                     
               } 
           })
           .catch((err) => {
-              this.setState({
-                  displayError: true
-              })
               console.log(err);
           })
     }
 }
+
+//handle new user registration
+export function registerUser(){
+
+    return dispatch => {
+        //let the app know that we are attempting to signup the user
+        dispatch({ type: userConstants.REGISTER_REQUEST });
+
+        //check if the user is cached
+        fetch("api/auth")
+                .then((userData) => {
+                    //save user to state or... SESSION! :D
+                    console.log("%cUSER IS NOW REGISTERED", "color: green")
+                    dispatch({type: userConstants.REGISTER_SUCCESS, payload: userData});
+                })
+                .catch((error) => {
+                    //if something went wrong
+                    console.log("%cUSER COULD NOT REGISTER", "color: green")
+                    dispatch({type: userConstants.REGISTER_FAILURE, payload: error})
+                })
+    }
+}
+

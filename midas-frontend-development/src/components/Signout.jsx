@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logoutUser }  from '../actions/actionCreators';
 
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.currentUser.isAuthenticated
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  logout(){
+    dispatch(logoutUser())
+  }
+})
 
 class Signout extends Component {
-      state = {
-        redirect: false
-      }
+
+    componentDidMount() {
+        this.props.logout()
+    }
     
-      componentDidMount() {
-        this.props.resetUser();
-        fetch("/logout")
-        .then(response => {
-          if(response.status === 200){
-            this.id = setTimeout(() => this.setState({ redirect: true }), 3000)
-          } 
-        })
-      }
-    
-      componentWillUnmount() {
-        clearTimeout(this.id)
-      }
     render(){
-      return this.state.redirect
+      return this.props.isAuthenticated
       ? <Redirect to="/" />
       : ( 
         <div>
@@ -36,4 +37,4 @@ class Signout extends Component {
     }
 }
 
-export default Signout;
+export default connect(mapStateToProps, mapDispatchToProps)(Signout);

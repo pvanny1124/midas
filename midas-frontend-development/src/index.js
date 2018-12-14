@@ -55,7 +55,7 @@ const initialState = {
 const middleware = applyMiddleware(thunk, logger);
 
 //generate the store for the entire application
-const store = createStore(reducers, initialState, middleware);
+const store = createStore(reducers, middleware);
 
 
 ReactDOM.render(

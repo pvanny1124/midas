@@ -26,10 +26,12 @@ passport.use(new LocalStrategy({
       where: { email },
     }).then((user) => {
       console.log(user);
+      console.log("OLD MCDONALD HAD A FARM")
       if (!user || passwordsMatch(password, user.password_hash) === false) {
+        console.log("oh sheit. somethins wrong")
         return done(null, false, { message: 'Incorrect password.' });
       }
-
+      console.log("and bing was his nameo...")
       return done(null, user, { message: 'Successfully Logged In!' });
     });
   })
